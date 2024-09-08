@@ -1,0 +1,7 @@
+body{
+    background-color: ;
+}
+
+p:nth-child(3n + 1){
+ background-color: blue;
+}

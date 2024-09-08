@@ -1,0 +1,62 @@
+:root{
+    --light-blue: rgb(133, 149, 195);
+    --dark-blue: rgb(78, 101, 167);
+    --dark-gray: #2d2d2d;
+    --light-gray: #ccc;
+    --red: rgb(180, 0, 0);
+    --green: rgb(0, 95, 0);
+}
+
+/* CSS Reset */
+html, body{
+    padding: 0;
+    margin: 0;
+    font-family: Helvetica, sans-serif;
+}
+
+main > * {
+    margin: auto;
+    text-align: center;
+}
+
+section {
+    background-image:url(images/loganphoto.jpeg);
+    width: 120px;
+    height: 120px;
+    background-size: 150px 150px;
+    background-position: center -5px;
+    border-radius: 360px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 4px 4px 10px gray;
+}
+
+section:hover{
+    outline: 4px solid var(--light-blue);
+    box-shadow: 6px 6px 15px gray;
+}
+
+td:not(:empty){
+    background-color: var(--light-blue);
+    color: white;
+    font-weight: bold;
+    border: 2px solid var(--dark-blue);
+}
+
+tr:nth-child(even) td:first-child {
+    background-color: var(--light-gray);
+    color: black;
+}
+
+table{
+    background-color: var(--light-gray);
+    border: 2px solid black;
+    padding: 1px;
+}
+
+th{
+    background-color: var(--dark-blue);
+    color: white;
+    font-weight: bold;
+    padding: 10px 40px;
+}
