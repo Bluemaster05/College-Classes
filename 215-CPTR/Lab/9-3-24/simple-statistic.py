@@ -11,4 +11,4 @@ elif input_year % 4 == 0:
 if is_leap_year:
     print(f"{input_year} - leap year")
 else:
-    print(f"{input_year} - not a leap year")
+    print(f"{input_year} - not a leap year") fyf
