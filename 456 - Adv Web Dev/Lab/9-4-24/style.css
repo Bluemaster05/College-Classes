@@ -52,6 +52,7 @@ table{
     background-color: var(--light-gray);
     border: 2px solid black;
     padding: 1px;
+    margin: 30px auto;
 }
 
 th{
@@ -59,4 +60,49 @@ th{
     color: white;
     font-weight: bold;
     padding: 10px 40px;
+}
+details table{
+    margin: auto;
+}
+
+ul{
+    width: fit-content;
+    margin: auto;
+    list-style-type: none;
+    /* list-style-image: url(images/tenor.gif); */
+    /* background: url(images/tenor.gif) no-repeat left top; */
+    /* height: 34px; */
+}
+
+li {
+    list-style: none;
+    padding: 1px 25px;
+    background-image: url(images/tenor.gif);
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 20px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 14pt;
+}
+
+h1{
+    font-size: 25pt;
+    text-shadow: -2px -2px var(--light-gray), 2px 2px var(--light-blue);
+    margin: .5rem 0;
+}
+
+h2{
+    font-weight: 500;
+    font-size: 19pt;
+}
+p{
+    font-size: 11pt;
+}
+nav{
+    margin-bottom: 20px;
+}
+
+summary{
+    font-size: 15pt;
 }
