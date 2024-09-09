@@ -52,7 +52,7 @@ table{
     background-color: var(--light-gray);
     border: 2px solid black;
     padding: 1px;
-    margin: 30px auto;
+    margin: 20px auto;
 }
 
 th{
@@ -60,9 +60,6 @@ th{
     color: white;
     font-weight: bold;
     padding: 10px 40px;
-}
-details table{
-    margin: auto;
 }
 
 ul{
@@ -105,4 +102,40 @@ nav{
 
 summary{
     font-size: 15pt;
+}
+
+details:last-of-type{
+    margin-bottom: 3rem;
+}
+form > input{
+    display: block;
+    width: 25rem;
+    margin-bottom: 2px;
+}
+
+textarea{
+    display: block;
+    width: 25.2rem;
+    height: 8rem;
+    margin-bottom: 2px;
+    font-family: Helvetica, sans-serif;
+}
+
+form{
+    width: fit-content;
+    /* padding: 5px;
+    border: 1px solid ;
+    border-radius: 5px; */
+}
+
+fieldset{
+    width: fit-content;
+    border-radius: 10px;
+    text-align: left;
+    /* padding-left: 100px; */
+}
+
+button {
+    width: 25.6rem;
+    height: 2rem;
 }
