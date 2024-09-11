@@ -63,23 +63,17 @@
 
 @keyframes move-canoe {
     50% {
-        transform: translate(calc(100vw - 300px));
+        /* transform: translate(calc(100vw - 300px)); */
+        margin-left: calc(100vw - 300px);
     }
 }
 
 @keyframes water-move {
-    0% {
-        background: linear-gradient(to right, var(--light-blue) 90%, var(--dark-blue));
-    }
-
-    50% {
-        background: linear-gradient(to right, var(--light-blue), var(--dark-blue));
-    }
-
-    100% {
-        background: linear-gradient(to right, var(--light-blue), var(--dark-blue) 10%);
-    }
+    0%{background-position:10% 0%}
+    50%{background-position:91% 100%}
+    100%{background-position:10% 0%}
 }
+
 
 /* CSS Reset */
 html,
@@ -94,7 +88,7 @@ body {
     height: 100px;
     border-radius: 10px;
     background-color: var(--red);
-    transition: background-color linear .5s;
+    transition: background-color linear .5s; 
     clip-path: polygon(50% 0%,
             61% 35%,
             98% 35%,
@@ -106,17 +100,6 @@ body {
             2% 35%,
             39% 35%);
     animation: star-cube 6s linear infinite;
-    /* clip-path: polygon(50% 0%, 
-                       100% 0%, 
-                       100% 35%,
-                       100% 57%, 
-                       100% 100%, 
-                       50% 100%, 
-                       0% 100%, 
-                       0% 57%, 
-                       0% 35%, 
-                       0% 0%
-    ); */
 }
 
 .star-cube-holder div:hover {
@@ -141,6 +124,8 @@ body {
     background: linear-gradient(to right, var(--light-blue), var(--dark-blue));
     padding-top: 50px;
     box-sizing: border-box;
+    background-size: 200% 200%;
+    animation: water-move 8s linear infinite;
 }
 
 #green-canoe {
@@ -152,7 +137,7 @@ body {
     padding-top: 10px;
     animation: wiggle 1s linear infinite, move-canoe 8s linear infinite;
     /* animation: move-canoe 8s linear infinite; */
-    /* animation: wiggle 1s linear infinite */
+    /* animation: wiggle 1s linear infinite; */
 }
 
 #brown-inside {
