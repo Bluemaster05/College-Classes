@@ -139,3 +139,43 @@ button {
     width: 25.6rem;
     height: 2rem;
 }
+
+div{
+    background-color: var(--red);
+    width: 300px;
+    height: 300px;
+    color: white;
+    font-size: 30pt;
+    text-align: center;
+    line-height: 300px;
+    clip-path: polygon(25% 0,75% 0, 100% 25%, 100% 75%, 75% 100%, 25% 100%, 0% 75%, 0% 25% );
+}
+
+div::before{
+    content: "Stop";
+}
+
+div:hover{
+    content: 'Go';
+    background-color: var(--green);
+    clip-path: circle(50%);
+}
+
+div:hover::before{
+    display: inline;
+    content: "Go";
+}
+
+a{
+    color: var(--light-blue);
+    text-decoration: none;
+}
+
+.active{
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+a:hover{
+    text-decoration: underline;
+}
