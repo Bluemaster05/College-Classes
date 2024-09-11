@@ -1,0 +1,21 @@
+@keyframes wobble {
+    20%{transform: rotate(0deg);}
+    40%{transform: rotate(-20deg)}
+    60%{transform: rotate(0deg)}
+    80%{transform: rotate(20deg)}
+    100%{transform: rotate(0deg);}
+}
+
+div{
+    height: 100px;
+    width: 100px;
+    background-color: orange;
+    transition: border-radius linear 1s, background-color ease-in 3s;
+    
+}
+
+div:hover {
+    /* background-color: green;
+    border-radius: 50px; */
+    animation: wobble ease-in-out 1s infinite;
+}
