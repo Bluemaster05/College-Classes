@@ -1,0 +1,164 @@
+:root {
+    --red-shadow: rgb(87, 38, 45);
+    --red: rgb(228, 37, 37);
+    --light-blue: rgb(173, 173, 248);
+    --dark-blue: rgb(20, 20, 273);
+}
+
+@keyframes ball-spin {
+    50% {
+        transform: translate(calc(100vw - 100px), 0px) rotate(1440deg);
+    }
+}
+
+@keyframes star-cube {
+    50% {
+        clip-path: polygon(50% 0%,
+                100% 0%,
+                100% 35%,
+                100% 57%,
+                100% 100%,
+                50% 100%,
+                0% 100%,
+                0% 57%,
+                0% 35%,
+                0% 0%);
+    }
+
+    100% {
+        clip-path: polygon(50% 0%,
+                61% 35%,
+                98% 35%,
+                68% 57%,
+                79% 91%,
+                50% 70%,
+                21% 91%,
+                32% 57%,
+                2% 35%,
+                39% 35%);
+    }
+}
+
+@keyframes wiggle {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(20deg);
+    }
+
+    50% {
+        transform: rotate(0deg);
+    }
+
+    75% {
+        transform: rotate(-20deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes move-canoe {
+    50% {
+        transform: translate(calc(100vw - 300px));
+    }
+}
+
+@keyframes water-move {
+    0% {
+        background: linear-gradient(to right, var(--light-blue) 90%, var(--dark-blue));
+    }
+
+    50% {
+        background: linear-gradient(to right, var(--light-blue), var(--dark-blue));
+    }
+
+    100% {
+        background: linear-gradient(to right, var(--light-blue), var(--dark-blue) 10%);
+    }
+}
+
+/* CSS Reset */
+html,
+body {
+    padding: 0;
+    margin: 0;
+    font-family: Helvetica, sans-serif;
+}
+
+.star-cube-holder div {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    background-color: var(--red);
+    transition: background-color linear .5s;
+    clip-path: polygon(50% 0%,
+            61% 35%,
+            98% 35%,
+            68% 57%,
+            79% 91%,
+            50% 70%,
+            21% 91%,
+            32% 57%,
+            2% 35%,
+            39% 35%);
+    animation: star-cube 6s linear infinite;
+    /* clip-path: polygon(50% 0%, 
+                       100% 0%, 
+                       100% 35%,
+                       100% 57%, 
+                       100% 100%, 
+                       50% 100%, 
+                       0% 100%, 
+                       0% 57%, 
+                       0% 35%, 
+                       0% 0%
+    ); */
+}
+
+.star-cube-holder div:hover {
+    background-color: orange;
+}
+
+.star-cube-holder {
+    filter: drop-shadow(5px 5px 6px var(--red-shadow));
+}
+
+#ball {
+    width: 100px;
+    height: 100px;
+    background: conic-gradient(at center, red 0 25%, green 0% 180deg,
+            yellow 0% 75%, blue 0%);
+    border-radius: 50px;
+    animation: ball-spin 8s linear infinite;
+}
+
+#gradient {
+    height: 200px;
+    background: linear-gradient(to right, var(--light-blue), var(--dark-blue));
+    padding-top: 50px;
+    box-sizing: border-box;
+}
+
+#green-canoe {
+    background-color: green;
+    height: 100px;
+    width: 300px;
+    clip-path: ellipse();
+    box-sizing: border-box;
+    padding-top: 10px;
+    animation: wiggle 1s linear infinite, move-canoe 8s linear infinite;
+    /* animation: move-canoe 8s linear infinite; */
+    /* animation: wiggle 1s linear infinite */
+}
+
+#brown-inside {
+    height: 90%;
+    width: 70%;
+    margin: auto;
+    background-color: brown;
+    clip-path: ellipse();
+}
