@@ -1,7 +1,6 @@
 #Logan Gardner 215-Lab-9-10-24 
 #Source https://en.wikipedia.org/wiki/Zeller%27s_congruence Formula-Gegorian
 #Calendar Function - Print Calendar with Month and Day
-
 def dayOfWeekForDate(year, month, day):
     """
     >>> dayOfWeekForDate(1752, 9, 30)
@@ -30,7 +29,7 @@ month_and_year = user_input.split()
 month = int(month_and_year[0])
 year = month_and_year[1]
 
-if year[2:] == 00:
+if year[2:] == "00":
     if int(year) % 400 == 0:
         days_in_month = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     else:
@@ -41,17 +40,42 @@ else:
     else:
         days_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
-months_list = ["January","Febuary","March","April","May","June","July","Augest","September","October","November","December"]
+def return_needed_query() -> None:
+    global day_string
+    global week_return
+    global times_run
+    if week_return == 7:
+        day_string += "\n"
+        week_return = 0
+        times_run += 1
+    else:
+        day_string += " "
+    return None   
 
-print(f'{f"{months_list[month - 1]} {year}":^20}')
+year = int(year)
+
+months_list = ["January","February","March","April","May","June","July","Augest","September","October","November","December"]
+
+print(f'{f"{months_list[month - 1]} {year}":^20}'.rstrip())
 print("Su Mo Tu We Th Fr Sa")
 
 day_string = ""
+week_return = 0
+times_run = 0
 
 for i in range(days_in_month[month - 1]):
     if i == 0:
         spaces_needed = dayOfWeekForDate(year, month, 1) - 1
-        
-    elif i > 0:
-
-    elif i == days_in_month[month - 1]:
+        day_string += "   " * spaces_needed
+        day_string += f"{i + 1:>2}"
+        week_return = spaces_needed + 1
+        return_needed_query()
+    elif i == days_in_month[month - 1] - 1:
+        day_string += f"{i + 1:>2}"
+    else:
+        day_string += f"{i + 1:>2}"
+        week_return += 1
+        return_needed_query()
+if times_run == 4:
+        day_string += "\n"
+print(day_string)
