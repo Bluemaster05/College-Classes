@@ -1,0 +1,144 @@
+:root {
+    --dark_grey: #161616;
+    --grey: #393939;
+    --blue: #028ef7;
+}
+
+/* CSS Reset */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Roboto, sans-serif;
+}
+
+header {
+    background-color: var(--grey);
+    display: flex;
+    justify-content: space-between;
+    padding: 13px 20px;
+    /* height: 10vh; */
+}
+
+@media (max-width: 440px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+}
+
+a {
+    color: white;
+    text-decoration: none;
+
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20pt;
+    font-weight: 500;
+}
+
+nav {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+nav a {
+    height: fit-content;
+    padding: 10px;
+    border-radius: 12px;
+    font-size: 12pt;
+}
+
+.menu-nav {
+    background-color: var(--dark_grey);
+    display: flex;
+    gap: 10px;
+}
+
+.menu-nav img {
+    height: 20px;
+}
+
+.order-nav {
+    background-color: var(--blue);
+    padding: 10px 15px;
+}
+
+.top-content {
+    background-color: var(--dark_grey);
+    color: white;
+    display: flex;
+    justify-content: center;
+    gap: 170px;
+    padding: 10px 5%;
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+@media (max-width: 1220px) {
+    .top-content{
+        gap: 0px;
+        justify-content: space-around;
+    }
+}
+
+@media (max-width: 1030px) {
+    .top-content{
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.top-content h1 {
+    font-weight: 300;
+    font-size: 50pt;
+    margin: 0;
+
+}
+
+.top-content-text {
+    max-width: 500px;
+    min-width: 455;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+    text-align: left;
+}
+
+
+
+.top-content-text p {
+    font-size: 14pt;
+    min-width: 490px;
+}
+
+.top-content-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.top-content-img img {
+    max-height: 500px;
+}
+
+.description-holder p {
+    margin-left: -65px;
+    padding: 10px 20px;
+    font-size: 20pt;
+    text-align: center;
+
+}
+
+.description-holder p:nth-child(even) {
+    background-color: var(--blue);
+    border-radius: 10px;
+
+}
