@@ -6,6 +6,8 @@ def wordsFromNumber(number: int):
     >>> wordsFromNumber(123456)
     "One hundred twentie three thousand four hundred fifty six"
     """
+    if number == 0:
+        return "zero"
     numberNamesBig = ["", "thousand", "Million", "Billion", "Trilion", "Quadrilian", "Quintillian", "sextillian", "octillion"]
     listNumber = list(str(number))
     bigNumber = []
@@ -29,42 +31,57 @@ def wordsFromNumber(number: int):
             limit = 3
     startNum = len(bigNumber) - 1
     outputNumber = ""
-    for nums in bigNumber
+    numberNamesBigIndex = len(bigNumber)
+    for num in bigNumber:
+        if removeTrailingZeros(num) != "0":
+            outputNumber += threeDigitWordToNumber(int(removeTrailingZeros(num)))
+            if numberNamesBigIndex - 1 != 0:
+                if threeDigitWordToNumber(int(removeTrailingZeros(num))) != 0:
+                    outputNumber += " " + numberNamesBig[numberNamesBigIndex - 1] + " "
+                else:
+                    outputNumber += " "
+        numberNamesBigIndex -= 1
+    return outputNumber
 
-
-    print(bigNumber)
+    # print(bigNumber)
 def threeDigitWordToNumber(number: int):
     numList = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
-    lessThanTwentieList = ["ten", "eleven", "twelve", "thirten", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"]
-    overTwentieList = ["twentie", "thrity", "fourty", "fifty", "sixty", "seventy", "eighty", "ninety",]
+    lessThanTwentieList = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"]
+    overTwentieList = ["twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety",]
     numstring = ""
     if len(str(number)) == 3:
         numstring += numList[int(str(number)[0:1])]
         numstring += " hundred " 
-        if number < 20:
-            numstring += lessThanTwentieList[number - 10]
-        elif number > 20:
+        if int(str(number)[1:]) < 20:
+            numstring += lessThanTwentieList[int(str(number)[1:])  - 10]
+        elif int(str(number)[1:]) > 20:
             # if int(str(number)[1:]) == 0:
             numstring +=  overTwentieList[int(str(number)[1:2]) -2]
-            numstring += " " + numList[int(str(number)[2:])]
+            if int(str(number)[2:]) != 0:
+                numstring += "-" + numList[int(str(number)[2:])]
     if len(str(number)) == 2:
         if number < 20:
             numstring += lessThanTwentieList[number - 10]
         elif number > 20:
             # if int(str(number)[1:]) == 0:
             numstring +=  overTwentieList[int(str(number)[0:1]) -2]
-            numstring += " " + numList[int(str(number)[1:])]
+            if int(str(number)[1:]) != 0:
+                numstring += "-" + numList[int(str(number)[1:])]
     if len(str(number)) == 1:
         numstring += numList[number]
     if len(str(number)) == 0:
         pass
     return numstring
     
-def removeTrailingZeros(str):
-
+def removeTrailingZeros(number: str):
+    if number == "000" or number == "00" or number == "0":
+        number = "0"
+    else:
+        number.strip("0")
+    return number
 
 if __name__ == "__main__":
     # import doctest
     # doctest.testmod()
 
-    print(wordsFromNumber(123100200300400500600))
+    print(wordsFromNumber(270844))
