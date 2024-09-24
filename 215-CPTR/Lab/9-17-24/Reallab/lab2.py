@@ -27,10 +27,18 @@ https://15puzzle.netlify.app/
 """
 
 from typing import Tuple
-
+from math import sqrt
 def rows_from_puzzle(puzzle : str) -> str:
     """Returns a string with a newline between rows of the puzzle.
     """
+    numRows = sqrt(len(puzzle))
+    rowlen = sqrt(len(puzzle))
+    puzzle = list(puzzle)
+    puzzleprint = ""
+    iteration = 0
+    for item in puzzle:
+        if iteration =
+        puzzleprint += item + ""
     return puzzle # TODO: write tests and replace this stub
 
 def is_solved(puzzle : str) -> bool:
