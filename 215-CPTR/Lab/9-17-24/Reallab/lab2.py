@@ -32,28 +32,86 @@ def rows_from_puzzle(puzzle : str) -> str:
     """Returns a string with a newline between rows of the puzzle.
     """
     numRows = sqrt(len(puzzle))
-    rowlen = sqrt(len(puzzle))
     puzzle = list(puzzle)
     puzzleprint = ""
+    rowlimit = 0
     iteration = 0
     for item in puzzle:
-        if iteration =
-        puzzleprint += item + ""
-    return puzzle # TODO: write tests and replace this stub
+        if iteration == len(puzzle) - 1:
+            puzzleprint += item
+        elif rowlimit < numRows - 1:
+            puzzleprint += item 
+            iteration += 1
+            rowlimit += 1
+        elif rowlimit == numRows - 1:
+            puzzleprint += item + "\n"
+            iteration += 1
+            rowlimit = 0
+    return puzzleprint # DONE
 
 def is_solved(puzzle : str) -> bool:
     """Determines whether puzzle is solved (as defined above).
     """
-    return False # TODO: write tests and replace this stub
+    puzzle = list(puzzle)
+    for index in range(len(puzzle) - 1):
+        if puzzle[index] > puzzle[index + 1]:
+            return False
+    return True # Done
 
 def is_legal_move(puzzle : str, tile_to_move : str) -> bool:
     """Determines whether it is possible to move tile_to_move into the empty spot.
     """
-    return tile_to_move != "-" # TODO: write tests and replace this stub
+    numRows = int(sqrt(len(puzzle)))
+    puzzle = list(puzzle)
+    puzzle3d = []
+    puzzleindex = 0
+    for index in range(numRows):
+        newline = []
+        for index2 in range(numRows):
+            newline.append(puzzle[puzzleindex])
+            puzzleindex += 1
+        puzzle3d.append(newline)
+    rowindex = 0
+    for row in puzzle3d:
+        if "-" in row:
+            rowindex = puzzle3d.index(row)
+    colindex = puzzle3d[rowindex].index("-")
+    
+    possibleSolutions = []
+    for item in puzzle3d[rowindex]:
+        if colindex == 0:
+            if item == puzzle3d[rowindex][colindex + 1]:
+                possibleSolutions.append(item)
+        elif colindex == numRows - 1:
+            if item == puzzle3d[rowindex][colindex - 1]:
+                possibleSolutions.append(item)
+        else:
+            if item == puzzle3d[rowindex][colindex + 1] or item == puzzle3d[rowindex][colindex - 1]:
+                possibleSolutions.append(item)
+    colList = []
+    for i in range(numRows):
+        colList.append(puzzle3d[i][colindex])
+    for item in colList:
+        if rowindex == 0:
+            if item == puzzle3d[rowindex + 1][colindex]:
+                possibleSolutions.append(item)
+        elif rowindex == numRows - 1:
+            if item == puzzle3d[rowindex - 1][colindex]:
+                possibleSolutions.append(item)
+        else:
+            if item == puzzle3d[rowindex + 1][colindex] or item == puzzle3d[rowindex - 1][colindex]:
+                possibleSolutions.append(item)
+    if tile_to_move in possibleSolutions:
+        return True
+
+    return False #Done
 
 def puzzle_with_move(puzzle : str, tile_to_move : str) -> str:
-    """Move tile_to_move into the empty slot (-).
-    """
+    puzzleList = list(puzzle)
+    indexDash, indexTile = puzzleList.index('-'), puzzleList.index(tile_to_move)
+    puzzleList[indexDash], puzzleList[indexTile] = puzzleList[indexTile], puzzleList[indexDash]
+    
+    puzzle = "".join(puzzleList)
     return puzzle # TODO: write tests and replace this stub
 
 def space_puzzle(puzzle : str) -> str:
@@ -76,4 +134,5 @@ if __name__ == "__main__":
     import doctest
     doctest.testmod()
     
-    play_puzzle("1-32")
+    # play_puzzle("1-23")
+    print(is_solved("-123"))
