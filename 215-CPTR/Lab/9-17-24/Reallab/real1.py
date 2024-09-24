@@ -52,10 +52,10 @@ def threeDigitWordToNumber(number: int):
     if len(str(number)) == 3:
         numstring += numList[int(str(number)[0:1])]
         numstring += " hundred " 
-        if int(str(number)[1:]) < 20:
+        if int(removeTrailingZeros(str(number)[1:])) < 20:
             numstring += lessThanTwentieList[int(str(number)[1:])  - 10]
         elif int(str(number)[1:]) > 20:
-            # if int(str(number)[1:]) == 0:
+            # if int(str(number)[1:]) == 0:1
             numstring +=  overTwentieList[int(str(number)[1:2]) -2]
             if int(str(number)[2:]) != 0:
                 numstring += "-" + numList[int(str(number)[2:])]
@@ -84,4 +84,4 @@ if __name__ == "__main__":
     # import doctest
     # doctest.testmod()
 
-    print(wordsFromNumber(270844))
+    print(wordsFromNumber(703880))
