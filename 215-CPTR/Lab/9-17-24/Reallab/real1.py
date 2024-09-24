@@ -1,14 +1,30 @@
-def wordsFromNumber(number: int):
+# Words From Number
+# Logan Gardner
+# 2021-09-24 Final Draft
+# Function that turns a number you input into it into words that represent that number in a string
+
+
+def wordsFromNumber(number: int) -> str:
     """ Takes number as a parameter and returns that number as a string
         For example 1 => one, 130000 => One hundred and thirty thousand
-    >>> wordsFromNumber(1)
-    "one"
-    >>> wordsFromNumber(123456)
-    "One hundred twentie three thousand four hundred fifty six"
+    >>> wordsFromNumber(551235)
+    'five hundred fifty-one thousand two hundred thirty-five'
+    >>> wordsFromNumber(94214047779337523338)
+    'ninety-four quintillion two hundred fourteen quadrillion forty-seven trillion seven hundred seventy-nine billion three hundred thirty-seven million five hundred twenty-three thousand three hundred thirty-eight'
+    >>> wordsFromNumber(7303000317656860625)
+    'seven quintillion three hundred three quadrillion three hundred seventeen billion six hundred fifty-six million eight hundred sixty thousand six hundred twenty-five'
+    >>> wordsFromNumber(0)
+    'zero'
+    >>> wordsFromNumber(12)
+    'twelve'
+    >>> wordsFromNumber(21)
+    'twenty-one'
+    >>> wordsFromNumber(113)
+    'one hundred thirteen'
     """
     if number == 0:
         return "zero"
-    numberNamesBig = ["", "thousand", "Million", "Billion", "Trilion", "Quadrilian", "Quintillian", "sextillian", "octillion"]
+    numberNamesBig = ["", "thousand", "million", "billion", "trillion", "quadrillion", "quintillion", "sextillion", "octillion"]
     listNumber = list(str(number))
     bigNumber = []
     limitThree = 0
@@ -37,51 +53,86 @@ def wordsFromNumber(number: int):
             outputNumber += threeDigitWordToNumber(int(removeTrailingZeros(num)))
             if numberNamesBigIndex - 1 != 0:
                 if threeDigitWordToNumber(int(removeTrailingZeros(num))) != 0:
+                    # if bigNumber[bigNumber.index(num) + 1] == "000":
+                    #     outputNumber += " " + numberNamesBig[numberNamesBigIndex - 1]
+                    # else:
                     outputNumber += " " + numberNamesBig[numberNamesBigIndex - 1] + " "
                 else:
                     outputNumber += " "
         numberNamesBigIndex -= 1
-    return outputNumber
+    return outputNumber.rstrip()
 
     # print(bigNumber)
-def threeDigitWordToNumber(number: int):
+def threeDigitWordToNumber(number: int) -> str:
+    """ Takes a numbers limited to 3 digits and returns that number in words
+    >>> threeDigitWordToNumber(123)
+    'one hundred twenty-three'
+    >>> threeDigitWordToNumber(103)
+    'one hundred three'
+    >>> threeDigitWordToNumber(700)
+    'seven hundred'
+    >>> threeDigitWordToNumber(1)
+    'one'
+    >>> threeDigitWordToNumber(10)
+    'ten'
+    >>> threeDigitWordToNumber(23)
+    'twenty-three'
+    """
     numList = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
     lessThanTwentieList = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"]
     overTwentieList = ["twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety",]
-    numstring = ""
+    numString = ""
     if len(str(number)) == 3:
-        numstring += numList[int(str(number)[0:1])]
-        numstring += " hundred " 
+        numString += numList[int(str(number)[0:1])]
+        if str(number)[1:] == "00":
+            numString += " hundred"
+        else:
+            numString += " hundred " 
         if int(removeTrailingZeros(str(number)[1:])) < 20:
-            numstring += lessThanTwentieList[int(str(number)[1:])  - 10]
-        elif int(str(number)[1:]) > 20:
-            # if int(str(number)[1:]) == 0:1
-            numstring +=  overTwentieList[int(str(number)[1:2]) -2]
+            if int(removeTrailingZeros(str(number)[1:])) < 10:
+                numString += numList[int(str(number)[2:])]
+            else:
+                numString += lessThanTwentieList[int(str(number)[1:])  - 10]
+        elif int(str(number)[1:]) >= 20:
+            numString +=  overTwentieList[int(str(number)[1:2]) -2]
             if int(str(number)[2:]) != 0:
-                numstring += "-" + numList[int(str(number)[2:])]
+                numString += "-" + numList[int(str(number)[2:])]
     if len(str(number)) == 2:
         if number < 20:
-            numstring += lessThanTwentieList[number - 10]
-        elif number > 20:
+            numString += lessThanTwentieList[number - 10]
+        elif number >= 20:
             # if int(str(number)[1:]) == 0:
-            numstring +=  overTwentieList[int(str(number)[0:1]) -2]
+            numString +=  overTwentieList[int(str(number)[0:1]) -2]
             if int(str(number)[1:]) != 0:
-                numstring += "-" + numList[int(str(number)[1:])]
+                numString += "-" + numList[int(str(number)[1:])]
     if len(str(number)) == 1:
-        numstring += numList[number]
+        numString += numList[number]
     if len(str(number)) == 0:
         pass
-    return numstring
+    return numString
     
-def removeTrailingZeros(number: str):
+def removeTrailingZeros(number: str) -> str:
+    """Removes trailing zeros from the beginning of a string but leaves one zero if all the numbers in the string are zero
+    >>> removeTrailingZeros("010")
+    '10'
+    >>> removeTrailingZeros("000")
+    '0'
+    >>> removeTrailingZeros("001")
+    '1'
+    >>> removeTrailingZeros("100")
+    '100'
+    """
     if number == "000" or number == "00" or number == "0":
         number = "0"
     else:
-        number.strip("0")
+        number = number.lstrip("0")
     return number
 
 if __name__ == "__main__":
-    # import doctest
-    # doctest.testmod()
+    import doctest
+    doctest.testmod()
 
-    print(wordsFromNumber(703880))
+    # print(wordsFromNumber(52088186046419700904))
+    # print(wordsFromNumber(700904))
+    # print(threeDigitWordToNumber(620))
+    print(removeTrailingZeros("010"))
