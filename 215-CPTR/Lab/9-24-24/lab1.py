@@ -1,3 +1,9 @@
+# Die spinnen, die Römer!
+# Logan Gardner
+# 2024-10-1 Final Draft
+# Program that performs arithmetic on Roman Numeral Numbers
+# Sources: https://en.wikipedia.org/wiki/Roman_numerals
+
 def romanFromInt(num: int) -> str:
     """Converts a number to its Roman numeral representation in standard form.
     >>> romanFromInt(3947)
@@ -12,6 +18,8 @@ def romanFromInt(num: int) -> str:
     'MMMCMXCIX'
     >>> romanFromInt(3009)
     'MMMIX'
+    >>> romanFromInt(1)
+    'I'
     >>> romanFromInt(0)
     ''
     """
@@ -89,9 +97,9 @@ def intFromRoman(num: str) -> int:
             "CM": 9,
             "DCCC": 8,
             "DCC": 7,
+            "DC": 6,
             "D": 5,
             "CD": 4,
-            "DC": 6,
             "CCC": 3,
             "CC": 2,
             "C": 1
@@ -123,39 +131,36 @@ def intFromRoman(num: str) -> int:
     numStore = num
     numsAppended = 0
     placesList = []
+    # Find non-zero numbers in number
     for i in range(4):
         for j in romanDict:
             for k in romanDict[j]:
                 if num[:4] == k:
                     romanString += str(romanDict[j][k])
                     num = num.replace(str(list(romanDict[j].keys())[list(romanDict[j].values()).index(romanDict[j][k])]), "", 1)
-                    numsAppended += 1
                     placesList.append(j)
                     break
                 elif num[:3] == k:
                     romanString += str(romanDict[j][k])
                     num = num.replace(str(list(romanDict[j].keys())[list(romanDict[j].values()).index(romanDict[j][k])]), "", 1)
-                    numsAppended += 1
                     placesList.append(j)
                     break
                 elif num[:2] == k:
                     romanString += str(romanDict[j][k])
                     num = num.replace(str(list(romanDict[j].keys())[list(romanDict[j].values()).index(romanDict[j][k])]), "", 1)
-                    numsAppended += 1
                     placesList.append(j)
                     break
                 elif num[:1] == k:
                     romanString += str(romanDict[j][k])
                     num = num.replace(str(list(romanDict[j].keys())[list(romanDict[j].values()).index(romanDict[j][k])]), "", 1)
-                    numsAppended += 1
                     placesList.append(j)
                     break
             if numStore != num:
                 numStore = num
                 break
+    #Find positions of zeros and insert zeros where needed.
     completePlaces = ["thousands","hundreds","tens","ones"]
     completePlaces = completePlaces[completePlaces.index(placesList[0]):]
-    missingPlaces = [item for item in completePlaces if item not in placesList]
     number_list = list(romanString)
     for i in range(len(placesList)):
         completePlaces[completePlaces.index(placesList[i])] = number_list[i]
@@ -168,10 +173,6 @@ def intFromRoman(num: str) -> int:
     return int(romanString)
 
 if __name__ == "__main__":
-
-    # for i in range(100, 999):
-    #     print(romanFromInt(i))
-    
     import doctest
     doctest.testmod()
     calculation = input('+-×÷» ')

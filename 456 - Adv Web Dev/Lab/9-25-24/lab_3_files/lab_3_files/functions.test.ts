@@ -1,5 +1,5 @@
 import {describe, expect, test} from "vitest"
-import { blastoff, average, vowelsAndConsonants } from "./functions"
+import { blastoff, average, vowelsAndConsonants, greatest, calculator } from "./functions"
 
 describe("blastoff()",() => {
     test("Check for 5", () => {
@@ -43,5 +43,38 @@ describe("vowelsAndConsonantes()",() => {
     })
     test("", () => {
         expect(vowelsAndConsonants("food!@#$%^&*(){[:;<,>.?/")).toEqual("Vowels: 2 Consonants: 2")
+    })
+})
+
+describe("greatest()",() => {
+    test("Test numbers", () => {
+        expect(greatest(5, 10, 0, 21, -22, NaN)).toEqual(21)
+    })
+    test("All negatives", () => {
+        expect(greatest(-20, -10, -5)).toEqual(-5)
+    })
+})
+
+describe("calculator()",() => {
+    test("Test numbers", () => {
+        expect(calculator(5, 10, "add")).toEqual(15)
+    })
+    test("Test numbers", () => {
+        expect(calculator(5, 10, "subtract")).toEqual(-5)
+    })
+    test("Test numbers", () => {
+        expect(calculator(5, 10, "multiply")).toEqual(50)
+    })
+    test("Test numbers", () => {
+        expect(calculator(5, 10, "divide")).toEqual(0.5)
+    })
+    test("Test numbers", () => {
+        expect(calculator(5, 10, "DiViDeeeeee")).toEqual("Invalid Input")
+    })
+    test("Test numbers", () => {
+        expect(calculator(NaN, 10, "add")).toEqual("Invalid Input")
+    })
+    test("Test numbers", () => {
+        expect(calculator(5, NaN, "add")).toEqual("Invalid Input")
     })
 })

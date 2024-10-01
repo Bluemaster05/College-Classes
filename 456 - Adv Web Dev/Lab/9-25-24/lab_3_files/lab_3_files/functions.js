@@ -122,7 +122,12 @@ export function vowelsAndConsonants(value) {
  * greatest(1, 5, 3, 9);        // returns 9
  */
 export function greatest(...values) {
-    return 0
+    let greatest =  values[0]
+    for (let num of values){
+        if (num > greatest)
+            greatest = num
+    }
+    return greatest
 }
 
 /**
@@ -138,7 +143,27 @@ export function greatest(...values) {
  * calculator(5, 3, 'add');      // returns 8
  */
 export function calculator(a, b, operation) {
-    return "IMPLEMENT ME"
+    if (isNaN(a) || isNaN(b)) {
+        return "Invalid Input"
+    }
+    let result
+    if (operation === "add") {
+        result = a + b
+    }
+    else if (operation === "subtract") {
+        result = a - b
+    }
+    else if (operation === "multiply") {
+        result = a * b
+    }
+    else if (operation === "divide") {
+        result = a / b
+    }
+    else {
+        return "Invalid Input"
+    }
+    
+    return  result
 }
 
 /**
