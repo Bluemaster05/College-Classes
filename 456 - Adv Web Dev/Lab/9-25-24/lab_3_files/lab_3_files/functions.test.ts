@@ -48,10 +48,13 @@ describe("vowelsAndConsonantes()",() => {
 
 describe("greatest()",() => {
     test("Test numbers", () => {
-        expect(greatest(5, 10, 0, 21, -22, NaN)).toEqual(21)
+        expect(greatest(5, 10, 0, 21, -22, NaN)).toEqual("Invalid Input")
     })
     test("All negatives", () => {
         expect(greatest(-20, -10, -5)).toEqual(-5)
+    })
+    test("All negatives", () => {
+        expect(greatest()).toEqual(-Infinity)
     })
 })
 
