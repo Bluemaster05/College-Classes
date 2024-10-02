@@ -35,14 +35,19 @@ to successfully pass the instructor's test suite.
  */
 export function blastoff(amount) {
     let countdown = ""
+    if (typeof amount !== "number") {
+        return "Invalid Input"
+    }
+
+    if (Number.isInteger(amount) === false){
+        return "Invalid Input"
+    }
+    
     if (amount < 0 || isNaN(amount)) {
         return "Invalid Input"
     }
 
-    for (let i = amount; i > 0; i--) {
-        if (i === 0) {
-            return "0... blastoff!"
-        }
+    for (let i = amount; i >= 0; i--) {
         if (i >= 1) {
             countdown += String(i) + ", "
         }
@@ -63,6 +68,11 @@ export function blastoff(amount) {
  * average(2, 4, 6);        // returns 4
  */
 export function average(...values) {
+    for (let item of values){
+        if (typeof item != "number"){
+            return "Invalid Input"
+        }
+    }
     let average1 = 0
     if (values.length === 0) {
         return "Invalid Input"
@@ -80,6 +90,7 @@ export function average(...values) {
     return average1
 }
 
+console.log(average(2.5, 6))
 
 /**
  * Counts the number of vowels and consonants in a given string.
@@ -91,17 +102,13 @@ export function average(...values) {
  * vowelsAndConsonants("hello");      // returns "Vowels: 2, Consonants: 3"
  */
 export function vowelsAndConsonants(value) {
-    const VowelArray = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']
-    const consonArray = ['q','w','r','t','y','p','s','d','f','g','h','j','k','l','z','x','c','v','b','n','m']
+    if (typeof value != "string"){
+        return "Invalid Input"
+    }
+    const VowelArray = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U', ]
+    const consonArray = ['q','w','r','t','y','p','s','d','f','g','h','j','k','l','z','x','c','v','b','n','m','Q','W','R','T','Y','P','S','D','F','G','H','J','K','L','Z','X','C','V','B','N','M']
     let vowels = 0
     let constinants = 0
-    for (let j of value) {
-        if (typeof j != "string" ) {
-            return "Invalid Input"
-        }
-    }
-
-
     for (let i of value) {
         if (VowelArray.includes(i)){
             vowels += 1
@@ -109,7 +116,7 @@ export function vowelsAndConsonants(value) {
             constinants += 1
         }
     }
-    return `Vowels: ${vowels} Consonants: ${constinants}`
+    return `Vowels: ${vowels}, Consonants: ${constinants}`
 }
 
 /**
@@ -125,6 +132,9 @@ export function greatest(...values) {
     for (let item of values){
         if (isNaN(item)){
             return "Invalid Input" 
+        }
+        if (typeof item != "number"){
+            return "Invalid Input"
         }
     }
     if (values.length  == 0) {
@@ -157,7 +167,9 @@ export function calculator(a, b, operation) {
     if (b === 0 && operation === "division") {
         return Infinity
     }
-
+    if (!isFinite(a) && !isFinite(b)){
+        return "Invalid Input"
+    }
     let result
     if (operation === "add") {
         result = a + b
@@ -213,6 +225,10 @@ export function isPalindrome(str) {
  * bitwiseNot("1101");      // returns "0010"
  */
 export function bitwiseNot(bitstring) {
+    if (bitstring === ""){
+        return "Invalid Input"
+    }    
+
     if (typeof bitstring != "string"){
         return "Invalid Input"
     }
