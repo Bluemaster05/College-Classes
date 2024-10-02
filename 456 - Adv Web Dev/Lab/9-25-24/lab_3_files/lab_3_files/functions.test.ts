@@ -1,5 +1,5 @@
 import {describe, expect, test} from "vitest"
-import { blastoff, average, vowelsAndConsonants, greatest, calculator } from "./functions"
+import { blastoff, average, vowelsAndConsonants, greatest, calculator, isPalindrome, bitwiseNot } from "./functions"
 
 describe("blastoff()",() => {
     test("Check for 5", () => {
@@ -79,5 +79,32 @@ describe("calculator()",() => {
     })
     test("Test numbers", () => {
         expect(calculator(5, NaN, "add")).toEqual("Invalid Input")
+    })
+    test("Test numbers", () => {
+        expect(calculator(5, 0, "divide")).toEqual(Infinity)
+    })
+})
+
+describe("isPalendrone()",() => {
+    test("Test numbers", () => {
+        expect(isPalindrome("Hello")).toEqual(false)
+    })
+    test("All negatives", () => {
+        expect(isPalindrome("bob")).toEqual(true)
+    })
+    test("All negatives", () => {
+        expect(isPalindrome(NaN)).toEqual("Invalid Input")
+    })
+})
+
+describe("bitWiseNot()",() => {
+    test("Test numbers", () => {
+        expect(bitwiseNot("Hello")).toEqual("Invalid Input")
+    })
+    test("All negatives", () => {
+        expect(bitwiseNot("10010")).toEqual("01101")
+    })
+    test("All negatives", () => {
+        expect(bitwiseNot(NaN)).toEqual("Invalid Input")
     })
 })

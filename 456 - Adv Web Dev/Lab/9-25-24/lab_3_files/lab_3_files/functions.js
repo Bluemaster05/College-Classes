@@ -189,6 +189,16 @@ export function calculator(a, b, operation) {
  * isPalindrome("madam"); // returns true
  */
 export function isPalindrome(str) {
+    if (typeof str != "string") {
+        return "Invalid Input"
+    }
+    const word = str
+    let reverseWord = word.split('')
+    reverseWord = reverseWord.reverse()
+    reverseWord = reverseWord.join('')
+    if (word === reverseWord) {
+        return true 
+    }
     return false
 }
 
@@ -203,5 +213,33 @@ export function isPalindrome(str) {
  * bitwiseNot("1101");      // returns "0010"
  */
 export function bitwiseNot(bitstring) {
-    return "IMPLEMENT ME"
+    if (typeof bitstring != "string"){
+        return "Invalid Input"
+    }
+    const checkString = bitstring.split("")
+    for (let item of checkString){
+        if (Number(item) === 0 || Number(item) === 1) {
+        }
+        else{
+            return "Invalid Input"
+        }
+    }
+    const orginalBitstring = bitstring
+    const bitArray = orginalBitstring.split("")
+    for (let item of bitArray){
+        bitArray[bitArray.indexOf(item)] = Number(item)
+    }
+    let flippedBitstring = []
+
+    for (let number of bitArray) {
+        if (number === 0) {
+            flippedBitstring.push(1)
+        }
+        else {
+            flippedBitstring.push(0)
+        }
+    }
+    flippedBitstring = flippedBitstring.join('')
+
+    return flippedBitstring
 }
