@@ -82,15 +82,25 @@ describe("salarySort()", () => {
             { firstName: 'Bob', lastName: 'Johnson', isAdmin: true, salary: 50000 },
             { firstName: 'Charlie', lastName: 'Brown', isAdmin: false, salary: 55000 }
         ])).toEqual([
-               { firstName: 'Bob', lastName: 'Johnson', isAdmin: true, salary: 50000 },
-               { firstName: 'Charlie', lastName: 'Brown', isAdmin: false, salary: 55000 },
-               { firstName: 'Alice', lastName: 'Smith', isAdmin: false, salary: 60000 }
-             ])
+            { firstName: 'Bob', lastName: 'Johnson', isAdmin: true, salary: 50000 },
+            { firstName: 'Charlie', lastName: 'Brown', isAdmin: false, salary: 55000 },
+            { firstName: 'Alice', lastName: 'Smith', isAdmin: false, salary: 60000 }
+        ])
     })
     test("0 values", () => {
         expect(salarySort([])).toEqual([])
     })
 })
 describe("fullNameSort()", () => {
-    test("First", () => { })
+    test("First", () => {
+        expect(salarySort([
+            { firstName: 'Charlie', lastName: 'Brown', isAdmin: false, salary: 60000 },
+            { firstName: 'Alice', lastName: 'Smith', isAdmin: false, salary: 50000 },
+            { firstName: 'Bob', lastName: 'Johnson', isAdmin: true, salary: 55000 }
+        ])).toEqual([
+            { firstName: 'Alice', lastName: 'Smith', isAdmin: false, salary: 50000, fullName: 'Alice Smith' },
+            { firstName: 'Bob', lastName: 'Johnson', isAdmin: true, salary: 55000, fullName: 'Bob Johnson' },
+            { firstName: 'Charlie', lastName: 'Brown', isAdmin: false, salary: 60000, fullName: 'Charlie Brown' }
+        ])
+    })
 })

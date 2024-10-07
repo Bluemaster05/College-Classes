@@ -118,11 +118,6 @@ const compress = (users) => {
     return compressed
 }
 
-console.log(compress([
-    { firstName: 'Alice', lastName: 'Smith', isAdmin: false, salary: 50000 },
-    { firstName: 'Bob', lastName: 'Johnson', isAdmin: true, salary: 55000 },
-    { firstName: 'Charlie', lastName: 'Brown', isAdmin: false, salary: 60000 }
-]))
 
 /**
  * Adds a full name property to all users.
@@ -187,11 +182,7 @@ const salarySort = (users) => {
     return sortedList
 }
 
-console.log(salarySort([
-    { firstName: 'Alice', lastName: 'Smith', isAdmin: false, salary: 60000 },
-    { firstName: 'Bob', lastName: 'Johnson', isAdmin: true, salary: 50000 },
-    { firstName: 'Charlie', lastName: 'Brown', isAdmin: false, salary: 55000 }
-]))
+
 
 /**
  * Sorts the users (ascending ASCII) by their full name.
@@ -216,8 +207,28 @@ console.log(salarySort([
  * ]
  */
 const fullNameSort = (users) => {
-    // IMPLEMENT ME
+    let usersCopy = [...users]
+    usersCopy = reformat(usersCopy)
+    usersCopy.sort((user1, user2) => {
+        if (user1.fullName === user2.fullName) {
+            return 0
+        }
+        else if (user1.fullName > user2.fullName) {
+            return 1
+        }
+        else if(user1.fullName < user2.fullName) {
+            return -1
+        }
+    })
+    return usersCopy
 }
+
+console.log(fullNameSort([
+    { firstName: 'Charlie', lastName: 'Brown', isAdmin: false, salary: 60000 },
+    { firstName: 'Alice', lastName: 'Smith', isAdmin: false, salary: 50000 },
+    { firstName: 'Bob', lastName: 'Johnson', isAdmin: true, salary: 55000 }
+]))
+
 
 /* DO NOT MODIFY */
 export {
