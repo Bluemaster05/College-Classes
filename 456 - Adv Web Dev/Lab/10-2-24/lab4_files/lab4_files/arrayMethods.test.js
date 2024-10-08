@@ -48,19 +48,19 @@ describe("removeOutliers()", () => {
 )
 
 describe("compress()", () => {
-    test("3 values Test", () => {
+    test("Works with normal values", () => {
         expect(compress([
             { firstName: 'Alice', lastName: 'Smith', isAdmin: false, salary: 50000 },
             { firstName: 'Bob', lastName: 'Johnson', isAdmin: true, salary: 55000 },
             { firstName: 'Charlie', lastName: 'Brown', isAdmin: false, salary: 60000 }
         ])).toEqual("Alice Smith is not an admin and makes $50000 annually;Bob Johnson is an admin and makes $55000 annually;Charlie Brown is not an admin and makes $60000 annually;")
     })
-    test("0 values Test", () => {
+    test("Works with empty list", () => {
         expect(compress([])).toEqual("")
     })
 })
 describe("reformat()", () => {
-    test("3 values Test fullname", () => {
+    test("Works with standard values", () => {
         expect(reformat([
             { firstName: 'Alice', lastName: 'Smith', isAdmin: false, salary: 50000 },
             { firstName: 'Bob', lastName: 'Johnson', isAdmin: true, salary: 55000 },
@@ -71,12 +71,12 @@ describe("reformat()", () => {
             { firstName: 'Charlie', lastName: 'Brown', isAdmin: false, salary: 60000, fullName: 'Charlie Brown' }
         ])
     })
-    test("0 values Test", () => {
+    test("Works with empty list", () => {
         expect(reformat([])).toEqual([])
     })
 })
 describe("salarySort()", () => {
-    test("3 Values", () => {
+    test("Works with deafult values", () => {
         expect(salarySort([
             { firstName: 'Alice', lastName: 'Smith', isAdmin: false, salary: 60000 },
             { firstName: 'Bob', lastName: 'Johnson', isAdmin: true, salary: 50000 },
@@ -87,13 +87,13 @@ describe("salarySort()", () => {
             { firstName: 'Alice', lastName: 'Smith', isAdmin: false, salary: 60000 }
         ])
     })
-    test("0 values", () => {
+    test("Works with empty list", () => {
         expect(salarySort([])).toEqual([])
     })
 })
 describe("fullNameSort()", () => {
-    test("First", () => {
-        expect(salarySort([
+    test("Works with standard Values", () => {
+        expect(fullNameSort([
             { firstName: 'Charlie', lastName: 'Brown', isAdmin: false, salary: 60000 },
             { firstName: 'Alice', lastName: 'Smith', isAdmin: false, salary: 50000 },
             { firstName: 'Bob', lastName: 'Johnson', isAdmin: true, salary: 55000 }
@@ -102,5 +102,19 @@ describe("fullNameSort()", () => {
             { firstName: 'Bob', lastName: 'Johnson', isAdmin: true, salary: 55000, fullName: 'Bob Johnson' },
             { firstName: 'Charlie', lastName: 'Brown', isAdmin: false, salary: 60000, fullName: 'Charlie Brown' }
         ])
+    })
+    test("Works with Duplicates", () => {
+        expect(fullNameSort([
+            { firstName: 'Bob', lastName: 'Johnson', isAdmin: true, salary: 55000 },
+            { firstName: 'Bob', lastName: 'Johnson', isAdmin: true, salary: 55000 },
+            { firstName: 'Alice', lastName: 'Smith', isAdmin: false, salary: 50000 },
+        ])).toEqual([
+            { firstName: 'Alice', lastName: 'Smith', isAdmin: false, salary: 50000, fullName: 'Alice Smith' },
+            { firstName: 'Bob', lastName: 'Johnson', isAdmin: true, salary: 55000, fullName: 'Bob Johnson' },
+            { firstName: 'Bob', lastName: 'Johnson', isAdmin: true, salary: 55000, fullName: 'Bob Johnson' }
+        ])
+    })
+    test("Works with empty list", () => {
+        expect(fullNameSort([])).toEqual([])
     })
 })

@@ -1,5 +1,8 @@
-numsList = input().split()
-floatlist = [float(j) for j in numsList]
-lastlist = [round(float(i) / max(floatlist), 2) for i in floatlist]
-m = [str(i) for i in lastlist]
-print(" ".join(m))
+from enum import Enum
+
+class Shape(Enum):
+    QUAD = 5
+    OVAL = 17
+    PYRAMID = 234
+
+print(str(Shape(5)))
