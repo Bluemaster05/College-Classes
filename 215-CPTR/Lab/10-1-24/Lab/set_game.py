@@ -69,7 +69,18 @@ class SetCard:
         
 
 def make_deck():
-    '''Returns a list containing a complete Set deck with 81 unique cards.'''
+    '''Returns a list containing a complete Set deck with 81 unique cards.
+    >>> make_deck()
+    [cards lol]
+    '''
+    cardDeck = []
+    for num in range(1, 4):
+        for fill in Fill:
+            for color in Color:
+                for shape in Shape:
+                    cardDeck.append(SetCard(num, fill, color, shape))
+    shuffle(cardDeck)
+    return cardDeck
 
 def is_set(card1: SetCard, card2: SetCard, card3: SetCard):
     '''Determines whether the 3 cards make a set.
