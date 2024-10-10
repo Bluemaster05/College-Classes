@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1728325659781" clover="3.2.0">
-  <project timestamp="1728325659781" name="All files">
+<coverage generated="1728506516527" clover="3.2.0">
+  <project timestamp="1728506516527" name="All files">
     <metrics statements="231" coveredstatements="231" conditionals="19" coveredconditionals="19" methods="5" coveredmethods="5" elements="255" coveredelements="255" complexity="0" loc="231" ncloc="231" packages="1" files="1" classes="1"/>
     <file name="arrayMethods.js" path="C:\Users\logan\OneDrive\Documents\GitHub\College-Classes\456 - Adv Web Dev\Lab\10-2-24\lab4_files\lab4_files\arrayMethods.js">
       <metrics statements="231" coveredstatements="231" conditionals="19" coveredconditionals="19" methods="5" coveredmethods="5"/>

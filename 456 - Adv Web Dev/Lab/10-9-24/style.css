@@ -1,0 +1,68 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica, sans-serif;
+}
+
+body {
+    background-color: gray;
+}
+
+#Lock {
+    border: 3px solid black;
+    border-radius: 360px;
+    width: 300px;
+    height: 300px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+}
+
+#Lock h1 {
+    color: black;
+    font-size: 25pt;
+    position: absolute;
+}
+
+section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    flex-direction: column;
+    height: 100vh;
+}
+
+
+section h1 {
+    color: white;
+}
+
+.combo-holder {
+    flex-direction: row;
+    height: fit-content;
+}
+
+.redarrow {
+    background-color: red;
+    width: 15px;
+    height: 15px;
+    clip-path: polygon(0% 50%, 100% 100%, 100% 0%);
+
+}
+
+.tick{
+    width: 20px;
+    height: 2px;
+    background-color: black;
+    position: absolute; 
+    top: 0px;
+    left: 0px; 
+top
+
+    /* transform: translateX(30px);  */
+}

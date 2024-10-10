@@ -33,6 +33,10 @@ class SetCard:
         '1SBO'
         >>> str(SetCard(2, Fill.EMPTY, Color.RED, Shape.QUAD))
         '2ERQ'
+        >>> str(SetCard(3, Fill.EMPTY, Color.GREEN, Shape.QUAD))
+        '3EGQ'
+        >>> str(SetCard(2, Fill.FILLED, Color.RED, Shape.PYRAMID))
+        '2FRP'
         '''
         outputString = ""
         outputString += str(self.number) + self.fillStr[0:1] + self.colorStr[0:1] + self.shapeStr[0:1]
@@ -44,6 +48,8 @@ class SetCard:
         SetCard(1, Fill.SHADED, Color.BLUE, Shape.OVAL)
         >>> repr(SetCard(2,Fill.EMPTY,Color.RED,Shape.QUAD))
         'SetCard(2, Fill.EMPTY, Color.RED, Shape.QUAD)'
+        >>> repr(SetCard(3,Fill.FILLED,Color.RED,Shape.QUAD))
+        'SetCard(3, Fill.EMPTY, Color.RED, Shape.QUAD)'
         '''
         representation = f"SetCard({self.number}, {str(self.fill)}, {str(self.color)}, {str(self.shape)})"
         return representation
@@ -70,8 +76,7 @@ class SetCard:
 
 def make_deck():
     '''Returns a list containing a complete Set deck with 81 unique cards.
-    >>> make_deck()
-    [cards lol]
+    >> make_deck()
     '''
     cardDeck = []
     for num in range(1, 4):
