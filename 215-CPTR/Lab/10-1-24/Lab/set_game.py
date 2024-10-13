@@ -1,3 +1,10 @@
+# Set Game
+# Logan Gardner
+# 2024-8-10 Created File and Started Functionality
+# 2024-9-10 Finished Functionality, Started Tests
+# 2024-10-10 Finalised Tests. Final Draft
+# Sources -https://en.wikipedia.org/wiki/Set_(card_game), -https://www.setgame.com/set/puzzle
+
 from enum import Enum
 from random import shuffle
 
@@ -49,7 +56,7 @@ class SetCard:
         >>> repr(SetCard(2,Fill.EMPTY,Color.RED,Shape.QUAD))
         'SetCard(2, Fill.EMPTY, Color.RED, Shape.QUAD)'
         >>> repr(SetCard(3,Fill.FILLED,Color.RED,Shape.QUAD))
-        'SetCard(3, Fill.EMPTY, Color.RED, Shape.QUAD)'
+        'SetCard(3, Fill.FILLED, Color.RED, Shape.QUAD)'
         '''
         representation = f"SetCard({self.number}, {str(self.fill)}, {str(self.color)}, {str(self.shape)})"
         return representation
@@ -76,7 +83,17 @@ class SetCard:
 
 def make_deck():
     '''Returns a list containing a complete Set deck with 81 unique cards.
-    >> make_deck()
+    >>> thisDeck = make_deck()
+    >>> len(thisDeck) == 81
+    True
+    >>> str(SetCard(1, Fill.SHADED, Color.BLUE, Shape.OVAL)) in map(str, thisDeck)
+    True
+    >>> thisDeck = list(map(str, thisDeck))
+    >>> thisDeck.pop(thisDeck.index(str(SetCard(1, Fill.SHADED, Color.BLUE, Shape.OVAL))))
+    '1SBO'
+    >>> str(SetCard(1, Fill.SHADED, Color.BLUE, Shape.OVAL)) in thisDeck
+    False
+    
     '''
     cardDeck = []
     for num in range(1, 4):
@@ -92,22 +109,25 @@ def is_set(card1: SetCard, card2: SetCard, card3: SetCard):
     (For each of the 4 traits, all 3 cards are either the same, or all 3 are different.)
     >>> is_set(SetCard(1,Fill.EMPTY,Color.BLUE,Shape.OVAL),SetCard(2,Fill.SHADED,Color.BLUE,Shape.OVAL),SetCard(3,Fill.FILLED,Color.BLUE,Shape.OVAL))
     True
+    >>> is_set(SetCard(1,Fill.SHADED,Color.BLUE,Shape.OVAL),SetCard(2,Fill.SHADED,Color.BLUE,Shape.OVAL),SetCard(3,Fill.FILLED,Color.BLUE,Shape.OVAL))
+    False
     '''
-    # print(card3, card1.third_card(card2))
-    if str(card3) == str(card1.third_card(card2)):
-        return True
-    else:
-        return False
+    return str(card3) == str(card1.third_card(card2))
 
 def third_value(valueList, value1, value2):
-        """
-        thirdNum = 0
-        if self.number == other.number:
-            thirdNum = self.number
-        else:
-            thirdNumberSet = (set([1, 2, 3]) - set([self.number, other.number]))
-            for num in thirdNumberSet:
-                thirdNum = num
+        """Returns what the thrid value would have to be to be in the set.
+        >>> third_value(Color, Color.RED, Color.BLUE)
+        <Color.GREEN: 2>
+        >>> third_value([1, 2 ,3], 2, 3)
+        1
+        >>> third_value([1, 2 ,3], 2, 2)
+        2
+        >>> third_value(Color, Color.RED, Color.RED)
+        <Color.RED: 1>
+        >>> third_value(Fill, Fill.EMPTY, Fill.EMPTY)
+        <Fill.EMPTY: 0>
+        >>> third_value(Shape, Shape.OVAL, Shape.QUAD)
+        <Shape.PYRAMID: 234>
         """
         if value1 == value2:
             return value1
@@ -117,7 +137,3 @@ def third_value(valueList, value1, value2):
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
-    # print(str(SetCard(1, Fill.SHADED, Color.BLUE, Shape.OVAL)))
-    # print((SetCard(2,Fill.EMPTY,Color.RED,Shape.QUAD).))
-
-    # print(Fill(2).name)

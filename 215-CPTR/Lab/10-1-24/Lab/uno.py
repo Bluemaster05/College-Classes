@@ -1,3 +1,9 @@
+# Uno Game
+# Logan Gardner
+# 2024-9-10 Created File and Completed Functionality
+# 2024-10-10 Created and Ran test. Final Draft
+# Sources -https://www.setgame.com/set/puzzle
+
 from random import shuffle
 
 class UnoCard:
@@ -24,10 +30,7 @@ class UnoCard:
         True
         
         """
-        if self.color == "K" or other.color == "K" or self.color == other.color or self.rank == other.rank:
-            return True
-        else:
-            return False
+        return self.color == "K" or other.color == "K" or self.color == other.color or self.rank == other.rank
 
     def score_value(self):
         """ Returns the score value of the card
@@ -83,19 +86,46 @@ class UnoCard:
             return 20
         if self.rank in fiftyRanks:
             return 50
+        return 0
 
     def __str__(self) -> str:
         """Returns a human-readable string representation of the card
+        >>> str(UnoCard("K","W"))
+        'KW'
+        >>> str(UnoCard("B","5"))
+        'B5'
+        >>> str(UnoCard("Y","4"))
+        'Y4'
+        >>> str(UnoCard("G","S"))
+        'GS'
         """
         return f"{self.color}{self.rank}"
 
     def __repr__(self) -> str:
         """Returns a python-readable string representation that can be used to recreate the card
+        >>> repr(UnoCard("B", "S"))
+        "UnoCard('B', 'S')"
+        >>> repr(UnoCard("K", "W"))
+        "UnoCard('K', 'W')"
+        >>> repr(UnoCard("R", "R"))
+        "UnoCard('R', 'R')"
         """
         return f"UnoCard('{self.color}', '{self.rank}')"
 
 def create_deck():
     """Create a Full Uno deck and shuffles it
+    >>> mydeck = create_deck()
+    >>> str(UnoCard('R', '1')) in map(str, mydeck)
+    True
+    >>> str(UnoCard('K', 'W')) in map(str, mydeck)
+    True
+    >>> len(mydeck) == 108
+    True
+    >>> mydeck = list(map(str, mydeck))
+    >>> mydeck.pop(mydeck.index("B1"))
+    'B1'
+    >>> "B1" in mydeck
+    True
     """
     standardRanks = "1 2 3 4 5 6 7 8 9 S D R".split(" ")
     standardColors = "R G B Y".split(" ")
@@ -114,11 +144,21 @@ def create_deck():
     return deck 
  
 
-def deal_hands(deck, numhands):
+def deal_hands(deck, numHands):
     """Takes a deck and distributes 7 cards for each hand into a list of lists, the cards are distibuted so that they.
+    >>> deck1 = [UnoCard('B', '1'),UnoCard('B', '2'),UnoCard('B', '3'),UnoCard('B', '4'),UnoCard('B', '5'),UnoCard('B', '6'),UnoCard('B', '7'),UnoCard('B', '8'),UnoCard('B', '9'),UnoCard('Y', '1'),UnoCard('Y', '2'),UnoCard('Y', '3'),UnoCard('Y', '4'),UnoCard('Y', '5')]
+    >>> deal_hands(deck1 , 2)
+    ([UnoCard('B', '1'), UnoCard('B', '3'), UnoCard('B', '5'), UnoCard('B', '7'), UnoCard('B', '9'), UnoCard('Y', '2'), UnoCard('Y', '4')], [UnoCard('B', '2'), UnoCard('B', '4'), UnoCard('B', '6'), UnoCard('B', '8'), UnoCard('Y', '1'), UnoCard('Y', '3'), UnoCard('Y', '5')])
+    >>> newestDeck = create_deck()
+    >>> tuple(map(len ,deal_hands(newestDeck, 3)))
+    (7, 7, 7)
+    >>> len(newestDeck)
+    87
+    >>> len(deal_hands(create_deck(), 3))
+    3
     """
     decks = []
-    for i in range(numhands):
+    for i in range(numHands):
         decks.append([])
     for j in range(7):    
         for cardDeck in decks:
@@ -128,6 +168,10 @@ def deal_hands(deck, numhands):
 
 def hand_score(hand: list[UnoCard]):
     """Returns the total score of the cards in a hand
+    >>> hand_score([UnoCard("B", "5"), UnoCard("B", "2"), UnoCard("G", "3")])
+    10
+    >>> hand_score([UnoCard("B", "S"), UnoCard("K", "W"), UnoCard("G", "3")])
+    73
     """
     totalScore = 0
     for card in hand:
