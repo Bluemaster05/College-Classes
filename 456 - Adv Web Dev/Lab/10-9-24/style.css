@@ -66,3 +66,8 @@ section h1 {
 
     /* transform: translateX(30px);  */
 }
+
+.tick-num {
+    font-size: 11pt;
+    position: absolute;
+}

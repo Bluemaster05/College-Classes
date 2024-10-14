@@ -1,7 +1,7 @@
 #Logan Gardner
 #Base Ball Counter
-#10-13-24 Started 
-#10-14-24 Finished Spine
+#10-13-24 Started Program
+#10-14-24 Finished Program, Finshed Testing, Final Draft
 # Sources - Bounded Counter from 215 Lecture
 
 from enum import Enum
@@ -58,6 +58,19 @@ class BaseballCounter:
             self.new_batter()
     def strike(self):
         """Adds a strike to the counter, 3rd strike increments out and a new batter is up.
+        >>> bc = BaseballCounter(1, 1, 1, HalfInning.TOP, 1)
+        >>> bc.strike()
+        >>> repr(bc)
+        'BaseballCounter(1, 2, 1, HalfInning.TOP, 1)'
+        >>> bc.strike()
+        >>> repr(bc)
+        'BaseballCounter(0, 0, 2, HalfInning.TOP, 1)'
+        >>> bc.strike()
+        >>> bc.strike()
+        >>> bc.strike()
+        >>> repr(bc)
+        'BaseballCounter(0, 0, 0, HalfInning.BOTTOM, 1)'
+
         """
         self.strikes += 1
         if self.strikes >= 3:
@@ -65,11 +78,30 @@ class BaseballCounter:
             self.new_batter()
     def new_batter(self):
         """Resets the ball count and strike count
+        >>> bc = BaseballCounter(1,1,1,HalfInning.TOP,1)
+        >>> bc.new_batter()
+        >>> repr(bc)
+        'BaseballCounter(0, 0, 1, HalfInning.TOP, 1)'
+        >>> newBC = BaseballCounter()
+        >>> newBC.new_batter()
+        >>> repr(newBC)
+        'BaseballCounter(0, 0, 0, HalfInning.TOP, 1)'
         """
         self.balls = 0
         self.strikes = 0
     def out(self):
         """Adds an out to the counter. 3rd out resets out, new batter walks up, and halfInning switches.
+        >>> bc = BaseballCounter(1, 1, 1, HalfInning.TOP, 1)
+        >>> bc.out()
+        >>> repr(bc)
+        'BaseballCounter(1, 1, 2, HalfInning.TOP, 1)'
+        >>> bc.out()
+        >>> repr(bc)
+        'BaseballCounter(0, 0, 0, HalfInning.BOTTOM, 1)'
+        >>> newBc = BaseballCounter(0, 0, 2, HalfInning.BOTTOM, 1)
+        >>> newBc.out()
+        >>> repr(newBc)
+        'BaseballCounter(0, 0, 0, HalfInning.TOP, 2)'
         """
         self.outs += 1
         if self.outs >= 3:
@@ -82,6 +114,14 @@ class BaseballCounter:
                 self.inning += 1
     def new_game(self):
         """ Calls constructor with default parameters to reset the game
+        >>> bc = BaseballCounter(1, 1, 1, HalfInning.BOTTOM, 2)
+        >>> bc.new_game()
+        >>> repr(bc)
+        'BaseballCounter(0, 0, 0, HalfInning.TOP, 1)'
+        >>> newBc = BaseballCounter()
+        >>> newBc.new_game()
+        >>> repr(newBc)
+        'BaseballCounter(0, 0, 0, HalfInning.TOP, 1)'
         """
         self.__init__()
 

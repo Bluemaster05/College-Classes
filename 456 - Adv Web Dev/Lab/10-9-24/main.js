@@ -29,6 +29,16 @@ function addWidget() {
         newtick.style.transformOrigin = "center left"
         lock.appendChild(newtick)
 
+        //Creates new Number
+        let newNum = document.createElement("div")
+        newNum.classList.add("tick-num")
+        newNum.innerText = `${i}`
+        newNum.style.top = `${top - 20}px`
+        newNum.style.left = `${left - 20}px`
+        newNum.style.transform = `rotate(${rotation - 180}deg)`
+        lock.appendChild(newtick)
+
+
         rotation += degrees
     }
 }
