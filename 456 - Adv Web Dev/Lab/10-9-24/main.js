@@ -33,4 +33,4 @@ function addWidget() {
     }
 }
 addWidget()
-lock.style.transform = "rotate(15deg)"
+// lock.style.transform = "rotate(15deg)"
