@@ -1,55 +1,10 @@
 #Logan Gardner
 #Base Ball Counter
 #10-13-24 Started 
+#10-14-24 Finished Spine
 # Sources - Bounded Counter from 215 Lecture
 
 from enum import Enum
-
-#Bounded Counter from Class, NOT WRITEN BY ME -LG
-class BoundedCounter:
-    def __init__(self, lower_bound: int = 0, upper_bound: int = 9,
-                 start_value: int = None, neighbor = None):
-        self.lower_bound = lower_bound
-        self.upper_bound = upper_bound
-        self.current_value = lower_bound if start_value is None else start_value
-        self.neighbor = neighbor
-    def __repr__(self) -> str:
-        """Returns a string that contains Python code to recreate this object.
-        >>> BoundedCounter() # the shell calls repr when an expression returns an object
-        BoundedCounter(0, 9, 0, None)
-        >>> BoundedCounter(3, 5) # at the shell, expressions are surrounded by print(repr(expr))
-        BoundedCounter(3, 5, 3, None)
-        >>> repr(BoundedCounter(0, 1)) # calls BoundedCounter(0, 1).__repr__()
-        'BoundedCounter(0, 1, 0, None)'
-        """
-        return f"BoundedCounter({self.lower_bound}, {self.upper_bound}, {self.current_value}, {self.neighbor!r})"
-    def __str__(self) -> str:
-        """Returns a human-readable representation of this object.
-        >>> print(BoundedCounter()) # calls str(BoundedCounter()), which calls BoundedCounter().__str__()
-        0
-        >>> weird_counter = BoundedCounter(3, 7)
-        >>> print(weird_counter)
-        3
-        """
-        return ("" if self.neighbor is None else str(self.neighbor)) + str(self.current_value)
-    def increment(self):
-        """
-        >>> bit = BoundedCounter(0, 1)
-        >>> print(bit) # calls str(bit), which calls bit.__str__()
-        0
-        >>> bit.increment()
-        >>> print(bit)
-        1
-        >>> bit.increment()
-        >>> print(bit)
-        0
-        """
-        self.current_value += 1
-        if self.current_value > self.upper_bound:
-            self.current_value = self.lower_bound
-            if self.neighbor is not None:
-                self.neighbor.increment()
-
 
 class HalfInning(Enum):
     TOP = 0
@@ -63,35 +18,74 @@ class BaseballCounter:
         self.half = half
         self.inning = inning
     def __repr__(self) -> str:
+        """Creates Python-readable representation of Baseball counter that can be used to recreate the object
+        >>> repr(BaseballCounter(1, 2, 2, HalfInning.BOTTOM, 1))
+        'BaseballCounter(1, 2, 2, HalfInning.BOTTOM, 1)'
+        >>> repr(BaseballCounter(0, 0, 2, HalfInning.TOP, 5))
+        'BaseballCounter(0, 0, 2, HalfInning.TOP, 5)'
+        """
         return f'BaseballCounter({self.balls}, {self.strikes}, {self.outs}, {self.half}, {self.inning})'
     def __str__(self) -> str:
+        """Creates a human-readable representation of the Baseball counter
+        >>> str(BaseballCounter(1, 1, 1, HalfInning.BOTTOM, 1))
+        '1 ball, 1 strike, 1 out, bottom of the 1st inning'
+        >>> str(BaseballCounter(2, 2, 2, HalfInning.TOP, 2))
+        '2 balls, 2 strikes, 2 outs, top of the 2nd inning'
+        >>> str(BaseballCounter(3, 2, 2, HalfInning.TOP, 3))
+        '3 balls, 2 strikes, 2 outs, top of the 3rd inning'
+        >>> str(BaseballCounter(3, 2, 2, HalfInning.TOP, 4))
+        '3 balls, 2 strikes, 2 outs, top of the 4th inning'
+        """
         ballstr = "ball" if self.balls == 1 else "balls"
         strikestr = "strike" if self.strikes == 1 else "strikes"
-        
-
-        pass
+        outstr = "out" if self.outs == 1 else "outs"
+        halfstr = "bottom" if self.half == HalfInning.BOTTOM else "top"
+        stNdRdTh = "N/A st nd rd th th th th th th th th th th".split()
+        return f"{self.balls} {ballstr}, {self.strikes} {strikestr}, {self.outs} {outstr}, {halfstr} of the {self.inning}{stNdRdTh[self.inning]} inning"
     def ball(self):
+        """Adds a ball to the counter, after 4 balls a new batter is up and balls and strikes are reset
+        >>> bc = BaseballCounter(1, 1, 1, HalfInning.TOP, 1)
+        >>> bc.ball()
+        >>> repr(bc)
+        'BaseballCounter(2, 1, 1, HalfInning.TOP, 1)'
+        >>> bc.ball()
+        >>> bc.ball()
+        >>> repr(bc)
+        'BaseballCounter(0, 0, 1, HalfInning.TOP, 1)'
+        """
         self.balls += 1
-        if self.ball >= 4:
+        if self.balls >= 4:
             self.new_batter()
-    def stike(self):
+    def strike(self):
+        """Adds a strike to the counter, 3rd strike increments out and a new batter is up.
+        """
         self.strikes += 1
         if self.strikes >= 3:
             self.out()
             self.new_batter()
     def new_batter(self):
+        """Resets the ball count and strike count
+        """
         self.balls = 0
         self.strikes = 0
     def out(self):
+        """Adds an out to the counter. 3rd out resets out, new batter walks up, and halfInning switches.
+        """
         self.outs += 1
         if self.outs >= 3:
             self.new_batter()
+            self.outs = 0
             if self.half == HalfInning.TOP:
                 self.half = HalfInning.BOTTOM
             else:
                 self.half = HalfInning.TOP
                 self.inning += 1
     def new_game(self):
+        """ Calls constructor with default parameters to reset the game
+        """
         self.__init__()
 
-
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
+    
