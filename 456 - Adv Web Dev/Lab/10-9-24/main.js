@@ -3,7 +3,7 @@ const tick = document.querySelector(".tick")
 const numTicks = lock.getAttribute("data-lock-size")
 const widthAndHeight = Number(lock.getAttribute("data-dimensions"))
 const radius = widthAndHeight / 2
-const degrees = 360 / numTicks 
+const degrees = 360 / numTicks
 const h1 = document.getElementById("lockNum")
 lock.style.width = widthAndHeight + "px"
 lock.style.height = widthAndHeight + "px"
@@ -47,50 +47,46 @@ let lockCenterX = circle.x + (circle.width / 2)
 let lockcenterY = circle.y + (circle.height / 2)
 
 lock.addEventListener("mouseover", () => {
-    lock.style.cursor = "grab"
-    overLock = true
+    if (!mousedown) {
+        lock.style.cursor = "grab"
+    }
 })
 
-lock.addEventListener("mousedown", (event) =>{
+lock.addEventListener("mousedown", (event) => {
     mousedown = true
     lock.style.cursor = "grabbing"
     let clickX = event.clientX
     let clickY = event.clientY
     referenceRotate = Math.atan2(clickY - lockcenterY, clickX - lockCenterX) * 180 / Math.PI
-
-
 })
 
 
 lock.addEventListener("mousemove", (event) => {
-    
+
     let currentX = event.clientX
     let currentY = event.clientY
-    
-    if (mousedown){
+
+    if (mousedown) {
         // Rotate Lock
         newRotation = Math.atan2(currentY - lockcenterY, currentX - lockCenterX) * 180 / Math.PI
         currentRotation += (newRotation - referenceRotate)
-        if (currentRotation >= 360){
+        if (currentRotation >= 360) {
             currentRotation %= 360
-        } 
-        else if(currentRotation < 0){
+        }
+        else if (currentRotation < 0) {
             currentRotation %= 360
             currentRotation += 360
         }
-        console.log(`Diffeerence: ${newRotation - referenceRotate}`)
-        console.log(referenceRotate)
         referenceRotate = newRotation
-
         lock.style.transform = `rotate(${(currentRotation)}deg)`
         h1.style.transform = `rotate(${-currentRotation}deg)`
-        
         let h1Num = Math.round(Math.abs(currentRotation - 360) / degrees, 0)
-        if (h1Num == numTicks){
+        if (h1Num == numTicks) {
             h1Num = 0
         }
         h1.innerText = `${h1Num}`
-    }})
+    }
+})
 
 
 lock.addEventListener("mouseup", (event) => {
