@@ -11,12 +11,7 @@ body {
 
 #Lock {
     border: 3px solid black;
-<<<<<<< Updated upstream
     border-radius: 3600px;
-=======
-    /* box-sizing: border-box; */
-    border-radius: 100%;
->>>>>>> Stashed changes
     width: 300px;
     height: 300px;
     background-color: white;
