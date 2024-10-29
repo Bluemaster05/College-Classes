@@ -118,6 +118,10 @@ class Duration():
         '12:00:00'
         >>> str(Duration(1,0,1))
         '1:00:01'
+        >>> str(Duration('34d'))
+        '816:00:00'
+        >>> str(Duration(-1, 2, 3))
+        '-1:02:03'
         """
         if self.min in range(0,10):
             min = "0" + str(self.min)
@@ -150,6 +154,18 @@ class Duration():
         return Flipped
 
     def __add__(self, other: 'Duration') -> "Duration":
+        """
+        >>> Duration(0:00:01) + Duration(0:00:01)
+        '0:00:02'
+        >>> Duration(-0:00:01) + Duration(0:00:01)
+        '0:00:00'
+        >>> Duration(0:00:01) + Duration(-0:00:01)
+        '::'
+        >>> Duration() + Duration()
+        '::'
+        >>> Duration() + Duration()
+        '::'
+        """
         if self.Positive == True and other.Positive == True or self.Positive == False and other.Positive == False:
             newTotalSec = ((self.hr * 3600) + (self.min * 60) + self.sec) + ((other.hr * 3600) + (other.min * 60) + other.sec)
             if self.Positive == False:
@@ -199,7 +215,8 @@ class Duration():
 
 if __name__ == "__main__":
     import doctest
-    # doctest.testmod()
+    doctest.testmod()
     # print(Duration("-2d30m2s"))
     # print(Duration(3595, 0, 0) > Duration('4095h'))
-    print(Duration(-2822) * -2159)
+    # print(Duration(-2822) * -2159)
+    print(Duration(-1))

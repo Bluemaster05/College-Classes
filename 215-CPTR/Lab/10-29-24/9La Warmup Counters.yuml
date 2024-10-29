@@ -1,0 +1,14 @@
+// Warmup 9 Counters
+// Prof. O
+// 2024-10-29
+
+// {type:class}
+// {direction:topDown}
+
+[BoundedCounter|lower_bound:int;upper_bound:int;current_value:int;neighbor:BoundedCounter|__init__(low, high, start, neigh);__repr__();__str__()]
+[ListCounter|items:list|__repr__()]
+[BaseballCounter|balls;strikes;outs;half_inning;inning|__init__();ball();strike();out();new_batter();new_game()]
+
+[BoundedCounter]^[ListCounter]
+[BoundedCounter]-<>[BaseballCounter]
+[ListCounter]-<>[BaseballCounter]

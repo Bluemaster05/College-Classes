@@ -1,0 +1,12 @@
+// Logan Gardner, Worked with Noah, Micah
+// {type:class}
+// {direction:topDown}
+[Widget]
+[Button]
+[Label]
+[Panel|items:list(Widgets)|__init__(items)]
+
+[Widget]^[Button]
+[Widget]^[Label]
+[Widget]^[Panel]
+[Widget]-<>[Panel]

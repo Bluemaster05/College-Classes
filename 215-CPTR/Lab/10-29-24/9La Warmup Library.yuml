@@ -1,0 +1,14 @@
+// Logan Gardner, Worked with Noah, Micah
+// {type:class}
+// {direction:topDown}
+
+[Item|loc_call_num:str;title:str|__init__(loc_call_num,title)]
+[Book|num_pages:int|__init__(loc_call_num,title,num_pages)]
+[Periodical|date:str|__init__(loc_call_num,title,date)]
+[VideoDisc|rating:str|__init__(loc_call_num,title,rating)]
+[Ebook|url:str|__init__(loc_call_num,title,url)]
+
+[Item]^[Book]
+[Item]^[Periodical]
+[Item]^[VideoDisc]
+[Book]^[Ebook]

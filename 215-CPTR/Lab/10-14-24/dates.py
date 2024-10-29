@@ -160,33 +160,29 @@ class Date:
         if self.year > other.year:
             return True
         return False
-    def __add__(self, input2: int) -> int:
-        if isinstance(input2, int):
-            if input2 == 0:
-                return self
-            elif input2 < 0:
-                input2 = abs(input2) 
-                day = self.previous_day()
-                for i in range(input2 - 1):
-                    day = day.previous_day()
-                return day
-            elif input2 > 0:
-                day = self.next_day()
-                for i in range(input2 - 1):
-                    day = day.next_day()
-                return day
-        else:
-            times_changed = 0
-            if self.before(input2):
-                while not self.equals(input2):
-                    times_changed += 1
-                    input2 = input2.previous_day()
-                return times_changed
-            else:
-                while not self.equals(input2):
-                    times_changed += 1
-                    input2 = input2.previous_day()
-                return times_changed
+    def __add__(self, input2: int) -> "Date":
+        """
+        >>> Date(2000, 11, 1) + 1
+        Date(2000, 11, 2)
+        >>> Date(2000, 11, 2) + -1
+        Date(2000, 11, 1)
+        """
+        if input2 == 0:
+            return self
+        elif input2 < 0:
+            input2 = abs(input2) 
+            day = self.previous_day()
+            for i in range(input2 - 1):
+                day = day.previous_day()
+            return day
+        elif input2 > 0:
+            day = self.next_day()
+            for i in range(input2 - 1):
+                day = day.next_day()
+            return day
+        else: 
+            return self
+        
 
     def __sub__(self, input2: 'int | Date'):
         if isinstance(input2, int):
@@ -221,4 +217,4 @@ if __name__ == "__main__":
     import doctest
     doctest.testmod()
 
-    print(Date(0, 1, 1) - Date(99999, 1, 1))
+    print(Date(0, 1, 1) + 9999999999)

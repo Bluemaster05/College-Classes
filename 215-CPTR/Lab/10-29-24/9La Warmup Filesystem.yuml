@@ -1,0 +1,11 @@
+// Warmup 9 Filesystem
+// Prof. O
+// 2024-10-29
+
+// {type:class}
+// {direction:topDown}
+
+[note: File System Object]-[FSO]
+[FSO]^[File]
+[FSO]^[Folder]
+[FSO]-<>[Folder]

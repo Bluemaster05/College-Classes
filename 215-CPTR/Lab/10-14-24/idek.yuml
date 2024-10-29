@@ -1,0 +1,25 @@
+// {type:class}
+// {direction:topDown}
+
+//    Encyclopedia Class
+// [Book|title;author;publication_date|__init__(...);print_info()]
+// [Encyclopeda|edition;num_pages|print_info()]
+
+// [Book]^[Encyclopeda]
+
+// 
+// [Bounded Counter]
+// [List Counter]
+// [Clock12]
+
+// [Bounded Counter]-<>[List Counter]
+// [Bounded Counter]-<>[Clock12]
+// [List Counter]-<>[Clock12]
+
+[Bounded Counter]
+[List Counter]
+[Clock12]
+
+[Bounded Counter]^[List Counter]
+[Bounded Counter]-<>[Clock12]
+[List Counter]-<>[Clock12]
