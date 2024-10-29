@@ -160,25 +160,65 @@ class Date:
         if self.year > other.year:
             return True
         return False
-    def __add__(self, input2: int | "Date"):
-        pass
-    def __sub__(self, input2: int | "Date"):
-        pass
+    def __add__(self, input2: int) -> int:
+        if isinstance(input2, int):
+            if input2 == 0:
+                return self
+            elif input2 < 0:
+                input2 = abs(input2) 
+                day = self.previous_day()
+                for i in range(input2 - 1):
+                    day = day.previous_day()
+                return day
+            elif input2 > 0:
+                day = self.next_day()
+                for i in range(input2 - 1):
+                    day = day.next_day()
+                return day
+        else:
+            times_changed = 0
+            if self.before(input2):
+                while not self.equals(input2):
+                    times_changed += 1
+                    input2 = input2.previous_day()
+                return times_changed
+            else:
+                while not self.equals(input2):
+                    times_changed += 1
+                    input2 = input2.previous_day()
+                return times_changed
+
+    def __sub__(self, input2: 'int | Date'):
+        if isinstance(input2, int):
+            return self + -input2
+        else:
+            times_changed = 0
+            if self.before(input2):
+                while not self.equals(input2):
+                    times_changed -= 1
+                    input2 = input2.previous_day()
+                return times_changed
+            else:
+                while not self.equals(input2):
+                    times_changed += 1
+                    input2 = input2.next_day()
+                return times_changed
+
     def __eq__(self, other):
-        pass
+        return self.equals(other)
     def __ne__(self, other):
-        pass
+        return not self == other
     def __gt__(self, other):
-        pass
+        return self.after(other)
     def __lt__(self, other):
-        pass
+        return self.before(other)
     def __ge__(self, other):
-        pass
+        return self.after(other) or self.equals(other)
     def __le__(self, other):
-        pass
+        return self.before(other) or self.equals(other)
 
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
 
-    # print(Date(3669, 1, 1).previous_day())
+    print(Date(0, 1, 1) - Date(99999, 1, 1))
