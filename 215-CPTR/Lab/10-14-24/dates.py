@@ -185,34 +185,36 @@ class Date:
         
 
     def __sub__(self, input2: 'int | Date'):
+        """
+        >>> Date(2664, 8, 24) - Date(6400, 2, 28)
+        -1364368
+        >>> Date(2664, 8, 24) - Date(3000, 3, 2)
+        -122546
+        """
         if isinstance(input2, int):
             return self + -input2
         else:
             times_changed = 0
             if self.before(input2):
                 if self.year != input2.year:
-                    for i in range(input2.year - self.year):
-                        if input2.is_leap_year():
-                            times_changed -= 366
-                            input2.year = input2.year - 1
-                            input2 = input2.previous_day()
-                        else:
-                            times_changed -= 365
-                            input2.year = input2.year - 1
+                    for i in range(input2.year - self.year - 1):
+                        times_changed -= 365
+                        input2.year = input2.year - 1
+                        if input2.is_leap_year() and self.month < 3 and input2.: 
+                            input2 = input2.next_day()
+                            # times_changed -= 1
+
                 while not self.equals(input2):
                     times_changed -= 1
                     input2 = input2.previous_day()
                 return times_changed
             else:
                 if self.year != input2.year:
-                    for i in range(self.year - input2.year):
-                        if input2.is_leap_year():
-                            times_changed += 366
-                            input2.year = input2.year + 1
-                            input2 = input2.next_day()
-                        else:
+                    for i in range(self.year - input2.year - 1):
                             times_changed += 365
                             input2.year = input2.year + 1
+                            if input2.is_leap_year():
+                                input2 = input2.previous_day()
                 while not self.equals(input2):
                     times_changed += 1
                     input2 = input2.next_day()
@@ -235,4 +237,4 @@ if __name__ == "__main__":
     import doctest
     doctest.testmod()
 
-    print(Date(2015, 1, 1) - Date(2000, 2, 2))
+    # print( Date(1800 ,1, 1) - Date(3999, 12, 31))
