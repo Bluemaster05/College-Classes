@@ -1,4 +1,14 @@
+"""Duration.py
+Logan CPTR-215
+2024-10-27 - Wrote File and completed Functionality
+2024-11-1 - Wrote Test and did Coverage
+Sources - https://docs.python.org/3/reference/datamodel.html#emulating-numeric-types For overloading operators
+"""
+
 class Duration():
+    """
+    Class that represents a Duration of time in hrs, mins, and seconds. Accepts many types of inputs for the duration
+    """
     def __init__(self, input1: int | str, input2: None | int = None, input3: None | int = None) -> None:
         self.hr = 0
         self.min = 0
@@ -70,6 +80,7 @@ class Duration():
 
     def __str__(self) -> str:
         """
+        Converts Duration into human readable string
         >>> str(Duration('1s'))
         '0:00:01'
         >>> str(Duration('10s'))
@@ -140,12 +151,22 @@ class Duration():
     
     def __repr__(self) -> str:
         """
+        Converts to a python readable representation that can recreate the Duration Object
         >>> repr(Duration(13, 13, 13))
         "Duration('13:13:13')"
+        >>> repr(Duration(0, 0, 0))
+        "Duration('0:00:00')"
         """
         return f"Duration('{str(self)}')"
         # return ''
     def flipSign(self):
+        """"
+        Flips the sign from positive to negative and negative to positive.
+        >>> Duration('0:00:01').flipSign()
+        Duration('-0:00:01')
+        >>> Duration('-0:00:01').flipSign()
+        Duration('0:00:01')
+        """
         newSecs = ((self.hr * 3600) + (self.min * 60) + self.sec)
         if self.Positive == False:
             Flipped = Duration(newSecs)
@@ -155,16 +176,15 @@ class Duration():
 
     def __add__(self, other: 'Duration') -> "Duration":
         """
-        >>> Duration(0:00:01) + Duration(0:00:01)
-        '0:00:02'
-        >>> Duration(-0:00:01) + Duration(0:00:01)
-        '0:00:00'
-        >>> Duration(0:00:01) + Duration(-0:00:01)
-        '::'
-        >>> Duration() + Duration()
-        '::'
-        >>> Duration() + Duration()
-        '::'
+        Addition operator for durations. Adds totals seconds together
+        >>> Duration('0:00:01') + Duration('0:00:01')
+        Duration('0:00:02')
+        >>> Duration('-0:00:01') + Duration('0:00:01')
+        Duration('0:00:00')
+        >>> Duration('0:00:01') + Duration('-0:00:01')
+        Duration('0:00:00')
+        >>> Duration('-0:00:01') + Duration('-0:00:01')
+        Duration('-0:00:02')
         """
         if self.Positive == True and other.Positive == True or self.Positive == False and other.Positive == False:
             newTotalSec = ((self.hr * 3600) + (self.min * 60) + self.sec) + ((other.hr * 3600) + (other.min * 60) + other.sec)
@@ -180,8 +200,30 @@ class Duration():
             newTotalSec = -((self.hr * 3600) + (self.min * 60) + self.sec) + ((other.hr * 3600) + (other.min * 60) + other.sec)
             return Duration(newTotalSec)
     def __sub__(self, other: 'Duration') -> "Duration":
+        """
+        Subtraction operator for durations. Subtracts seconds from each other
+        >>> Duration('0:00:01') - Duration('0:00:01')
+        Duration('0:00:00')
+        >>> Duration('-0:00:01') - Duration('0:00:01')
+        Duration('-0:00:02')
+        >>> Duration('0:00:02') - Duration('-0:00:01')
+        Duration('0:00:03')
+        >>> Duration('-0:00:01') - Duration('-0:00:01')
+        Duration('0:00:00')
+        """
         return self + other.flipSign()
     def __mul__(self, num):
+        """
+        Multiplication operator for durations. Multiplys total seconds by number provided
+        >>> Duration('0:00:1') * 2
+        Duration('0:00:02')
+        >>> Duration('-0:00:1') * 2
+        Duration('-0:00:02')
+        >>> Duration('0:00:1') * -2
+        Duration('-0:00:02')
+        >>> Duration('-0:00:1') * -2
+        Duration('0:00:02')
+        """
         newSecs = ((self.hr * 3600) + (self.min * 60) + self.sec) * abs(num)
         if self.Positive == True and num < 0 or self.Positive == False and num > 0:
             return Duration(-newSecs)
@@ -189,6 +231,19 @@ class Duration():
             return Duration(newSecs)
 
     def __eq__(self, other) -> bool:
+        """
+        == operator for durations
+        >>> Duration('0:00:1') == Duration('0:00:1')
+        True
+        >>> Duration('-0:00:1') == Duration('0:00:1')
+        False
+        >>> Duration('0:00:2') == Duration('0:00:1')
+        False
+        >>> Duration('0:00:1') == Duration('0:00:2')
+        False
+        >>> Duration('-0:00:1') == Duration('-0:00:2')
+        False
+        """
         if self.Positive == True and other.Positive == True:
             return ((self.hr * 3600) + (self.min * 60) + self.sec) == ((other.hr * 3600) + (other.min * 60) + other.sec)
         if self.Positive == False and other.Positive == False:
@@ -196,8 +251,34 @@ class Duration():
         else:
             return False
     def __ne__(self, other) -> bool:
+        """
+        != operator for durations
+        >>> Duration('0:00:1') != Duration('0:00:1')
+        False
+        >>> Duration('-0:00:1') != Duration('0:00:1')
+        True
+        >>> Duration('0:00:2') != Duration('0:00:1')
+        True
+        >>> Duration('0:00:1') != Duration('0:00:2')
+        True
+        """
         return not self == other
     def __gt__(self, other) -> bool:
+        """
+        > operator for durations
+        >>> Duration('0:00:1') > Duration('0:00:1')
+        False
+        >>> Duration('-0:00:1') > Duration('0:00:1')
+        False
+        >>> Duration('0:00:2') > Duration('0:00:1')
+        True
+        >>> Duration('0:00:1') > Duration('0:00:2')
+        False
+        >>> Duration('-0:00:1') > Duration('-0:00:2')
+        True
+        >>> Duration('0:00:1') > Duration('-0:00:2')
+        True
+        """
         if self.Positive == True and other.Positive == True:
             return ((self.hr * 3600) + (self.min * 60) + self.sec) > ((other.hr * 3600) + (other.min * 60) + other.sec)
         if self.Positive == False and other.Positive == False:
@@ -207,10 +288,46 @@ class Duration():
         if self.Positive == True and other.Positive == False:
             return True
     def __lt__(self, other) -> bool:
-        return not self > other
+        """
+        < operator for durations
+        >>> Duration('0:00:1') < Duration('0:00:1')
+        False
+        >>> Duration('-0:00:1') < Duration('0:00:1')
+        True
+        >>> Duration('0:00:2') < Duration('0:00:1')
+        False
+        >>> Duration('0:00:1') < Duration('0:00:2')
+        True
+        """
+        if self != other:
+            return not self > other
+        if self == other:
+            return False
     def __ge__(self, other) -> bool:
+        """
+        >= operator for durations
+        >>> Duration('0:00:1') >= Duration('0:00:1')
+        True
+        >>> Duration('-0:00:1') >= Duration('0:00:1')
+        False
+        >>> Duration('0:00:2') >= Duration('0:00:1')
+        True
+        >>> Duration('0:00:1') >= Duration('0:00:2')
+        False
+        """
         return self > other or self == other
     def __le__(self, other) -> bool:
+        """
+        <= operator for durations
+        >>> Duration('0:00:1') <= Duration('0:00:1')
+        True
+        >>> Duration('-0:00:1') <= Duration('0:00:1')
+        True
+        >>> Duration('0:00:2') <= Duration('0:00:1')
+        False
+        >>> Duration('0:00:1') <= Duration('0:00:2')
+        True
+        """
         return not self > other or self == other
 
 if __name__ == "__main__":
@@ -219,4 +336,4 @@ if __name__ == "__main__":
     # print(Duration("-2d30m2s"))
     # print(Duration(3595, 0, 0) > Duration('4095h'))
     # print(Duration(-2822) * -2159)
-    print(Duration(-1))
+    # print(Duration(-1))
