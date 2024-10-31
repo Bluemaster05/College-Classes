@@ -1,7 +1,10 @@
 """date.py
-Prof. O & CPTR-215
-2021-09-29
-2021-09-27 first draft
+Prof. O & Logan CPTR-215
+2021-09-29 -PO
+2021-09-27 first draft -PO
+2024-10-27 - Wrote File started functionality
+2024-10-30 - Added Functionality
+2024-10-31 - Added Functionality Wrote tests and Coverage - Broken Date - Date on some-leap years
 """
 
 class Date:
@@ -17,6 +20,13 @@ class Date:
         self.month = month
         self.day = day
     def previous_day(self):
+        """
+        Returns previous day
+        >>> Date(2000, 1, 1).previous_day()
+        Date(1999, 12, 31)
+        >>> Date(2001, 1, 1).previous_day()
+        Date(2000, 12, 31)
+        """
         lastDayMonths = ["ERROR HERE",31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
         lastDayMonthsLeap = ["ERROR HERE",31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
         day = self.day
@@ -44,6 +54,13 @@ class Date:
         return date2
 
     def next_day(self):
+        """
+        Returns Next day
+        >>> Date(2000, 12, 31).next_day()
+        Date(2001, 1, 1)
+        >>> Date(2001, 12, 31).next_day()
+        Date(2002, 1, 1)
+        """
         lastDayMonths = ["ERROR HERE",31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
         lastDayMonthsLeap = ["ERROR HERE",31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
         day = self.day
@@ -80,6 +97,8 @@ class Date:
         7
         >>> Date(1776, 7, 4).day_of_week()
         5
+        >>> Date(1776, 2, 4).day_of_week()
+        1
         """
         if self.month < 3:
             m = self.month + 12
@@ -140,11 +159,29 @@ class Date:
                (self.year % 4 == 0 and self.year % 100 != 0)
     
     def equals(self, other):
+        """
+        Checks if 2 Date objects represent the same day, Returns Boolean Literal
+        >>> Date(2025, 12, 2).equals(Date(2025, 12 ,2))
+        True
+        >>> Date(2025, 11, 2).equals(Date(2025, 12 ,2))
+        False
+        """
         if self.day == other.day and self.month == other.month and self.year == other.year:
             return True
         else:
             return False
     def before(self, other):
+        """
+        Checks if self is before inputed date, Returns Boolean Literal
+        >>> Date(2022, 1, 1).before(Date(2022, 1, 2))
+        True
+        >>> Date(2022, 1, 1).before(Date(2022, 2, 1))
+        True
+        >>> Date(2021, 1, 1).before(Date(2022, 1, 1))
+        True
+        >>> Date(2023, 1, 1).before(Date(2022, 1, 1))
+        False
+        """
         if self.day < other.day and self.month <= other.month and self.year <= other.year:
             return True
         if self.month < other.month and self.year <= other.year:
@@ -153,6 +190,23 @@ class Date:
             return True
         return False
     def after(self, other):
+        """
+        Checks if self is after inputed date, Returns Boolean Literal
+        >>> Date(2022, 1, 1).after(Date(2022, 1, 2))
+        False
+        >>> Date(2022, 1, 1).after(Date(2022, 2, 1))
+        False
+        >>> Date(2021, 1, 1).after(Date(2022, 1, 1))
+        False
+        >>> Date(2023, 1, 1).after(Date(2022, 1, 1))
+        True
+        >>> Date(2023, 2, 2).after(Date(2022, 1, 1))
+        True
+        >>> Date(2023, 2, 1).after(Date(2022, 2, 1))
+        True
+        >>> Date(2023, 3, 1).after(Date(2022, 2, 1))
+        True
+        """
         if self.day > other.day and self.month >= other.month and self.year >= other.year:
             return True
         if self.month > other.month and self.year >= other.year:
@@ -162,10 +216,17 @@ class Date:
         return False
     def __add__(self, input2: int) -> "Date":
         """
+        Adds number of days to the date object
         >>> Date(2000, 11, 1) + 1
         Date(2000, 11, 2)
         >>> Date(2000, 11, 2) + -1
         Date(2000, 11, 1)
+        >>> Date(2000, 11, 2) + 0
+        Date(2000, 11, 2)
+        >>> Date(2000, 11, 2) + 5
+        Date(2000, 11, 7)
+        >>> Date(2000, 11, 2) + -5
+        Date(2000, 10, 28)
         """
         if input2 == 0:
             return self
@@ -180,16 +241,21 @@ class Date:
             for i in range(input2 - 1):
                 day = day.next_day()
             return day
-        else: 
-            return self
         
 
     def __sub__(self, input2: 'int | Date'):
         """
+        When second input is number it will take days away from the Date.
+        when second input is Date object it will return how many days need to happen and in what direction to make the two dates the same
+        Currently Date - Date is not workin with many leap year dates
+        >>> Date(2664, 8, 24) - 1
+        Date(2664, 8, 23)
         >>> Date(2664, 8, 24) - Date(6400, 2, 28)
-        -1364368
+        -1364368 
         >>> Date(2664, 8, 24) - Date(3000, 3, 2)
         -122546
+        >>> Date(3000, 3, 2) - Date(2664, 8, 24)
+        122546
         """
         if isinstance(input2, int):
             return self + -input2
@@ -200,9 +266,8 @@ class Date:
                     for i in range(input2.year - self.year - 1):
                         times_changed -= 365
                         input2.year = input2.year - 1
-                        if input2.is_leap_year() and self.month < 3 and input2.: 
+                        if input2.is_leap_year(): 
                             input2 = input2.next_day()
-                            # times_changed -= 1
 
                 while not self.equals(input2):
                     times_changed -= 1
@@ -221,20 +286,72 @@ class Date:
                 return times_changed
 
     def __eq__(self, other):
+        """
+        == operator for dates
+        >>> Date(2000, 1, 1) == Date(2000, 1, 1)
+        True
+        >>> Date(2000, 2, 1) == Date(2000, 1, 1)
+        False
+        >>> Date(2000, 1, 1) == Date(2000, 2, 1)
+        False
+        """
         return self.equals(other)
     def __ne__(self, other):
+        """
+        != operator for dates
+        >>> Date(2000, 1, 1) != Date(2000, 1, 1)
+        False
+        >>> Date(2000, 2, 1) != Date(2000, 1, 1)
+        True
+        >>> Date(2000, 1, 1) != Date(2000, 2, 1)
+        True
+        """
         return not self == other
     def __gt__(self, other):
+        """
+        > operator for dates
+        >>> Date(2000, 1, 1) > Date(2000, 1, 1)
+        False
+        >>> Date(2000, 2, 1) > Date(2000, 1, 1)
+        True
+        >>> Date(2000, 1, 1) > Date(2000, 2, 1)
+        False
+        """
         return self.after(other)
     def __lt__(self, other):
+        """
+        < operator for dates
+        >>> Date(2000, 1, 1) < Date(2000, 1, 1)
+        False
+        >>> Date(2000, 2, 1) < Date(2000, 1, 1)
+        False
+        >>> Date(2000, 1, 1) < Date(2000, 2, 1)
+        True
+        """
         return self.before(other)
     def __ge__(self, other):
+        """
+        >= operator for dates
+        >>> Date(2000, 1, 1) >= Date(2000, 1, 1)
+        True
+        >>> Date(2000, 2, 1) >= Date(2000, 1, 1)
+        True
+        >>> Date(2000, 1, 1) >= Date(2000, 2, 1)
+        False
+        """
         return self.after(other) or self.equals(other)
     def __le__(self, other):
+        """
+        <= operator for dates
+        >>> Date(2000, 1, 1) <= Date(2000, 1, 1)
+        True
+        >>> Date(2000, 2, 1) <= Date(2000, 1, 1)
+        False
+        >>> Date(2000, 1, 1) <= Date(2000, 2, 1)
+        True
+        """
         return self.before(other) or self.equals(other)
 
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
-
-    # print( Date(1800 ,1, 1) - Date(3999, 12, 31))
