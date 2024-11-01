@@ -1,4 +1,4 @@
-export function CandidateCard(props: {CanName: string, party: string, votes: number, photo: string}){
+export function CandidateCard(props: {CanName: string, party: string, canId: number, photo: string}){
     return <>
     <div style={{
         backgroundColor: "#3e3e3e",
@@ -21,20 +21,25 @@ export function CandidateCard(props: {CanName: string, party: string, votes: num
             alignItems: 'center',
             borderRadius: '7px'
         }}>
-            <h1>John Doe</h1>
+            <h1>{props.CanName}</h1>
             <p
             style={{
                 padding: '0',
                 margin: '0',
-            }}>Independent</p>
+            }}>{props.party}</p>
         </div>
         <div style={{
-            backgroundColor: 'Green',
+            // backgroundColor: 'Green',
+            backgroundImage: `url(${props.photo})`,
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
             height: '65%',
             width: '95%',
             borderRadius: '10px'
 
         }}>
+            {/* <img src={props.photo} alt="" /> */}
             <div style={{
                 backgroundColor: 'red',
                 border: '2px solid white',
@@ -46,7 +51,7 @@ export function CandidateCard(props: {CanName: string, party: string, votes: num
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center'
-            }}>100</div>
+            }}>{props.canId}</div>
         </div>
     </div>
     </>

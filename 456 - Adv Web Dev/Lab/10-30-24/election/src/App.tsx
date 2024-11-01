@@ -4,10 +4,7 @@ import { Header } from "./components/Header"
 import { candidates } from "./data/mockData"
 
 function App() {
-    const all_candidates = []
-    for (let candid of candidates){
-        all_candidates.push(<CandidateCard CanName={candid.name} party={candid.party} votes={5} photo={candid.pictureUrl}></CandidateCard>)
-    }
+    const all_candidates = candidates.map( candid => <CandidateCard CanName={candid.name} party={candid.party} canId={candid.candidateId} photo={candid.pictureUrl}></CandidateCard>)
     return <>
         <Header></Header>
         <section
