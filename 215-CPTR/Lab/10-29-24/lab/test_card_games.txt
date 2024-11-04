@@ -10,3 +10,5 @@ False
 2
 
 >>> seed() # leave this in to randomize games, otherwise you always get the same one
+>>> for string in 'd d d d d d '.split():
+>>>     game.play_one(string)
