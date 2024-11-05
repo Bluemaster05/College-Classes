@@ -29,18 +29,18 @@ Things that need to be fixed:
 - move syntax not documented
 
 --Actual Bugs
-- can't send cards to suit stacks
-- number of cards to move is incorrect --MABEY FIXED
-- some cards are displaying incorrectly (different width)
-- win condition checker crashing "randomly"
-- moving from empty table stack to suit stack crashes
-- missing destination causes crash
-- non-numeric count causes crash
-- destination over 7 causes crash
-- empty move causes crash
 
 -----FIXED------NOT TESTESTED
 - discard stack should only display top card 
+- can't send cards to suit stacks
+- number of cards to move is incorrect --MABEY FIXED
+- win condition checker crashing "randomly" - Mabey Fixed ---NEEDS VERIFICATION
+- empty move causes crash
+- moving from empty table stack to suit stack crashes
+- destination over 7 causes crash
+- non-numeric count causes crash
+- missing destination causes crash
+- some cards are displaying incorrectly (different width)
 
 """
 
@@ -69,7 +69,7 @@ class Card:
         self._is_face_up = False
 
     def __str__(self) -> str:
-        rank = self._rank.name[0] if self._rank.value in [1, 11, 12, 13] \
+        rank = self._rank.name[0] if self._rank.value in [1, 10,  11, 12, 13] \
             else str(self._rank.value)
         if self._is_face_up:
             return (ANSI_RED if self.get_color() == Color.RED else ANSI_BLACK) + \
@@ -145,8 +145,8 @@ class SuitStack(Stack):
         if self.is_empty():
             return card.get_rank() == Rank.ACE
         top_card = self._cards[-1]
-        return card.get_color() != top_card.get_color() and \
-            card.get_rank().value == top_card.get_rank().value - 1
+        return card.get_color() == top_card.get_color() and \
+            card.get_rank().value == top_card.get_rank().value + 1
 
 
 class TableStack(Stack):
@@ -187,8 +187,11 @@ S: {" ".join([str(stack) for stack in self._suit_stacks])}
 
     def play_one(self, move: str) -> None:
         source = self._discard_stack  # default source
+        destination = None
         if move == "Q":
             exit()
+        if move == '': #fix attempt --- added to fix crash on empty input
+            return
         elif move[0] == "D":
             if len(move) == 1:  # just draw
                 if not self._draw_stack.is_empty():
@@ -196,14 +199,23 @@ S: {" ".join([str(stack) for stack in self._suit_stacks])}
                         self._discard_stack.push(self._discard_stack.pop().flip()) #ADDED to FIX--------------
                     self._discard_stack.push(self._draw_stack.pop().flip())
                 else:
+                    self._draw_stack.push(self._discard_stack.pop().flip()) # ADDED TO FIX- Moved up and added propper not flipped
                     while not self._discard_stack.is_empty():
-                        self._draw_stack.push(self._discard_stack.pop().flip())
+                        self._draw_stack.push(self._discard_stack.pop())
                 return  # no destination
         elif move[0].isdigit():  # move from table stack
+            if int(move[0]) > 7: # Fix attempt -- Added to fix if 1st num is above 7
+                return
             source = self._table_stacks[int(move[0]) - 1]
+        if source.is_empty(): # Fix Attempt -- Added to fix empty move crash
+            return
         if len(move) > 1:
             if move[1].isdigit():  # to table stack
+                if int(move[1]) > 7: #Fix attempt - fix crash on over 7
+                    return
                 destination = self._table_stacks[int(move[1]) - 1]
+                if int(move[2:] or 1) == 0 or (not move[2:].isdigit() and move[2:] != ''): #Fix attempt Added to fix break on count 0
+                    return 
                 count = int(move[2:] or 1) # FIX ATTEMPT, changed from [1:] to [2:] and Move
             elif move[1] == "S":  # to suit stack
                 destination = self._suit_stacks[source.peek_top(
@@ -212,7 +224,8 @@ S: {" ".join([str(stack) for stack in self._suit_stacks])}
             else:  # default destination
                 destination = source
                 count = 1 # FIX ADD
-        # if len(move)         
+        if destination is None:
+            return
         self.try_move(source, destination, count)
 
     def try_move(self, source: Stack, destination: Stack, count: int) -> bool:
@@ -236,7 +249,7 @@ S: {" ".join([str(stack) for stack in self._suit_stacks])}
 
     def is_finished(self) -> bool:
         return all([not self._suit_stacks[pos].is_empty() and
-                    self._suit_stacks.peek_top().get_rank() == Rank.KING 
+                    self._suit_stacks[pos].peek_top().get_rank() == Rank.KING
                     for pos in range(len(self._suit_stacks))])
 
 
