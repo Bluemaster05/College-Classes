@@ -236,7 +236,7 @@ S: {" ".join([str(stack) for stack in self._suit_stacks])}
 
     def is_finished(self) -> bool:
         return all([not self._suit_stacks[pos].is_empty() and
-                    self._suit_stacks.peek_top().get_rank() == Rank.KING
+                    self._suit_stacks.peek_top().get_rank() == Rank.KING 
                     for pos in range(len(self._suit_stacks))])
 
 
