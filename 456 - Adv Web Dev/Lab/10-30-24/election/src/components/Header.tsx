@@ -1,5 +1,7 @@
+import { Page } from "../types/Page.type"
 import { Button } from "./button"
-export function Header() {
+
+export function Header(props= {setPage: React.Dispatch<React.SetStateAction<Page>>}) {
     return <>
         <header style={{
             display: "flex",
@@ -16,9 +18,9 @@ export function Header() {
                 display: "flex",
                 gap: '5px'
             }}>
-                <Button name="View Candidates" funcCall={() => { }}></Button>
-                <Button name="View Results" funcCall={() => { }}></Button>
-                <Button name="View Votes" funcCall={() => { }}></Button>
+                <Button name="View Candidates" funcCall={() => {props.setPage("candidates")}}></Button>
+                <Button name="View Results" funcCall={() => {props.setPage("results")}}></Button>
+                <Button name="View Votes" funcCall={() => {props.setPage("votes")}}></Button>
             </nav>
         </header>
     </>

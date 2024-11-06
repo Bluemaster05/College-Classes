@@ -8,16 +8,17 @@ import { Candidate } from "./types/Candidate.type"
 import { VotedCanCard } from "./components/votedCanCard"
 import { getVoteResults,getWinner } from "./lib/votes.lib"
 import { votes } from "./data/mockData"
+import { Page } from "./types/Page.type"
 
 function App() {
     const winner = getWinner(votes)
     const results = getVoteResults(votes)
     const [popup, setPopup] = useState<null | Candidate>(null)
-    const all_candidates = candidates.map(candid => <VotedCanCard winner={false} setPopup={setPopup} candidate={candid} results={results}/>)
-    const voted_candids = candidates.map(candid => <VotedCanCard canvotes={results.candidates.reduce({} => )} totalVotes={results.totalVotes} winner={winner.candidateId === candid.candidateId} candidate={candid} setPopup={setPopup} />)
+    const all_candidates = candidates.map(candid => <CandidateCard setPopup={setPopup} candidate={candid} />)
+    const voted_candids = (candidates.map(candid => <VotedCanCard canvotes={results.candidates.filter( candidResult => candidResult.candidateId === candid.candidateId)[0].votes} totalVotes={results.totalVotes} winner={winner.candidateId === candid.candidateId} candidate={candid} setPopup={setPopup} />))
+    const [page, setPage] = useState<Page>("candidates")
     return <>
-        <Header></Header>
-        {/* <CandidPopUp img="./public/john-doe.webp" name="John Doe" description="lorem impson lorem impsonlorem impsonlorem impsonlorem impsonlorem impsonlorem impsonlorem impsonlorem impsonlorem impsonlorem impsonlorem impsonlorem impsonlorem impsonlorem impsonlorem impsonlorem impsonlorem impsonlorem impsonlorem impsonlorem impsonlorem impsonlorem impsonlorem impsonlorem impsonlorem impson"></CandidPopUp> */}
+        <Header setPage={setPage}></Header>
         { popup && <CandidPopUp candidate={popup} setPopup={setPopup}></CandidPopUp> } 
         <section
             style={{
@@ -37,7 +38,8 @@ function App() {
                 justifyContent: 'center',
                 flexWrap: 'wrap'
             }}>
-            {all_candidates}
+            {page == 'candidates' && all_candidates}
+            {page == 'results' && voted_candids}
         </section>
     </>
 }
