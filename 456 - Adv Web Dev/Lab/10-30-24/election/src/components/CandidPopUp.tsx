@@ -1,50 +1,60 @@
+// import { candidates } from "../data/mockData"
+import { Candidate } from "../types/Candidate.type"
 import { Button } from "./button"
 
-export function CandidPopUp(props: { name: string, description: string, img: string }) {
-    const styles = {
-        sectionStyle: {
-            
-        }
-    }
+export function CandidPopUp(props: { candidate: Candidate, setPopup: React.Dispatch<React.SetStateAction<Candidate | null>> }) {
+
     return <>
-        <section
+        <section 
             style={{
                 backgroundColor: 'black',
                 border: '2px solid white',
                 borderRadius: '15px',
-                width: '50rem'
+                width: '50rem',
+                position: 'absolute',
+                left: '200px',
+                top: '80px'
             }}>
             <div style={{
                 display: 'flex',
                 justifyContent: 'right',
-                padding: '15px'
+                paddingTop: '15px',
+                paddingRight: '15px',
+
             }}>
-                <Button name='close' funcCall={() => {}}></Button>
+                <Button name='close' funcCall={() => { props.setPopup(null)}}></Button>
             </div>
             <div
-            style={{
-                display: 'flex'
-            }}>
-                <div
                 style={{
-                    width: '25%',
-                    height: '70%',
-                    backgroundColor: 'green',
-                    backgroundImage: `url(${props.img})`,
-                    backgroundPosition: 'fit'
+                    display: 'flex',
+                    padding: '20px',
+                    gap: '15px',
+                    paddingTop: '0'
+                }}>
+                <div
+                    style={{
+                        width: '169px',
+                        height: '190px',
+                        backgroundColor: 'green',
+                        backgroundImage: `url(${props.candidate.pictureUrl})`,
+                        backgroundPosition: 'center',
+                        backgroundRepeat: 'no-repeat',
+                        backgroundSize: 'cover',
+                        borderRadius: '10px'
+                        
 
-                }}></div>
+                    }}></div>
                 <div style={{
                     width: '70%'
                 }}>
                     <h1 style={{
                         padding: '0',
                         margin: '0'
-                    }}>{props.name}</h1>
+                    }}>{props.candidate.name}</h1>
                     <p style={{
                         padding: '0',
                         margin: '0'
-                    }}>{props.description}</p>
+                    }}>{props.candidate.description}</p>
                 </div>
             </div>
         </section>

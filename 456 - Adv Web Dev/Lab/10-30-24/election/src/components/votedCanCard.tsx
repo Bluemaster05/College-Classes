@@ -1,6 +1,7 @@
 import { Candidate } from "../types/Candidate.type";
+// import { Vote } from "../types/Vote.type";
 
-export function CandidateCard(props: { setPopup: React.Dispatch<React.SetStateAction<Candidate | null>>, candidate: Candidate}){
+export function VotedCanCard(props: { setPopup: React.Dispatch<React.SetStateAction<Candidate | null>>, candidate: Candidate, winner: boolean, canvotes: number, totalVotes: number }){
     return <>
     <div onClick={() => {
         props.setPopup(props.candidate)
@@ -8,7 +9,7 @@ export function CandidateCard(props: { setPopup: React.Dispatch<React.SetStateAc
     style={{
         backgroundColor: "#3e3e3e",
         width: '200px',
-        height: '260px',
+        height: '300px',
         borderRadius: '10px',
         display: "flex",
         flexDirection: 'column',
@@ -57,6 +58,9 @@ export function CandidateCard(props: { setPopup: React.Dispatch<React.SetStateAc
                 alignItems: 'center',
                 justifyContent: 'center'
             }}>{props.candidate.candidateId}</div>
+        </div>
+        <div>
+            {props.canvotes}/{props.totalVotes}
         </div>
     </div>
     </>
