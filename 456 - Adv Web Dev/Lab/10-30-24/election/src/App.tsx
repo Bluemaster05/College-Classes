@@ -9,6 +9,8 @@ import { VotedCanCard } from "./components/votedCanCard"
 import { getVoteResults,getWinner } from "./lib/votes.lib"
 import { votes } from "./data/mockData"
 import { Page } from "./types/Page.type"
+import { Title } from "./components/title"
+import { RecordTable } from "./components/RecordTable"
 
 function App() {
     const winner = getWinner(votes)
@@ -20,16 +22,7 @@ function App() {
     return <>
         <Header setPage={setPage}></Header>
         { popup && <CandidPopUp candidate={popup} setPopup={setPopup}></CandidPopUp> } 
-        <section
-            style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                padding: '10px',
-                fontSize: '15pt',
-                fontWeight: '600'
-            }}
-        >Current Candidates</section>
+        <Title page={page} totalVotes={results.totalVotes} />
         <section
             style={{
                 display: 'flex',
@@ -40,6 +33,7 @@ function App() {
             }}>
             {page == 'candidates' && all_candidates}
             {page == 'results' && voted_candids}
+            {page == 'votes' && <RecordTable candidates={candidates} votes={votes}/>}
         </section>
     </>
 }

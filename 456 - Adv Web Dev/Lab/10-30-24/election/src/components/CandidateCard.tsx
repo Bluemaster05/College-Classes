@@ -19,7 +19,7 @@ export function CandidateCard(props: { setPopup: React.Dispatch<React.SetStateAc
         <div
         style={{
             width: '190px',
-            height: '25%', 
+            height: '24%', 
             backgroundColor: '#2d2d2d',
             display: 'flex',
             flexDirection: 'column',
@@ -39,7 +39,7 @@ export function CandidateCard(props: { setPopup: React.Dispatch<React.SetStateAc
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
-            height: '65%',
+            height: '70%',
             width: '95%',
             borderRadius: '10px'
 
@@ -51,7 +51,7 @@ export function CandidateCard(props: { setPopup: React.Dispatch<React.SetStateAc
                 width: '35px',
                 height: '35px',
                 borderRadius: '100%',
-                marginTop: '120px',
+                marginTop: '135px',
                 marginLeft: '140px',
                 display: 'flex',
                 alignItems: 'center',
