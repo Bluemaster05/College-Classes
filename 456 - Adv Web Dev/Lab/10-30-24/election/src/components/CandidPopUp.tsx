@@ -12,8 +12,8 @@ export function CandidPopUp(props: { candidate: Candidate, setPopup: React.Dispa
                 borderRadius: '15px',
                 width: '50rem',
                 position: 'absolute',
-                left: '200px',
-                top: '80px'
+                left: 'center',
+                top: '65px'
             }}>
             <div style={{
                 display: 'flex',
@@ -22,7 +22,7 @@ export function CandidPopUp(props: { candidate: Candidate, setPopup: React.Dispa
                 paddingRight: '15px',
 
             }}>
-                <Button name='close' funcCall={() => { props.setPopup(null)}}></Button>
+                <Button name='Close' funcCall={() => { props.setPopup(null)}}></Button>
             </div>
             <div
                 style={{

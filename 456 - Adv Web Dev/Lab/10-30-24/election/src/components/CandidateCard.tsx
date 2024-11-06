@@ -14,7 +14,9 @@ export function CandidateCard(props: { setPopup: React.Dispatch<React.SetStateAc
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        gap: '5px'
+        gap: '5px',
+        cursor: 'pointer'
+
     }}>
         <div
         style={{
