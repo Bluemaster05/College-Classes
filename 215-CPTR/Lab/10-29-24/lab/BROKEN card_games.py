@@ -1,10 +1,13 @@
 """card_games.py
 
 Simple card games
-by Prof. O & __add_your_name_here__
+by Prof. O & Logan Gardner
 
 2024-10-29 debugged, documented, and re-bugged Klondike
 2024-10-28 started Klondike
+2024-11-3 Started Debugging Klondike - LG
+2024-11-4 Mostyly Finished Debugging Klondike - LG
+2024-11-7 Created DocStrings and Tests Klondike - LG
 
 Things that need to be fixed:
 - missing docstrings (esp. descriptions)
@@ -21,26 +24,25 @@ Things that need to be fixed:
 - destination over 7 causes crash
 - empty move causes crash
 
-LG
-Things that need to be fixed:
---Needs Doc Work
-- missing docstrings (esp. descriptions)
+
+
 - need a lot more tests
 - move syntax not documented
 
 --Actual Bugs
 
------FIXED------NOT TESTESTED
+-----FIXED------
 - discard stack should only display top card 
 - can't send cards to suit stacks
-- number of cards to move is incorrect --MABEY FIXED
-- win condition checker crashing "randomly" - Mabey Fixed ---NEEDS VERIFICATION
+- number of cards to move is incorrect
+- win condition checker crashing "randomly" 
 - empty move causes crash
 - moving from empty table stack to suit stack crashes
 - destination over 7 causes crash
 - non-numeric count causes crash
 - missing destination causes crash
 - some cards are displaying incorrectly (different width)
+- missing docstrings (esp. descriptions)
 
 """
 
@@ -69,6 +71,13 @@ class Card:
         self._is_face_up = False
 
     def __str__(self) -> str:
+        """
+        Creates a human readable representation of a card --------------------------------------flip
+        >>> str(Card(Rank.ACE, Suit.SPADES))
+        '▒▒'
+        >>> str(Card(Rank.THREE, Suit.SPADES))
+        '▒▒'
+        """
         rank = self._rank.name[0] if self._rank.value in [1, 10,  11, 12, 13] \
             else str(self._rank.value)
         if self._is_face_up:
@@ -78,21 +87,67 @@ class Card:
             return CARD_BACK
 
     def __repr__(self) -> str:
+        """
+        Creates a python readable representation of a card
+        >>> repr(Card(Rank.SEVEN, Suit.HEARTS))
+        'Card(Rank.SEVEN, Suit.HEARTS)'
+        >>> repr(Card(Rank.FIVE, Suit.CLUBS))
+        'Card(Rank.FIVE, Suit.CLUBS)'
+        """
         return f"Card({self._rank}, {self._suit})"
 
     def get_rank(self) -> Rank:
+        """
+        Returns the rank of a card
+        >>> Card(Rank.FIVE, Suit.CLUBS).get_rank().value
+        5
+        >>> Card(Rank.THREE, Suit.CLUBS).get_rank().value
+        3
+        >>> Card(Rank.ACE, Suit.CLUBS).get_rank().value
+        1
+        """
         return self._rank
 
     def get_suit(self) -> Suit:
+        """
+        Returns the suit of a card
+        >>> Card(Rank.QUEEN, Suit.CLUBS).get_suit().value
+        3
+        >>> Card(Rank.KING, Suit.SPADES).get_suit().value
+        1
+        >>> Card(Rank.ACE, Suit.HEARTS).get_suit().value
+        2
+        """
         return self._suit
 
     def get_color(self) -> Color:
+        """
+        Returns the color of a card
+        >>> Card(Rank.ACE, Suit.HEARTS).get_color().value
+        2
+        >>> Card(Rank.JACK, Suit.SPADES).get_color().value
+        1
+        """
         return Color.BLACK if self._suit in (Suit.SPADES, Suit.CLUBS) else Color.RED
 
     def is_face_up(self) -> bool:
+        """
+        Checks if the card is face up.
+        >>> Card(Rank.JACK, Suit.SPADES).is_face_up()
+        False
+        >>> Card(Rank.JACK, Suit.SPADES).flip().is_face_up()
+        True
+        """
         return self._is_face_up
 
     def flip(self) -> "Card":
+        """
+        Flips the card either hiding its face or showing it.
+        >>> Card(Rank.JACK, Suit.SPADES).flip().is_face_up()
+        True
+        >>> Card(Rank.JACK, Suit.SPADES).flip().flip().is_face_up()
+        False
+        """
         self._is_face_up = not self._is_face_up
         return self
 
@@ -102,24 +157,92 @@ class Stack:
         self._cards: list[Card] = []
 
     def __str__(self) -> str:
+        """
+        Displays a human readable stack representation
+        >>> MyStack = Stack()
+        >>> MyStack.push(Card(Rank.JACK, Suit.SPADES))
+        >>> str(MyStack)
+        '▒▒'
+        >>> MyStack.push(Card(Rank.JACK, Suit.SPADES).flip())
+        >>> str(MyStack)
+        '▒▒ \\x1b[1;30;47mJ♠\\x1b[0m'
+        """
         return " ".join([str(card) for card in self._cards])
 
     def push(self, card: Card) -> None:
+        """
+        Adds a card to the top of the Stack
+        >>> MyStack = Stack()
+        >>> MyStack.push(Card(Rank.JACK, Suit.SPADES))
+        >>> str(MyStack)
+        '▒▒'
+        >>> MyStack.push(Card(Rank.JACK, Suit.SPADES).flip())
+        >>> str(MyStack)
+        '▒▒ \\x1b[1;30;47mJ♠\\x1b[0m'
+        """
         self._cards.append(card)
 
     def pop(self) -> Card:
+        """
+        Grabs and returns the card on the top of the stack. Removes it from the stack
+        >>> MyStack = Stack()
+        >>> MyStack.push(Card(Rank.JACK, Suit.SPADES))
+        >>> MyStack.pop()
+        Card(Rank.JACK, Suit.SPADES)
+        >>> MyStack.push(Card(Rank.FIVE, Suit.DIAMONDS))
+        >>> MyStack.pop()
+        Card(Rank.FIVE, Suit.DIAMONDS)
+        >>> str(MyStack)
+        ''
+        """
         return self._cards.pop()
 
     def peek_top(self) -> Card:  # returns a copy of the top card without removing it
+        """
+        Returns a copy of the card without removeing it
+        >>> MyStack = Stack()
+        >>> MyStack.push(Card(Rank.JACK, Suit.SPADES))
+        >>> MyStack.peek_top()
+        Card(Rank.JACK, Suit.SPADES)
+        >>> MyStack.push(Card(Rank.KING, Suit.HEARTS))
+        >>> MyStack.peek_top()
+        Card(Rank.KING, Suit.HEARTS)
+        """
         return self._cards[-1]
 
     def get_num_cards(self) -> int:
+        """
+        Returns the number of cards in the stack
+        >>> MyStack = Stack()
+        >>> MyStack.get_num_cards()
+        0
+        >>> MyStack.push(Card(Rank.JACK, Suit.SPADES))
+        >>> MyStack.get_num_cards()
+        1
+        """
         return len(self._cards)
 
     def is_empty(self) -> bool:
+        """
+        Checks if the stack is empty
+        >>> MyStack = Stack()
+        >>> MyStack.is_empty()
+        True
+        >>> MyStack.push(Card(Rank.JACK, Suit.SPADES))
+        >>> MyStack.is_empty()
+        False
+        """
         return self._cards == []
 
     def can_take(self, card: Card) -> bool:
+        """
+        Checks if the stack can take the selected card on top
+        >>> MyStack = Stack()
+        >>> MyStack.can_take(Card(Rank.JACK, Suit.SPADES))
+        True
+        >>> MyStack.can_take(Card(Rank.KING, Suit.HEARTS))
+        True
+        """
         return True
 
 
@@ -131,17 +254,56 @@ class Deck(Stack):
                 self.push(Card(rank, suit))
 
     def __str__(self) -> str:
+        """
+        Creates a human readable representation of a deck
+        >>> str(Deck())
+        '52 ▒▒'
+        >>> d = Deck()
+        >>> d.pop()
+        Card(Rank.KING, Suit.DIAMONDS)
+        >>> str(d)
+        '51 ▒▒'
+        """
         return f"{len(self._cards):2d} {EMPTY_STACK if self.is_empty() else self._cards[-1]}"
 
     def shuffle(self) -> None:
+        """
+        Shuffles the Deck
+        >>> d = Deck()
+        >>> d.shuffle()
+
+        >>> str(d.shuffle())
+        'None'
+        """
         shuffle(self._cards)
 
 
 class SuitStack(Stack):
     def __str__(self) -> str:
+        """
+        Creates a human readable representation of a suit stack
+        >>> str(SuitStack())
+        '[]'
+        >>> S = SuitStack()
+        >>> S.push(Card(Rank.ACE, Suit.SPADES))
+        >>> str(S)
+        '▒▒'
+        >>> S.push(Card(Rank.ACE, Suit.SPADES).flip())
+        >>> str(S)
+        '\\x1b[1;30;47mA♠\\x1b[0m'
+        """
         return str(self._cards[-1]) if not self.is_empty() else EMPTY_STACK
 
     def can_take(self, card: Card) -> bool:
+        """
+        Checks if the Suit stack can take the card on top
+        >>> S = SuitStack()
+        >>> S.can_take(Card(Rank.ACE, Suit.SPADES)) 
+        True
+        >>> S.push(Card(Rank.ACE, Suit.SPADES))
+        >>> S.can_take(Card(Rank.KING, Suit.SPADES)) 
+        False
+        """
         if self.is_empty():
             return card.get_rank() == Rank.ACE
         top_card = self._cards[-1]
@@ -151,6 +313,23 @@ class SuitStack(Stack):
 
 class TableStack(Stack):
     def can_take(self, card: Card) -> bool:
+        """
+        Checks if the table stack can take the card on top.
+        >>> tb = TableStack()
+        >>> tb.can_take(Card(Rank.KING, Suit.SPADES))
+        True
+        >>> tb.can_take(Card(Rank.JACK, Suit.SPADES))
+        False
+        >>> tb.can_take(Card(Rank.ACE, Suit.SPADES))
+        False
+        >>> tb.push(Card(Rank.KING, Suit.SPADES))
+        >>> tb.can_take(Card(Rank.ACE, Suit.SPADES))
+        False
+        >>> tb.can_take(Card(Rank.QUEEN, Suit.SPADES))
+        False
+        >>> tb.can_take(Card(Rank.QUEEN, Suit.HEARTS))
+        True
+        """
         if self.is_empty():
             return card.get_rank() == Rank.KING
         top_card = self._cards[-1]
@@ -167,6 +346,9 @@ class Klondike:
         self.deal()
 
     def __str__(self) -> str:
+        """
+        returns a human readable Klondike Solitare game representation
+        """
         return f"""{ANSI_CLEAR}Klondike Solitaire
 
 D: {self._draw_stack} {self._discard_stack}
@@ -179,6 +361,9 @@ S: {" ".join([str(stack) for stack in self._suit_stacks])}
                          for pos in range(len(self._table_stacks))]) + "\n"
 
     def deal(self) -> None:
+        """
+        Shuffles the deck, arranges all the cards on their proper stacks.
+        """
         self._draw_stack.shuffle()
         for row in range(len(self._table_stacks)):
             for col in range(row + 1):
@@ -186,6 +371,9 @@ S: {" ".join([str(stack) for stack in self._suit_stacks])}
             self._table_stacks[row].push(self._table_stacks[row].pop().flip())
 
     def play_one(self, move: str) -> None:
+        """
+        Takes in a move input, Checks if the move is supported and allowed, makes the move if allowed.
+        """
         source = self._discard_stack  # default source
         destination = None
         if move == "Q":
@@ -229,6 +417,9 @@ S: {" ".join([str(stack) for stack in self._suit_stacks])}
         self.try_move(source, destination, count)
 
     def try_move(self, source: Stack, destination: Stack, count: int) -> bool:
+        """
+        Checks to see if the move is avaliable and valid
+        """
         if count > source.get_num_cards():
             return
         extra_stack = Stack()
@@ -248,6 +439,9 @@ S: {" ".join([str(stack) for stack in self._suit_stacks])}
             return False
 
     def is_finished(self) -> bool:
+        """
+        Checks the suit stack to check if the game has been won.
+        """
         return all([not self._suit_stacks[pos].is_empty() and
                     self._suit_stacks[pos].peek_top().get_rank() == Rank.KING
                     for pos in range(len(self._suit_stacks))])
@@ -255,6 +449,7 @@ S: {" ".join([str(stack) for stack in self._suit_stacks])}
 
 if __name__ == "__main__":
     import doctest
+    doctest.testmod()
     doctest.testfile("test_card_games.txt")
     seed(12345)
     game = Klondike()
