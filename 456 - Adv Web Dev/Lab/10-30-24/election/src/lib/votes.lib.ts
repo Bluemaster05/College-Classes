@@ -1,4 +1,3 @@
-import { candidates } from "../data/mockData"
 import { CandidateResult } from "../types/CandidateResult.type"
 import { Results } from "../types/Results.type"
 import { Vote } from "../types/Vote.type"

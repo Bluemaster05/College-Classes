@@ -1,4 +1,4 @@
-export function Button(props: {funcCall: Function; name: string, style?: React.CSSProperties }) {
+export function Button(props: {funcCall: () => void , name: string, style?: React.CSSProperties }) {
     return <>
     <button
     style={{
