@@ -8,10 +8,15 @@ export function VideoCard(props: {video: Video }){
         flexDirection: 'column'
     }}>
         <div className="video" style={{
-    
+            backgroundColor: '#78938a',
+            display: 'flex',
+            padding: '8px',
+            width: 'fit-content'
         }}>
-            <video src="">
-                <source src={props.video.url}/>
+            <video crossOrigin="anonymous" style={{
+                height: '150px'
+            }}>
+                <source src={props.video.url} />
             </video>
         </div>
         <div className="videoDetails">

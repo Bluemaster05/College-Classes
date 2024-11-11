@@ -1,45 +1,28 @@
-# TODO: Declare any necessary variables here. 
-fileName = input()
-mid1 = 0
-mid2 = 0
-final = 0
-num_students = 0
-# TODO: Read a file name from the user and read the tsv file here. 
-file = open(fileName)
-report = open('report.tsv', 'w')
-for line in file.readlines():
-    scores = line.split()
-    average = (int(scores[2]) + int(scores[3]) + int(scores[4])) / 3
-    mid1+= int(scores[2])
-    mid2+= int(scores[3])
-    final+= int(scores[4])
-    num_students+=1
-    grade = 'A'
-    match grade:
-        case 'A' if average >= 90:
-            # grade = 'A'
-            pass
-        case 'B' if average >= 80 and x < 90:
-            # grade = 'B'
-            pass
-        case 'C' if average >= 70 and x < 80:
-            # grade = 'C'
-            pass
-        case 'D' if average >= 60 and x < 70:
-            # grade = 'D' pass
-            pass
-        case 'F' if average < 60:
-            # grade = 'F'
-            pass
-    report.write(f'{line}\t{grade}\n')
-
-report.write(f'\n')
-mid1 = mid1 / num_students
-mid2 = mid2 / num_students
-final = final / num_students
-report.write(f'Averages: midterm1 {mid1}, midterm2 {mid2}, final {final}')
+from PySide6.QtCore import Qt
+from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QWidget, QLabel
 
 
-            
-   
-# TODO: Compute student grades and exam averages, then output results to a text file here. 
+class MyWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Simple Gui")
+        self.count = 0
+        self.button = QPushButton(str(self.count))
+        self.button.clicked.connect(self.doStuff)
+        # self.setCentralWidget(self.button)
+        # label = QLabel.
+
+    def doStuff(self):
+        self.count += 1
+        self.button.setText(str(self.count))
+
+    def mouseReleaseEvent(self, event):
+        print("realsesd")
+
+    def keyPressEvent(self, event):
+        print(event)
+        
+app = QApplication()
+window = MyWindow()
+window.show()
+app.exec()

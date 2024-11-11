@@ -26,14 +26,14 @@ Things that need to be fixed:
 
 
 
-- need a lot more tests
-- move syntax not documented
 
---Actual Bugs
+
 
 -----FIXED------
 - discard stack should only display top card 
 - can't send cards to suit stacks
+- need a lot more tests
+- move syntax not documented
 - number of cards to move is incorrect
 - win condition checker crashing "randomly" 
 - empty move causes crash
@@ -43,6 +43,14 @@ Things that need to be fixed:
 - missing destination causes crash
 - some cards are displaying incorrectly (different width)
 - missing docstrings (esp. descriptions)
+
+---MOVE SYNTAX---
+d - Draws card from draw stack
+#s attempts to move card from stack # to suit stack
+## attempts to move card from stack # to the second stack #
+ds attempts to move card from draw stack to sit stack
+### attemps to move card from stack # to stack # and move # number of cards
+
 
 """
 
@@ -402,6 +410,9 @@ S: {" ".join([str(stack) for stack in self._suit_stacks])}
                 if int(move[1]) > 7: #Fix attempt - fix crash on over 7
                     return
                 destination = self._table_stacks[int(move[1]) - 1]
+                if len(move) > 2:
+                    if not move[2:].isdigit():
+                        return
                 if int(move[2:] or 1) == 0 or (not move[2:].isdigit() and move[2:] != ''): #Fix attempt Added to fix break on count 0
                     return 
                 count = int(move[2:] or 1) # FIX ATTEMPT, changed from [1:] to [2:] and Move
@@ -449,8 +460,8 @@ S: {" ".join([str(stack) for stack in self._suit_stacks])}
 
 if __name__ == "__main__":
     import doctest
-    doctest.testmod()
     doctest.testfile("test_card_games.txt")
+    doctest.testmod()
     seed(12345)
     game = Klondike()
     while not game.is_finished():
