@@ -1,7 +1,9 @@
+
+// import React from "react"
 import { Page } from "../types/Page.type"
 import { Button } from "./button"
 
-export function Header(props= {setPage: React.Dispatch<React.SetStateAction<Page>>}) {
+export function Header(props: {setPage: React.Dispatch<React.SetStateAction<Page>>}) {
     return <>
         <header style={{
             display: "flex",

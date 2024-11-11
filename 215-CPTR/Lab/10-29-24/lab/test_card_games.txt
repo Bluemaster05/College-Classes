@@ -1,14 +1,39 @@
 >>> from random import seed
->>> from card_games import Klondike
+>>> from card_games import *
 >>> seed(12345)
->>> game = Klondike()
->>> game.is_finished()
-False
->>> game.play_one("1S")
->>> game.play_one("2S")
->>> str(game).count('[]')
-2
 
->>> seed() # leave this in to randomize games, otherwise you always get the same one
->>> for string in 'd d d d d d '.split():
->>>     game.play_one(string)
+>>> game2 = Klondike()
+>>> game2.is_finished()
+False
+>>> for string in 'D D'.split():
+...     game2.play_one(string)
+>>> for string in '1S 2S'.split():
+...     game2.play_one(string)
+>>> str(game2).count('[]')
+2
+>>> str(game2).count('22 ▒▒ ▒▒ \x1b[1;31;47m4♦\x1b[0m')
+1
+>>> for string in '1S 2S D D D D7 D D5 D D D DS D D D4 D D D3 432'.split():
+...     game2.play_one(string)
+>>> str(game2).count("3: ▒▒ ▒▒ \x1b[1;30;47mK♠\x1b[0m \x1b[1;31;47mQ♥\x1b[0m \x1b[1;30;47mJ♠\x1b[0m \x1b[1;31;47mT♦\x1b[0m")
+1
+>>> game2.play_one(" ")
+>>> str(game2).count("3: ▒▒ ▒▒ \x1b[1;30;47mK♠\x1b[0m \x1b[1;31;47mQ♥\x1b[0m \x1b[1;30;47mJ♠\x1b[0m \x1b[1;31;47mT♦\x1b[0m")
+1
+>>> game2.play_one("D9")
+>>> str(game2).count("3: ▒▒ ▒▒ \x1b[1;30;47mK♠\x1b[0m \x1b[1;31;47mQ♥\x1b[0m \x1b[1;30;47mJ♠\x1b[0m \x1b[1;31;47mT♦\x1b[0m")
+1
+>>> game2.play_one("D9")
+>>> str(game2).count("3: ▒▒ ▒▒ \x1b[1;30;47mK♠\x1b[0m \x1b[1;31;47mQ♥\x1b[0m \x1b[1;30;47mJ♠\x1b[0m \x1b[1;31;47mT♦\x1b[0m")
+1
+>>> game2.play_one("35J")
+>>> str(game2).count("3: ▒▒ ▒▒ \x1b[1;30;47mK♠\x1b[0m \x1b[1;31;47mQ♥\x1b[0m \x1b[1;30;47mJ♠\x1b[0m \x1b[1;31;47mT♦\x1b[0m")
+1
+>>> game2.play_one("")
+>>> str(game2).count("3: ▒▒ ▒▒ \x1b[1;30;47mK♠\x1b[0m \x1b[1;31;47mQ♥\x1b[0m \x1b[1;30;47mJ♠\x1b[0m \x1b[1;31;47mT♦\x1b[0m")
+1
+>>> str(game2).count('5: ▒▒ ▒▒ ▒▒ ▒▒ \x1b[1;30;47mT♣\x1b[0m')
+1
+>>> game2.play_one("534")
+>>> str(game2).count("3: ▒▒ ▒▒ \x1b[1;30;47mK♠\x1b[0m \x1b[1;31;47mQ♥\x1b[0m \x1b[1;30;47mJ♠\x1b[0m \x1b[1;31;47mT♦\x1b[0m")
+1

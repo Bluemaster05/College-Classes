@@ -1,0 +1,34 @@
+Component List:
+-Header
+-Reccomended Videos
+    -Video Card
+    -Carasoll
+-Filter And Sort - Not to be confused with the "Button that creates it"
+-All Videos
+    -Video Card
+-Video Card
+    p-video url
+    p-title
+    p-freeOrPaid
+    p-Purchased?
+    p-price
+    k-id
+
+-Cart
+    -VideoItem
+        p-title
+        p-videoUrl
+        p-price
+        p-id
+
+-CheckoutWindow
+    -CheckoutItem
+        p-title
+        p-cost
+
+-Theatre
+    -videoUrl
+    -title
+
+-ReccomendedVertical
+    ditto Reccomended just vert
