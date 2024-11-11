@@ -11,4 +11,13 @@ body{
   background-color: #525e75;
 }
 
+.reccomended{
+  justify-content: space-between;
+}
+
+@media (max-width: 1394px) {
+  .reccomended{
+    justify-content: space-evenly;
+  }
+}
 
