@@ -13,19 +13,15 @@ import { Video } from "./types/video.type"
 
 function App() {
   const [videoList, setVideoList] = useState<Array<Video> | null>(null)
-  useEffect(() => {
-    async function getVideos() {
-      const videos =  await fetch('https://videostar.dacoder.io/')
-      const parsedVideos = await videos.json()
-      setVideoList(parsedVideos)
+    // async function getVideos() {
+    //   const videos =  await fetch('https://videostar.dacoder.io/')
+    //   const parsedVideos = await videos.json()
+    //   return parsedVideos
     }
-    getVideos()
-  })
-  function vidsetplz() {
-
-  }
-  const allVideos = videos.map( (video: Video) => <VideoCard video={video}></VideoCard>)
-  {videoList &&}
+    
+    setVideoList(getVideos())
+    // const allVideos = videoList!.map( (video: Video) => <VideoCard video={video}></VideoCard>)
+  }, [])
   return (<>
       <Header></Header>
     <main
@@ -70,7 +66,7 @@ function App() {
   "price": 7.62,
   "url": "https://videostar.dacoder.io/videos/a-girl-taking-a-selfie-with-her-boyfriend.mp4"
 }} />]}></ReccomendedVideos>
-<AllVideos videos={} ></AllVideos>
+{/* <AllVideos videos={} ></AllVideos> */}
 </main>
 </>
   )
