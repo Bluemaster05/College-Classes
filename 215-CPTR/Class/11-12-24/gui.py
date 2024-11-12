@@ -1,7 +1,7 @@
 import sys
 from PySide6.QtWidgets import (
     QMainWindow, QApplication,
-    QLabel, QToolBar, QStatusBar, QGridLayout, QWidget, QPushButton
+    QLabel, QToolBar, QStatusBar, QGridLayout, QWidget, QPushButton, QVBoxLayout
 )
 from PySide6.QtGui import QAction, QIcon
 from PySide6.QtCore import Qt

@@ -14,18 +14,26 @@ import { PaymentCard } from "./components/PaymentCard"
 
 function App() {
   const [videoList, setVideoList] = useState<Array<Video> | null>(null)
-
+  const [allVideos, setAllVideos] = useState<Array<JSX.Element> | null>(null)
   useEffect(() => {
     async function getVideos() {
       const videos = await fetch('https://videostar.dacoder.io/')
       const parsedVideos = await videos.json()
       setVideoList(parsedVideos)
     }
-
     getVideos()
-  }, [])
+    ,[]
+})
+useEffect(() => {
+  if (useEffect === null){
+    setAllVideos([<div>loading</div>])
+  }
+  else{
+    setAllVideos(videoList!.map( video => <VideoCard video={video}></VideoCard>))
+  }
+},[videoList])
 
-
+//   const allvideos = videoList!.map( video => <VideoCard video={video}></VideoCard>)
 
   // const allVideos = videoList!.map( (video: Video) => <VideoCard video={video}></VideoCard>)
   return (<>
@@ -82,76 +90,9 @@ function App() {
         "price": 7.62,
         "url": "https://videostar.dacoder.io/videos/a-girl-taking-a-selfie-with-her-boyfriend.mp4"
       }} />]}></ReccomendedVideos>
-      <AllVideos> <VideoCard video={{
-        "id": 0,
-        "name": "A Girl Taking a Selfie With Her Boyfriend",
-        "isFree": false,
-        "isPurchased": false,
-        "duration": "00:00:16.93",
-        "size": 7990219,
-        "price": 7.62,
-        "url": "https://videostar.dacoder.io/videos/a-girl-taking-a-selfie-with-her-boyfriend.mp4"
-      }} />
-       <VideoCard video={{
-        "id": 0,
-        "name": "A Girl Taking a Selfie With Her Boyfriend",
-        "isFree": false,
-        "isPurchased": false,
-        "duration": "00:00:16.93",
-        "size": 7990219,
-        "price": 7.62,
-        "url": "https://videostar.dacoder.io/videos/a-girl-taking-a-selfie-with-her-boyfriend.mp4"
-      }} />
-       <VideoCard video={{
-        "id": 0,
-        "name": "A Girl Taking a Selfie With Her Boyfriend",
-        "isFree": false,
-        "isPurchased": false,
-        "duration": "00:00:16.93",
-        "size": 7990219,
-        "price": 7.62,
-        "url": "https://videostar.dacoder.io/videos/a-girl-taking-a-selfie-with-her-boyfriend.mp4"
-      }} />
-       <VideoCard video={{
-        "id": 0,
-        "name": "A Girl Taking a Selfie With Her Boyfriend",
-        "isFree": false,
-        "isPurchased": false,
-        "duration": "00:00:16.93",
-        "size": 7990219,
-        "price": 7.62,
-        "url": "https://videostar.dacoder.io/videos/a-girl-taking-a-selfie-with-her-boyfriend.mp4"
-      }} />
-       <VideoCard video={{
-        "id": 0,
-        "name": "A Girl Taking a Selfie With Her Boyfriend",
-        "isFree": false,
-        "isPurchased": false,
-        "duration": "00:00:16.93",
-        "size": 7990219,
-        "price": 7.62,
-        "url": "https://videostar.dacoder.io/videos/a-girl-taking-a-selfie-with-her-boyfriend.mp4"
-      }} />
-       <VideoCard video={{
-        "id": 0,
-        "name": "A Girl Taking a Selfie With Her Boyfriend",
-        "isFree": false,
-        "isPurchased": false,
-        "duration": "00:00:16.93",
-        "size": 7990219,
-        "price": 7.62,
-        "url": "https://videostar.dacoder.io/videos/a-girl-taking-a-selfie-with-her-boyfriend.mp4"
-      }} />
-       <VideoCard video={{
-        "id": 0,
-        "name": "A Girl Taking a Selfie With Her Boyfriend",
-        "isFree": false,
-        "isPurchased": false,
-        "duration": "00:00:16.93",
-        "size": 7990219,
-        "price": 7.62,
-        "url": "https://videostar.dacoder.io/videos/a-girl-taking-a-selfie-with-her-boyfriend.mp4"
-      }} /></AllVideos>
+      <AllVideos> 
+        {/* {allvideos} */}
+      </AllVideos>
       
     </main>
   </>
