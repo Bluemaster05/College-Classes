@@ -5,12 +5,13 @@ export function PaidCover(props: {price: number}){
         backgroundColor: '#92ba9280',
         // opacity: '50%',
         width: '100%',
-        height: '82%',
+        height: '100%',
         position: 'absolute',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        fontSize: '35pt'
+        fontSize: '35pt',
+        left: '-5px'
     }}
     >
         ${props.price}
