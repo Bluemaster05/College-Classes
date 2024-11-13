@@ -13,15 +13,15 @@ import { Video } from "./types/video.type"
 
 function App() {
   const [videoList, setVideoList] = useState<Array<Video> | null>(null)
-    // async function getVideos() {
-    //   const videos =  await fetch('https://videostar.dacoder.io/')
-    //   const parsedVideos = await videos.json()
-    //   return parsedVideos
+    async function getVideos() {
+      const videos =  await fetch('https://videostar.dacoder.io/')
+      const parsedVideos = await videos.json()
+      return parsedVideos
     }
-    
     setVideoList(getVideos())
     // const allVideos = videoList!.map( (video: Video) => <VideoCard video={video}></VideoCard>)
   }, [])
+  
   return (<>
       <Header></Header>
     <main
