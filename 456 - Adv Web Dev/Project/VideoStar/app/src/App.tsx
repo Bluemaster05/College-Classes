@@ -14,26 +14,20 @@ import { PaymentCard } from "./components/PaymentCard"
 
 function App() {
   const [videoList, setVideoList] = useState<Array<Video> | null>(null)
-  const [allVideos, setAllVideos] = useState<Array<JSX.Element> | null>(null)
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+
   useEffect(() => {
     async function getVideos() {
+      setIsLoading(true)
       const videos = await fetch('https://videostar.dacoder.io/')
-      const parsedVideos = await videos.json()
+      const parsedVideos = (await videos.json()) as Video[]
       setVideoList(parsedVideos)
+      setIsLoading(false)
     }
     getVideos()
-    ,[]
-})
-useEffect(() => {
-  if (useEffect === null){
-    setAllVideos([<div>loading</div>])
-  }
-  else{
-    setAllVideos(videoList!.map( video => <VideoCard video={video}></VideoCard>))
-  }
-},[videoList])
+  }, [])
 
-//   const allvideos = videoList!.map( video => <VideoCard video={video}></VideoCard>)
+  //   const allvideos = videoList!.map( video => <VideoCard video={video}></VideoCard>)
 
   // const allVideos = videoList!.map( (video: Video) => <VideoCard video={video}></VideoCard>)
   return (<>
@@ -90,10 +84,12 @@ useEffect(() => {
         "price": 7.62,
         "url": "https://videostar.dacoder.io/videos/a-girl-taking-a-selfie-with-her-boyfriend.mp4"
       }} />]}></ReccomendedVideos>
-      <AllVideos> 
-        {/* {allvideos} */}
+      <AllVideos>
+       {isLoading && <div>Loading...</div>}
+       {videoList && (<>{ videoList.map(video => <VideoCard key={video.id} video={video}></VideoCard> )}</>)
+}
       </AllVideos>
-      
+
     </main>
   </>
   )
