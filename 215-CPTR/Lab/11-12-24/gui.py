@@ -11,6 +11,7 @@ class MyWindow(QMainWindow):
         self.AddEntries = QGridLayout()
         self.AddText = QLineEdit()
         self.AddButton = QPushButton("+")
+        # self.AddButton.clicked.connect()
         self.AddEntries.addWidget(self.AddText, 0, 0, 1, 1)
         self.AddEntries.addWidget(self.AddButton, 0, 1, 1, 1)
         self.addEntriesWidget = QWidget()
