@@ -1,0 +1,7 @@
+from app import *
+
+>>> test.txt
+>>> this
+>>> with open(REDACTED-test.txt) as file:
+...     file.read() == "In XXXX example I will try to replace XXXX with xxxxn\XXXX is going to be very hard because XXXX is not easy to listen toon\and words like XXXXle will become xxxxle n\and lines that have XXXX in them many times like XXXX will replace both"
+True

@@ -8,6 +8,7 @@ def posinstring(word: str, line: str) -> str | int:
     else:
         return "Not found"
 
+
 filename = input('Path to file: ')
 redactedWord = input('Word to redact: ')
 replacement = ''
@@ -39,3 +40,8 @@ with open(redactFile, 'w+', encoding='utf-8') as file:
             endIndex = startIndex + len(redactedWord)
             line = line[:startIndex] + replacement  + line[endIndex:]
         file.write(line)
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testfile("redacttest.txt")
+    doctest.testmod()

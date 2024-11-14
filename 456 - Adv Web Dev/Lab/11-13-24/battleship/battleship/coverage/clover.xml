@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1731542855365" clover="3.2.0">
+  <project timestamp="1731542855365" name="All files">
+    <metrics statements="17" coveredstatements="17" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1" elements="22" coveredelements="22" complexity="0" loc="17" ncloc="17" packages="2" files="2" classes="2"/>
+    <package name="lib">
+      <metrics statements="10" coveredstatements="10" conditionals="3" coveredconditionals="3" methods="1" coveredmethods="1"/>
+      <file name="generateTiles.lib.ts" path="C:\Users\logan\OneDrive\Documents\GitHub\College-Classes\456 - Adv Web Dev\Lab\11-13-24\battleship\battleship\src\lib\generateTiles.lib.ts">
+        <metrics statements="10" coveredstatements="10" conditionals="3" coveredconditionals="3" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="25" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="27" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="28" count="10" type="cond" truecount="1" falsecount="0"/>
+        <line num="29" count="100" type="stmt"/>
+        <line num="30" count="100" type="stmt"/>
+        <line num="31" count="10" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="types">
+      <metrics statements="7" coveredstatements="7" conditionals="1" coveredconditionals="1" methods="0" coveredmethods="0"/>
+      <file name="TileType.enum.ts" path="C:\Users\logan\OneDrive\Documents\GitHub\College-Classes\456 - Adv Web Dev\Lab\11-13-24\battleship\battleship\src\types\TileType.enum.ts">
+        <metrics statements="7" coveredstatements="7" conditionals="1" coveredconditionals="1" methods="0" coveredmethods="0"/>
+        <line num="14" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>

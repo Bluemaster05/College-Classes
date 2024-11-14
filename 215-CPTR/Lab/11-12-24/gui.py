@@ -1,9 +1,10 @@
 from PySide6.QtGui import QKeyEvent
 from PySide6.QtWidgets import QMainWindow, QApplication, QVBoxLayout, QLabel, QWidget, QListWidget, QListWidgetItem, QHBoxLayout, QGridLayout, QLineEdit, QPushButton, QAbstractItemView
 from PySide6.QtCore import Qt
-
+import os
 class MyWindow(QMainWindow):
     def __init__(self):
+            
         super().__init__()
         self.setWindowTitle("Shopping List")
 
@@ -27,10 +28,15 @@ class MyWindow(QMainWindow):
         #Add list section
         self.list = QListWidget()
         self.list.setSelectionMode(QAbstractItemView.ExtendedSelection)
-        self.list.addItems(['a', 'b', 'c', 'd', 'e', 'f','g','h']) # Gets Removed later once implemented
+        if os.path.exists(f'{os.path.abspath(__file__)[:-6]}storage.txt'):
+            with open(f'{os.path.abspath(__file__)[:-6]}storage.txt', 'r') as storage:
+                items = storage.read()
+                items = items.split('\n')
+                for item in items:
+                    if item != '':
+                        self.list.addItem(item)
         self.list.currentItemChanged.connect(self.printThis)
         pageLayout.addWidget(self.list)
-        # self.list.keyPressEvent()
         
         #Add Bottom Button section
         self.DeleteButton = QPushButton('-')
@@ -45,15 +51,15 @@ class MyWindow(QMainWindow):
         if self.lineText != '':
             self.list.addItem(self.lineText)
             self.AddText.setText('')
+            self.list.sortItems(order=Qt.AscendingOrder)
+
     
     def setAddLine(self, text):
         self.lineText = text
-        print(text)
 
     def removeItem(self):
         for item in self.list.selectedItems():
             self.list.takeItem(self.list.row(item))
-        # self.selectedRows = []
 
     def printThis(self, current, previous):
         self.selectedRows.append(self.list.row(current))
@@ -61,7 +67,14 @@ class MyWindow(QMainWindow):
     def keyPressEvent(self, event: QKeyEvent) -> None:
         if event.key() == Qt.Key_Delete:
             self.removeItem()
+        if event.key() == Qt.Key_Return:
+            self.addItem()
 
+    def closeEvent(self, event):
+        with open(f'{os.path.abspath(__file__)[:-6]}storage.txt', 'w') as storage:    
+            for count in range(self.list.count()):
+                storage.write(self.list.item(count).text() + '\n')
+                os.path.abspath(__file__)
 if __name__ == '__main__':
     app = QApplication()
     w = MyWindow()
