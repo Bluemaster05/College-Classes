@@ -1,3 +1,9 @@
+# Logan Gardner
+# Shoping Cart App
+# Started 11/12 Added Some features
+# Finsihed 11/13 Finshied Functionality
+
+
 from PySide6.QtGui import QKeyEvent
 from PySide6.QtWidgets import QMainWindow, QApplication, QVBoxLayout, QLabel, QWidget, QListWidget, QListWidgetItem, QHBoxLayout, QGridLayout, QLineEdit, QPushButton, QAbstractItemView
 from PySide6.QtCore import Qt
@@ -13,7 +19,7 @@ class MyWindow(QMainWindow):
         
         pageLayout = QVBoxLayout()
 
-        #Add Top add section
+        #Add Top add section 
         self.AddEntries = QGridLayout()
         self.AddText = QLineEdit()
         self.AddText.textChanged.connect(self.setAddLine)
@@ -75,6 +81,7 @@ class MyWindow(QMainWindow):
             for count in range(self.list.count()):
                 storage.write(self.list.item(count).text() + '\n')
                 os.path.abspath(__file__)
+
 if __name__ == '__main__':
     app = QApplication()
     w = MyWindow()
