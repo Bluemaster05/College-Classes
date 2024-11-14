@@ -1,7 +1,29 @@
 from PySide6.QtGui import QKeyEvent
-from PySide6.QtWidgets import QMainWindow, QApplication, QVBoxLayout, QLabel, QWidget, QListWidget, QListWidgetItem, QHBoxLayout, QGridLayout, QLineEdit, QPushButton, QAbstractItemView
+from PySide6.QtWidgets import QMainWindow, QApplication, QVBoxLayout, QLabel, QWidget, QListWidget, QListWidgetItem, QHBoxLayout, QGridLayout, QLineEdit, QPushButton, QAbstractItemView, QDialog, QDialogButtonBox
 from PySide6.QtCore import Qt
 import os
+
+
+class ConfirmDelete(QDialog):
+    def __init__(self):
+        super().__init__()
+
+        self.setWindowTitle("Wait!!!")
+
+        QBtn = (
+            QDialogButtonBox.Yes | QDialogButtonBox.Cancel
+        )
+
+        self.buttonBox = QDialogButtonBox(QBtn)
+        self.buttonBox.accepted.connect(self.accept)
+        self.buttonBox.rejected.connect(self.reject)
+
+        layout = QVBoxLayout()
+        message = QLabel("Are you sure you want to delete the selected items?")
+        layout.addWidget(message)
+        layout.addWidget(self.buttonBox)
+        self.setLayout(layout)
+
 class MyWindow(QMainWindow):
     def __init__(self):
             
@@ -58,8 +80,12 @@ class MyWindow(QMainWindow):
         self.lineText = text
 
     def removeItem(self):
-        for item in self.list.selectedItems():
-            self.list.takeItem(self.list.row(item))
+        dlg = ConfirmDelete()
+        if dlg.exec():
+            for item in self.list.selectedItems():
+                self.list.takeItem(self.list.row(item))
+        else:
+            print('idk')
 
     def printThis(self, current, previous):
         self.selectedRows.append(self.list.row(current))
