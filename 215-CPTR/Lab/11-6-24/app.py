@@ -2,6 +2,12 @@
 def posinstring(word: str, line: str) -> str | int:
     """
     Looks for instance of word in line. If found will return index of first instance, if not found will return 'Not found'
+    >>> posinstring('hello','this is hello here')
+    8
+    >>> posinstring('Hello', 'not in here')
+    'Not found'
+    >>> posinstring('HeLLo','whereinHeLloisthis')
+    7
     """
     if word.lower() in line.lower():
         return line.lower().index(word.lower())
@@ -43,5 +49,4 @@ with open(redactFile, 'w+', encoding='utf-8') as file:
 
 if __name__ == "__main__":
     import doctest
-    doctest.testfile("redacttest.txt")
     doctest.testmod()
