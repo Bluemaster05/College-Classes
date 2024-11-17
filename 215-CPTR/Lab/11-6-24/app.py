@@ -1,4 +1,9 @@
-# Leave everything in the folder named "files" alone!
+# Logan Gardner
+# Redact
+# 11/4/24 Started 
+# 11/12 Added more features
+# 11/13 Finished Features and added testing for functions
+
 def posinstring(word: str, line: str) -> str | int:
     """
     Looks for instance of word in line. If found will return index of first instance, if not found will return 'Not found'

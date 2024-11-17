@@ -5,7 +5,7 @@
 
 
 from PySide6.QtGui import QKeyEvent
-from PySide6.QtWidgets import QMainWindow, QApplication, QVBoxLayout, QLabel, QWidget, QListWidget, QListWidgetItem, QHBoxLayout, QGridLayout, QLineEdit, QPushButton, QAbstractItemView, QDialog, QDialogButtonBox
+from PySide6.QtWidgets import QMainWindow, QApplication, QVBoxLayout, QLabel, QWidget, QListWidget, QListWidgetItem, QHBoxLayout, QGridLayout, QLineEdit, QPushButton, QAbstractItemView, QDialog, QDialogButtonBox, QMessageBox
 from PySide6.QtCore import Qt
 import os
 
@@ -86,18 +86,22 @@ class MyWindow(QMainWindow):
         self.lineText = text
 
     def removeItem(self):
-        dlg = ConfirmDelete()
-        if dlg.exec():
+        # dlg = ConfirmDelete()
+        # if dlg.exec():
+        #     for item in self.list.selectedItems():
+        #         self.list.takeItem(self.list.row(item))
+        # else:
+        #     print('idk')
+        query = QMessageBox.question(self, "Wait!!!", 'Are you sure you want to delete the selected items?')
+        if query == QMessageBox.Yes:
             for item in self.list.selectedItems():
                 self.list.takeItem(self.list.row(item))
-        else:
-            print('idk')
 
     def printThis(self, current, previous):
         self.selectedRows.append(self.list.row(current))
 
     def keyPressEvent(self, event: QKeyEvent) -> None:
-        if event.key() == Qt.Key_Delete:
+        if event.key() == Qt.Key_Delete or event.key() == Qt.Key_Backspace:
             self.removeItem()
         if event.key() == Qt.Key_Return:
             self.addItem()

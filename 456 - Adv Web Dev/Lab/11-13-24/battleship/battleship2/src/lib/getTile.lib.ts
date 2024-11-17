@@ -1,3 +1,8 @@
+import GameBoard from "../interfaces/GameBoard.interface";
+import Tile from "../interfaces/Tile.interface";
+import { Player } from "../types/PlayerType.type";
+import { PositionType } from "../types/PositionType.type";
+
 /**
  * Retrieves a specific tile from the player's grid (either "attack" or "defense") at the given position.
  * It accesses the tile based on the player's grid and the specified coordinate.
@@ -18,11 +23,8 @@
  * // Output: { type: TileType.EMPTY }
  */
 
+
 import { InvalidPositionError } from "../errors/InvalidPosition.error";
-import GameBoard from "../interfaces/GameBoard.interface";
-import Tile from "../interfaces/Tile.interface";
-import { Player } from "../types/PlayerType.type";
-import { PositionType } from "../types/PositionType.type";
 
 export default function getTile(board: GameBoard, player: Player, which: 'attack' | 'defense', position: PositionType): Tile {
     if (position.x > 10 || position.y > 10){
@@ -30,3 +32,5 @@ export default function getTile(board: GameBoard, player: Player, which: 'attack
     }
     return  board[player][which][position.y][position.x]
 }
+
+
