@@ -53,4 +53,5 @@ describe("getTiles()", () => {
     test("typehit", () => {
         expect(() => getTile(baord, "player1", 'attack', { x: 11, y: 3 })).toThrow(new InvalidPositionError('Position is outside the grid!'))
     })
+    // Last error needs testsing and dakota look at cause odd!!!
 })

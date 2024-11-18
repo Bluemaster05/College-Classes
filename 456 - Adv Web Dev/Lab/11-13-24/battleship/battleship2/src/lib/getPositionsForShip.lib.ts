@@ -1,8 +1,11 @@
 
+import { InvalidPositionError } from "../errors/InvalidPosition.error";
 import GameBoard from "../interfaces/GameBoard.interface";
 import Ship from "../interfaces/Ship.interface";
+import { OrientationType } from "../types/OrientationType.enum";
 import { Player } from "../types/PlayerType.type";
 import { PositionType } from "../types/PositionType.type";
+import checkPositions from "./checkPositions.lib";
 /**
  * Generates the list of positions for a ship based on its type, starting position, and orientation.
  * The function calculates the positions the ship would occupy on the board and checks if they are valid.
@@ -27,5 +30,25 @@ import { PositionType } from "../types/PositionType.type";
  * // Output: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 2, y: 0 }, { x: 3, y: 0 }, { x: 4, y: 0 }]
  */
 export default function getPositionsForShip(board: GameBoard, player: Player, ship: Ship, position: PositionType, orientation: OrientationType): PositionType[] {
-    // Implement Me
+    let xinc = 0
+    let yinc = 0
+    const newPositions: PositionType[] = []
+    for (let i = 0; i < ship.spaces; i++){
+        newPositions.push({x: position.x + xinc, y: position.y + yinc})
+        if (orientation === OrientationType.HORIZONTAL){
+            yinc++
+        }
+        else {
+            xinc++
+        }
+    } 
+
+    if (checkPositions(board, player, newPositions) === false){
+        throw new InvalidPositionError("That postion is either already taken is not empty.")
+    }
+    
+    // for (const pos of newPositions){
+    //     getTile(board, player, 'defense', pos)
+    // } May not be needed but here if it needs to be enabled again TESTING NEEDED
+    return newPositions
 }

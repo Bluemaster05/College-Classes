@@ -5,6 +5,8 @@ import { ReccomendedVideos } from "./components/reccomended"
 import { VideoCard } from "./components/VideoCard"
 import { Video } from "./types/video.type"
 import { PaymentCard } from "./components/PaymentCard"
+import { Page } from "./types/page.type"
+import { SortToggle } from "./components/SortToggle"
 
 // async function getVideos(){
 //   const videos =  await fetch('https://videostar.dacoder.io/')
@@ -15,7 +17,17 @@ import { PaymentCard } from "./components/PaymentCard"
 function App() {
   const [videoList, setVideoList] = useState<Array<Video> | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [filterToggle, setFilterToggle] = useState<boolean>(false)
 
+  function toggleFilter() {
+    if (filterToggle === false){
+      setFilterToggle(true)
+    } else {
+      setFilterToggle(false)
+    }
+  }
+
+  toggleFilter
   useEffect(() => {
     async function getVideos() {
       setIsLoading(true)
@@ -30,8 +42,11 @@ function App() {
   //   const allvideos = videoList!.map( video => <VideoCard video={video}></VideoCard>)
 
   // const allVideos = videoList!.map( (video: Video) => <VideoCard video={video}></VideoCard>)
+  const [page, setPage] = useState<Page>('home')
+  const [theaterVideo, setTheaterVideo] = useState<Video | null>(null)
+
   return (<>
-    <Header></Header>
+    <Header page={setPage}></Header>
     {/* <PaymentCard video={{
       "id": 0,
       "name": "A Girl Taking a Selfie With Her Boyfriend",
@@ -47,7 +62,7 @@ function App() {
         paddingLeft: '30px'
       }}
     >
-      <ReccomendedVideos videos={[<VideoCard video={{
+      { page === 'home' && <ReccomendedVideos videos={[<VideoCard video={{
         "id": 0,
         "name": "A Girl Taking a Selfie With Her Boyfriend",
         "isFree": false,
@@ -83,12 +98,14 @@ function App() {
         "size": 7990219,
         "price": 7.62,
         "url": "https://videostar.dacoder.io/videos/a-girl-taking-a-selfie-with-her-boyfriend.mp4"
-      }} />]}></ReccomendedVideos>
-      <AllVideos>
-       {isLoading && <div>Loading...</div>}
-       {videoList && (<>{ videoList.map(video => <VideoCard key={video.id} video={video}></VideoCard> )}</>)
-}
-      </AllVideos>
+      }} />]}></ReccomendedVideos>}
+      <SortToggle></SortToggle>
+      { page === 'home' && <AllVideos>
+        {isLoading && <div>Loading...</div>}
+        {videoList && (<>{videoList.map(video => <VideoCard key={video.id} video={video} page={setPage} theater={setTheaterVideo}></VideoCard>)}</>)
+        }
+      </AllVideos> }
+      
 
     </main>
   </>

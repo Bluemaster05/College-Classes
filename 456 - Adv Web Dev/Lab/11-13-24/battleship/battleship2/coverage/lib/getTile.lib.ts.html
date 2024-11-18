@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for lib/generateTiles.lib.ts</title>
+    <title>Code coverage report for lib/getTile.lib.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,20 +19,20 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">lib</a> generateTiles.lib.ts</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">lib</a> getTile.lib.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">71.42% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>10/10</span>
+                <span class='fraction'>5/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>1/2</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">71.42% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>10/10</span>
+                <span class='fraction'>5/7</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -97,7 +97,9 @@
 <a name='L32'></a><a href='#L32'>32</a>
 <a name='L33'></a><a href='#L33'>33</a>
 <a name='L34'></a><a href='#L34'>34</a>
-<a name='L35'></a><a href='#L35'>35</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -123,49 +125,53 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">40x</span>
-<span class="cline-any cline-yes">400x</span>
-<span class="cline-any cline-yes">400x</span>
-<span class="cline-any cline-yes">40x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span></td><td class="text"><pre class="prettyprint lang-js">import Tile from "../interfaces/Tile.interface";
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import GameBoard from "../interfaces/GameBoard.interface";
+import Tile from "../interfaces/Tile.interface";
+import { Player } from "../types/PlayerType.type";
+import { PositionType } from "../types/PositionType.type";
 &nbsp;
 /**
- * Generates a 10x10 grid of tiles for the game board, where each tile is initially set to `TileType.EMPTY`.
- * The function creates a 2D array of `Tile` objects, with each tile representing an empty space on the board.
- * This grid will be used for both the defense and attack boards of the players.
+ * Retrieves a specific tile from the player's grid (either "attack" or "defense") at the given position.
+ * It accesses the tile based on the player's grid and the specified coordinate.
  *
- * @function generateTiles
- * @returns {Tile[][]} A 2D array representing a 10x10 grid of tiles, with each tile having a type of `TileType.EMPTY`.
+ * @function getTile
+ * @param {GameBoard} board - The current game board, containing both players' grids.
+ * @param {Player} player - The player whose grid will be accessed (either "player1" or "player2").
+ * @param {'attack' | 'defense'} which - The type of grid to access, either "attack" or "defense".
+ * @param {PositionType} position - The position on the grid to retrieve the tile from.
+ * @throws {InvalidPositionError} - Throws an invalid position error if the requested tile is out of bounds
+ * @returns {Tile} The tile at the specified position in the selected grid.
  *
  * @example
- * // Example of generating a 10x10 grid of empty tiles
- * const emptyTiles = generateTiles();
- * console.log(emptyTiles); 
- * // Output: A 10x10 grid where each tile has { type: "EMPTY" }
- * [
- *   [ { type: TileType.EMPTY }, { type: TileType.EMPTY }, ..., { type: TileType.EMPTY } ], // Row 1
- *   [ { type: TileType.EMPTY }, { type: TileType.EMPTY }, ..., { type: TileType.EMPTY } ], // Row 2
- *   ...
- *   [ { type: TileType.EMPTY }, { type: TileType.EMPTY }, ..., { type: TileType.EMPTY } ]  // Row 10
- * ]
+ * // Example of retrieving a tile from the defense grid
+ * const position = { x: 2, y: 3 };
+ * const tile = getTile(board, "player1", "defense", position);
+ * console.log(tile);
+ * // Output: { type: TileType.EMPTY }
  */
 &nbsp;
 &nbsp;
-import { TileType } from "../types/TileType.enum";
+import { InvalidPositionError } from "../errors/InvalidPosition.error";
 &nbsp;
-export default function generateTiles(): Tile[][] {
-    const allTiles: Tile[][] = [[],[],[],[],[],[],[],[],[],[]]
-    for (let row of allTiles){
-        for (let j = 0; j &lt; 10 ;j++){
-                row.push({ type: TileType.EMPTY })
-        }          
-    } 
-    return allTiles
-}</pre></td></tr></table></pre>
+export default function getTile(board: GameBoard, player: Player, which: 'attack' | 'defense', position: PositionType): Tile {
+    if (position.x &gt; 10 || position.y &gt; 10)<span class="branch-0 cbranch-no" title="branch not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >        throw new InvalidPositionError('Position is outside the grid!')</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+    return  board[player][which][position.y][position.x]
+}
+&nbsp;
+&nbsp;
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->

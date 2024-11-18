@@ -1,8 +1,12 @@
+import { Page } from "../types/page.type";
 import { Video } from "../types/video.type";
 import { PaidCover } from "./paidcover";
-export function VideoCard(props: { video: Video }) {
+export function VideoCard(props: { video: Video, page: React.Dispatch<React.SetStateAction<Page>>, theater: React.Dispatch<React.SetStateAction<Video | null>> }) {
     return <>
-        <div
+        <div onClick={() => {
+            props.page('theater')
+            props.theater(props.video)
+        }}
             style={{
                 display: 'flex',
                 flexDirection: 'column',
@@ -10,7 +14,7 @@ export function VideoCard(props: { video: Video }) {
                 maxWidth: '425px',
                 position: 'relative'
             }}>
-                <PaidCover price={props.video.price}></PaidCover>
+            {!props.video.isPurchased && <PaidCover price={props.video.price}></PaidCover>}
             <div className="video" style={{
                 backgroundColor: '#78938a',
                 display: 'flex',
@@ -24,13 +28,14 @@ export function VideoCard(props: { video: Video }) {
                 </video>
             </div>
             <div className="videoDetails">
-                <h1 style={{ 
-                    margin: '0', 
+                <h1 style={{
+                    margin: '0',
                     fontSize: '20px',
                     color: '#f1ddbf',
                     fontWeight: '300',
-                    width: '80%'
-                    }}>{props.video.name}</h1>
+                    width: '80%',
+                    height: '2.4em'
+                }}>{props.video.name}</h1>
             </div>
         </div>
     </>

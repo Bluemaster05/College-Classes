@@ -1,7 +1,15 @@
 
 import GameBoard from "../interfaces/GameBoard.interface";
+import Ship from "../interfaces/Ship.interface";
+import { OrientationType } from "../types/OrientationType.enum";
 import { Player } from "../types/PlayerType.type";
 import { PositionType } from "../types/PositionType.type";
+import { ShipType } from "../types/ShipType.enum";
+import { TileType } from "../types/TileType.enum";
+import buildShip from "./buildShip.lib";
+import getOtherPlayer from "./getOtherPlayer.lib";
+import getTile from "./getTile.lib";
+import updateTiles from "./updateTiles.lib";
 
 /**
  * Attempts to hit an opponent's ship at the given position on the game board.
@@ -23,5 +31,50 @@ import { PositionType } from "../types/PositionType.type";
  * console.log(newBoard); // Prints the updated game board with hit or miss status.
  */
 export default function attemptToHitShip(board: GameBoard, opponent: Player, position: PositionType): GameBoard {
-    // Implement Me
+    let newBoard = { ...board }
+    if (getTile(newBoard, opponent, "defense", position).type === TileType.EMPTY) {
+        // newBoard[opponent].defense[position.y][position.x] = 0
+        updateTiles(newBoard, opponent, 'defense', [position], TileType.MISS)
+        updateTiles(newBoard, getOtherPlayer(opponent), 'attack', [position], TileType.MISS)
+    } else if (getTile(newBoard, opponent, "defense", position).type === TileType.SHIP) {
+        updateTiles(newBoard, opponent, 'defense', [position], TileType.HIT)
+        updateTiles(newBoard, getOtherPlayer(opponent), 'attack', [position], TileType.HIT)
+        // Find correct bool to change to true in the ships and replace it
+        let hitShip: Ship = buildShip(ShipType.CRUISER, OrientationType.HORIZONTAL)
+        for (const ship of newBoard[opponent].ships) {
+            for (const pos of ship.positions) {
+                if (pos.x === position.x && pos.y === position.y) {
+                    hitShip = ship
+                    const hitIndex = ship.positions.indexOf({ x: pos.x, y: pos.y })
+                    hitShip.hits[hitIndex] = true
+                }
+            }
+        }
+
+
+
+
+
+        //Check if all ships are sunk
+        const sunkBoolArray = []
+        for (const ship of newBoard[opponent].ships) {
+            sunkBoolArray.push(ship.hits.every(bool => bool))
+        }
+        const allShipsSunk = sunkBoolArray.every(bool => bool)
+        if (allShipsSunk) {
+            alert('Congrats you sunk all their battleships!!!\nYou Won!!!')
+            window.location.reload()
+        }
+
+        //Check if ship is sunk
+        const shipSunk = hitShip.hits.every(bool => bool)
+        if (shipSunk) {
+            alert("You sunk their battleship")
+        }
+        return newBoard
+    }
+    // else { PROBABLY NOT NEEDED BUT HERE IN CASE IT IS
+    //     return newBoard
+    // }
+    return newBoard
 }

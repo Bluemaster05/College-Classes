@@ -1,3 +1,4 @@
+import { InvalidPositionError } from "../errors/InvalidPosition.error";
 import GameBoard from "../interfaces/GameBoard.interface";
 import { Player } from "../types/PlayerType.type";
 import { PositionType } from "../types/PositionType.type";
@@ -26,6 +27,17 @@ import { TileType } from "../types/TileType.enum";
  * console.log(newBoard);
  * // Output: Updated game board with the specified positions set to 'HIT' (a copy of the original).
  */
+
 export default function updateTiles(board: GameBoard, player: Player, which: "defense" | "attack", positions: PositionType[], type: TileType): GameBoard {
-    // Implement me
+    for (const pos of positions) {
+        if (pos.x > 9 || pos.x < 0 || pos.y > 9 || pos.y < 0){
+            throw new InvalidPositionError("Position is outside of grid!!!")
+        }
+    }
+    
+    const newBoard = {...board}
+    for (const pos of positions){
+        newBoard[player][which][pos.y][pos.x] = {type: type}
+    }
+    return newBoard
 }

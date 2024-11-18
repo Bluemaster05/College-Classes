@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for lib/generateTiles.lib.ts</title>
+    <title>Code coverage report for lib/checkPositions.lib.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,20 +19,20 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">lib</a> generateTiles.lib.ts</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">lib</a> checkPositions.lib.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">85.71% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>10/10</span>
+                <span class='fraction'>12/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>3/4</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">85.71% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>10/10</span>
+                <span class='fraction'>12/14</span>
             </div>
         
             
@@ -97,10 +97,10 @@
 <a name='L32'></a><a href='#L32'>32</a>
 <a name='L33'></a><a href='#L33'>33</a>
 <a name='L34'></a><a href='#L34'>34</a>
-<a name='L35'></a><a href='#L35'>35</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -124,47 +124,56 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">40x</span>
-<span class="cline-any cline-yes">400x</span>
-<span class="cline-any cline-yes">400x</span>
-<span class="cline-any cline-yes">40x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span></td><td class="text"><pre class="prettyprint lang-js">import Tile from "../interfaces/Tile.interface";
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">4x</span></td><td class="text"><pre class="prettyprint lang-js">import GameBoard from "../interfaces/GameBoard.interface";
+import { Player } from "../types/PlayerType.type";
+import { PositionType } from "../types/PositionType.type";
+import { TileType } from "../types/TileType.enum";
+import getShipInTiles from "./getShipInTiles.lib";
+import getTile from "./getTile.lib";
 &nbsp;
 /**
- * Generates a 10x10 grid of tiles for the game board, where each tile is initially set to `TileType.EMPTY`.
- * The function creates a 2D array of `Tile` objects, with each tile representing an empty space on the board.
- * This grid will be used for both the defense and attack boards of the players.
+ * Checks whether a ship can be placed at the specified positions on the game board 
+ * for the given player, taking into account the ship's orientation (horizontal or vertical).
+ * The function ensures that the ship fits within the bounds of the 10x10 grid and does not overlap with another ship.
  *
- * @function generateTiles
- * @returns {Tile[][]} A 2D array representing a 10x10 grid of tiles, with each tile having a type of `TileType.EMPTY`.
+ * @function checkPositions
+ * @param {GameBoard} board - The current game board, which includes both players' data.
+ * @param {Player} player - The player whose ship placement is being checked (either "player1" or "player2").
+ * @param {PositionType[]} positions - An array of `PositionType` objects representing the positions where the ship is attempting to be placed.
+ * @returns {boolean} `true` if the ship can be placed at the specified positions; `false` otherwise.
  *
  * @example
- * // Example of generating a 10x10 grid of empty tiles
- * const emptyTiles = generateTiles();
- * console.log(emptyTiles); 
- * // Output: A 10x10 grid where each tile has { type: "EMPTY" }
- * [
- *   [ { type: TileType.EMPTY }, { type: TileType.EMPTY }, ..., { type: TileType.EMPTY } ], // Row 1
- *   [ { type: TileType.EMPTY }, { type: TileType.EMPTY }, ..., { type: TileType.EMPTY } ], // Row 2
- *   ...
- *   [ { type: TileType.EMPTY }, { type: TileType.EMPTY }, ..., { type: TileType.EMPTY } ]  // Row 10
- * ]
+ * // Example of checking if a Cruiser can be placed horizontally at positions [(0, 0), (1, 0), (2, 0)]
+ * const canPlace = checkPositions(gameBoard, "player1", [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 2, y: 0 }]);
+ * console.log(canPlace); // true or false depending on the current state of the board
  */
-&nbsp;
-&nbsp;
-import { TileType } from "../types/TileType.enum";
-&nbsp;
-export default function generateTiles(): Tile[][] {
-    const allTiles: Tile[][] = [[],[],[],[],[],[],[],[],[],[]]
-    for (let row of allTiles){
-        for (let j = 0; j &lt; 10 ;j++){
-                row.push({ type: TileType.EMPTY })
-        }          
-    } 
-    return allTiles
+export default function checkPositions(board: GameBoard, player: Player, positions: PositionType[]): boolean {
+    // const x = board[player].defense
+    if (typeof getShipInTiles(board, player, positions) === 'undefined') {
+        for (const pos of positions){
+            if (getTile(board, player, "defense", {x: pos.x, y: pos.x}).type !== TileType.EMPTY)<span class="branch-0 cbranch-no" title="branch not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >                return false </span>
+                // check if this is needed or if more needs to be added to it --Coverage etc...
+<span class="cstat-no" title="statement not covered" >            }</span>
+        }
+        return true
+    }
+    else {
+        return false
+    }
 }</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->

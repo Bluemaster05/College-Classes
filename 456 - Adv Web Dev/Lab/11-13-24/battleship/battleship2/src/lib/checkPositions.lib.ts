@@ -1,6 +1,9 @@
 import GameBoard from "../interfaces/GameBoard.interface";
 import { Player } from "../types/PlayerType.type";
 import { PositionType } from "../types/PositionType.type";
+import { TileType } from "../types/TileType.enum";
+import getShipInTiles from "./getShipInTiles.lib";
+import getTile from "./getTile.lib";
 
 /**
  * Checks whether a ship can be placed at the specified positions on the game board 
@@ -19,5 +22,17 @@ import { PositionType } from "../types/PositionType.type";
  * console.log(canPlace); // true or false depending on the current state of the board
  */
 export default function checkPositions(board: GameBoard, player: Player, positions: PositionType[]): boolean {
-    // Implement Me
+    // const x = board[player].defense
+    if (typeof getShipInTiles(board, player, positions) === 'undefined') {
+        for (const pos of positions){
+            if (getTile(board, player, "defense", {x: pos.x, y: pos.x}).type !== TileType.EMPTY){
+                return false 
+                // check if this is needed or if more needs to be added to it --Coverage etc...
+            }
+        }
+        return true
+    }
+    else {
+        return false
+    }
 }

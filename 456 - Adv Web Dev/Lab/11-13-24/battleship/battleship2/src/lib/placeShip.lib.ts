@@ -1,7 +1,11 @@
+import { InvalidPositionError } from "../errors/InvalidPosition.error";
 import GameBoard from "../interfaces/GameBoard.interface";
 import Ship from "../interfaces/Ship.interface";
 import { Player } from "../types/PlayerType.type";
 import { PositionType } from "../types/PositionType.type";
+import { TileType } from "../types/TileType.enum";
+import checkPositions from "./checkPositions.lib";
+import updateTiles from "./updateTiles.lib";
 
 /**
  * Places a ship on the game board at the specified positions and orientation. 
@@ -26,5 +30,16 @@ import { PositionType } from "../types/PositionType.type";
  * // Output: Updated game board with the ship placed at the given positions (a copy of the original).
  */
 export default function placeShip(board: GameBoard, player: Player, ship: Ship, positions: PositionType[]): GameBoard {
-    // Implement Me
+    if (checkPositions(board, player, positions)){
+        let newBoard = {...board}
+        updateTiles(newBoard, player, 'defense', positions, TileType.SHIP)
+        
+        newBoard[player].ships[newBoard[player].ships.indexOf(ship)].positions = [] // Make sure that the ship list is empty
+        for (const pos of positions){
+            newBoard[player].ships[newBoard[player].ships.indexOf(ship)].positions.push({x: pos.x, y: pos.y})
+        }
+        newBoard[player].ships[newBoard[player].ships.indexOf(ship)].placed = true
+        return newBoard
+    }
+    throw new InvalidPositionError("Sorry you can't place a ship there")
 }

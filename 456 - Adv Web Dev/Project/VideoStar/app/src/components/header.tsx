@@ -1,6 +1,10 @@
-export function Header(){
+import { Page } from "../types/page.type";
+
+export function Header(props: {page: React.Dispatch<React.SetStateAction<Page>>}){
     return <>
-        <header style={{
+        <header
+        onClick={() => props.page('home')}
+        style={{
             backgroundColor: '#92ba92',
             height: '70px',
             display: 'flex',
