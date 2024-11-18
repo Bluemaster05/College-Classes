@@ -4,8 +4,10 @@ import { PaidCover } from "./paidcover";
 export function VideoCard(props: { video: Video, page: React.Dispatch<React.SetStateAction<Page>>, theater: React.Dispatch<React.SetStateAction<Video | null>> }) {
     return <>
         <div onClick={() => {
-            props.page('theater')
-            props.theater(props.video)
+            if (props.video.isPurchased) {
+                props.page('theater')
+                props.theater(props.video)
+            }
         }}
             style={{
                 display: 'flex',

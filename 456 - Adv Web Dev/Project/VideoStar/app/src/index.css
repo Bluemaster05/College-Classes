@@ -21,3 +21,8 @@ body{
   }
 }
 
+@media (max-width: 1200px) {
+  .theater {
+    flex-direction: column;
+  }
+}

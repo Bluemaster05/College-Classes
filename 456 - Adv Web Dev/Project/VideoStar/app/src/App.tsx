@@ -7,6 +7,7 @@ import { Video } from "./types/video.type"
 import { PaymentCard } from "./components/PaymentCard"
 import { Page } from "./types/page.type"
 import { SortToggle } from "./components/SortToggle"
+import { Theater } from "./components/Theater"
 
 // async function getVideos(){
 //   const videos =  await fetch('https://videostar.dacoder.io/')
@@ -62,6 +63,7 @@ function App() {
         paddingLeft: '30px'
       }}
     >
+      { <Theater video={theaterVideo}></Theater>}
       { page === 'home' && <ReccomendedVideos videos={[<VideoCard video={{
         "id": 0,
         "name": "A Girl Taking a Selfie With Her Boyfriend",
