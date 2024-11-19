@@ -23,7 +23,7 @@ import getTile from "./getTile.lib";
  */
 export default function checkPositions(board: GameBoard, player: Player, positions: PositionType[]): boolean {
     // const x = board[player].defense
-    if (typeof getShipInTiles(board, player, positions) === 'undefined') {
+    if (typeof getShipInTiles(board, player, positions) === 'undefined') { // THIS LINE CAN PRODUCE ERROR
         for (const pos of positions){
             if (getTile(board, player, "defense", {x: pos.x, y: pos.x}).type !== TileType.EMPTY){
                 return false 

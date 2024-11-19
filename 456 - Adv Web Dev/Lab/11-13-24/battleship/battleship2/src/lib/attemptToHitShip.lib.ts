@@ -69,7 +69,7 @@ export default function attemptToHitShip(board: GameBoard, opponent: Player, pos
         //Check if ship is sunk
         const shipSunk = hitShip.hits.every(bool => bool)
         if (shipSunk) {
-            alert("You sunk their battleship")
+            alert(`You sunk their ${hitShip.type}`)
         }
         return newBoard
     }

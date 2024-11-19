@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1731854177424" clover="3.2.0">
-  <project timestamp="1731854177424" name="All files">
-    <metrics statements="100" coveredstatements="94" conditionals="31" coveredconditionals="29" methods="7" coveredmethods="6" elements="138" coveredelements="129" complexity="0" loc="100" ncloc="100" packages="3" files="10" classes="10"/>
+<coverage generated="1732024973536" clover="3.2.0">
+  <project timestamp="1732024973536" name="All files">
+    <metrics statements="131" coveredstatements="95" conditionals="24" coveredconditionals="20" methods="8" coveredmethods="7" elements="163" coveredelements="122" complexity="0" loc="131" ncloc="131" packages="3" files="11" classes="11"/>
     <package name="errors">
       <metrics statements="5" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
       <file name="InvalidPosition.error.ts" path="C:\Users\logan\Documents\GitHub\College-Classes\456 - Adv Web Dev\Lab\11-13-24\battleship\battleship2\src\errors\InvalidPosition.error.ts">
@@ -14,103 +14,137 @@
       </file>
     </package>
     <package name="lib">
-      <metrics statements="79" coveredstatements="75" conditionals="28" coveredconditionals="26" methods="6" coveredmethods="6"/>
+      <metrics statements="110" coveredstatements="76" conditionals="21" coveredconditionals="17" methods="7" coveredmethods="7"/>
+      <file name="attemptToHitShip.lib.ts" path="C:\Users\logan\Documents\GitHub\College-Classes\456 - Adv Web Dev\Lab\11-13-24\battleship\battleship2\src\lib\attemptToHitShip.lib.ts">
+        <metrics statements="36" coveredstatements="9" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="33" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="35" count="1" type="stmt"/>
+        <line num="37" count="1" type="stmt"/>
+        <line num="38" count="1" type="stmt"/>
+        <line num="39" count="1" type="cond" truecount="0" falsecount="1"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="51" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="61" count="0" type="stmt"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="65" count="0" type="stmt"/>
+        <line num="66" count="0" type="stmt"/>
+        <line num="67" count="0" type="stmt"/>
+        <line num="70" count="0" type="stmt"/>
+        <line num="71" count="0" type="stmt"/>
+        <line num="72" count="0" type="stmt"/>
+        <line num="73" count="0" type="stmt"/>
+        <line num="74" count="0" type="stmt"/>
+        <line num="75" count="0" type="stmt"/>
+        <line num="79" count="1" type="stmt"/>
+        <line num="80" count="1" type="stmt"/>
+      </file>
       <file name="buildShip.lib.ts" path="C:\Users\logan\Documents\GitHub\College-Classes\456 - Adv Web Dev\Lab\11-13-24\battleship\battleship2\src\lib\buildShip.lib.ts">
         <metrics statements="27" coveredstatements="27" conditionals="8" coveredconditionals="8" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
-        <line num="24" count="10" type="cond" truecount="1" falsecount="0"/>
-        <line num="25" count="10" type="stmt"/>
-        <line num="26" count="10" type="cond" truecount="1" falsecount="0"/>
-        <line num="27" count="2" type="stmt"/>
-        <line num="28" count="2" type="cond" truecount="1" falsecount="0"/>
-        <line num="29" count="8" type="cond" truecount="1" falsecount="0"/>
-        <line num="30" count="2" type="stmt"/>
-        <line num="31" count="2" type="cond" truecount="1" falsecount="0"/>
-        <line num="32" count="6" type="cond" truecount="1" falsecount="0"/>
-        <line num="33" count="2" type="stmt"/>
-        <line num="34" count="2" type="cond" truecount="1" falsecount="0"/>
-        <line num="35" count="4" type="cond" truecount="1" falsecount="0"/>
-        <line num="36" count="2" type="stmt"/>
-        <line num="37" count="2" type="stmt"/>
-        <line num="38" count="2" type="stmt"/>
-        <line num="39" count="2" type="stmt"/>
-        <line num="40" count="2" type="stmt"/>
-        <line num="41" count="10" type="stmt"/>
-        <line num="42" count="10" type="stmt"/>
-        <line num="43" count="10" type="stmt"/>
-        <line num="44" count="10" type="stmt"/>
-        <line num="45" count="10" type="stmt"/>
-        <line num="46" count="10" type="stmt"/>
-        <line num="47" count="10" type="stmt"/>
-        <line num="48" count="10" type="stmt"/>
-        <line num="49" count="10" type="stmt"/>
-      </file>
-      <file name="checkPositions.lib.ts" path="C:\Users\logan\Documents\GitHub\College-Classes\456 - Adv Web Dev\Lab\11-13-24\battleship\battleship2\src\lib\checkPositions.lib.ts">
-        <metrics statements="14" coveredstatements="12" conditionals="4" coveredconditionals="3" methods="1" coveredmethods="1"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="24" count="4" type="cond" truecount="1" falsecount="0"/>
-        <line num="26" count="4" type="cond" truecount="1" falsecount="0"/>
-        <line num="27" count="2" type="cond" truecount="1" falsecount="0"/>
-        <line num="28" count="6" type="cond" truecount="0" falsecount="1"/>
-        <line num="29" count="0" type="stmt"/>
-        <line num="31" count="0" type="stmt"/>
-        <line num="32" count="6" type="stmt"/>
-        <line num="33" count="2" type="stmt"/>
-        <line num="34" count="2" type="stmt"/>
-        <line num="35" count="2" type="stmt"/>
-        <line num="36" count="2" type="stmt"/>
-        <line num="37" count="2" type="stmt"/>
-        <line num="38" count="4" type="stmt"/>
+        <line num="24" count="40" type="cond" truecount="1" falsecount="0"/>
+        <line num="25" count="40" type="stmt"/>
+        <line num="26" count="40" type="cond" truecount="1" falsecount="0"/>
+        <line num="27" count="8" type="stmt"/>
+        <line num="28" count="8" type="cond" truecount="1" falsecount="0"/>
+        <line num="29" count="32" type="cond" truecount="1" falsecount="0"/>
+        <line num="30" count="8" type="stmt"/>
+        <line num="31" count="8" type="cond" truecount="1" falsecount="0"/>
+        <line num="32" count="24" type="cond" truecount="1" falsecount="0"/>
+        <line num="33" count="8" type="stmt"/>
+        <line num="34" count="8" type="cond" truecount="1" falsecount="0"/>
+        <line num="35" count="16" type="cond" truecount="1" falsecount="0"/>
+        <line num="36" count="8" type="stmt"/>
+        <line num="37" count="8" type="stmt"/>
+        <line num="38" count="8" type="stmt"/>
+        <line num="39" count="8" type="stmt"/>
+        <line num="40" count="8" type="stmt"/>
+        <line num="41" count="40" type="stmt"/>
+        <line num="42" count="40" type="stmt"/>
+        <line num="43" count="40" type="stmt"/>
+        <line num="44" count="40" type="stmt"/>
+        <line num="45" count="40" type="stmt"/>
+        <line num="46" count="40" type="stmt"/>
+        <line num="47" count="40" type="stmt"/>
+        <line num="48" count="40" type="stmt"/>
+        <line num="49" count="40" type="stmt"/>
       </file>
       <file name="generateShips.lib.ts" path="C:\Users\logan\Documents\GitHub\College-Classes\456 - Adv Web Dev\Lab\11-13-24\battleship\battleship2\src\lib\generateShips.lib.ts">
         <metrics statements="9" coveredstatements="9" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
-        <line num="23" count="2" type="cond" truecount="1" falsecount="0"/>
-        <line num="24" count="2" type="stmt"/>
-        <line num="25" count="2" type="stmt"/>
-        <line num="26" count="2" type="cond" truecount="1" falsecount="0"/>
-        <line num="27" count="10" type="stmt"/>
-        <line num="28" count="10" type="stmt"/>
-        <line num="29" count="2" type="stmt"/>
-        <line num="30" count="2" type="stmt"/>
+        <line num="23" count="8" type="cond" truecount="1" falsecount="0"/>
+        <line num="24" count="8" type="stmt"/>
+        <line num="25" count="8" type="stmt"/>
+        <line num="26" count="8" type="cond" truecount="1" falsecount="0"/>
+        <line num="27" count="40" type="stmt"/>
+        <line num="28" count="40" type="stmt"/>
+        <line num="29" count="8" type="stmt"/>
+        <line num="30" count="8" type="stmt"/>
       </file>
       <file name="generateTiles.lib.ts" path="C:\Users\logan\Documents\GitHub\College-Classes\456 - Adv Web Dev\Lab\11-13-24\battleship\battleship2\src\lib\generateTiles.lib.ts">
         <metrics statements="10" coveredstatements="10" conditionals="3" coveredconditionals="3" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
-        <line num="27" count="4" type="cond" truecount="1" falsecount="0"/>
-        <line num="28" count="4" type="stmt"/>
-        <line num="29" count="4" type="cond" truecount="1" falsecount="0"/>
-        <line num="30" count="40" type="cond" truecount="1" falsecount="0"/>
-        <line num="31" count="400" type="stmt"/>
-        <line num="32" count="400" type="stmt"/>
-        <line num="33" count="40" type="stmt"/>
-        <line num="34" count="4" type="stmt"/>
-        <line num="35" count="4" type="stmt"/>
+        <line num="27" count="16" type="cond" truecount="1" falsecount="0"/>
+        <line num="28" count="16" type="stmt"/>
+        <line num="29" count="16" type="cond" truecount="1" falsecount="0"/>
+        <line num="30" count="160" type="cond" truecount="1" falsecount="0"/>
+        <line num="31" count="1600" type="stmt"/>
+        <line num="32" count="1600" type="stmt"/>
+        <line num="33" count="160" type="stmt"/>
+        <line num="34" count="16" type="stmt"/>
+        <line num="35" count="16" type="stmt"/>
       </file>
-      <file name="getShipInTiles.lib.ts" path="C:\Users\logan\Documents\GitHub\College-Classes\456 - Adv Web Dev\Lab\11-13-24\battleship\battleship2\src\lib\getShipInTiles.lib.ts">
-        <metrics statements="12" coveredstatements="12" conditionals="9" coveredconditionals="9" methods="1" coveredmethods="1"/>
-        <line num="28" count="4" type="cond" truecount="1" falsecount="0"/>
-        <line num="29" count="4" type="cond" truecount="1" falsecount="0"/>
-        <line num="30" count="16" type="cond" truecount="1" falsecount="0"/>
-        <line num="31" count="8" type="cond" truecount="1" falsecount="0"/>
-        <line num="32" count="20" type="cond" truecount="2" falsecount="0"/>
-        <line num="33" count="2" type="stmt"/>
-        <line num="34" count="2" type="stmt"/>
-        <line num="35" count="20" type="cond" truecount="1" falsecount="0"/>
-        <line num="36" count="6" type="cond" truecount="1" falsecount="0"/>
-        <line num="37" count="14" type="cond" truecount="1" falsecount="0"/>
-        <line num="38" count="2" type="stmt"/>
-        <line num="39" count="2" type="stmt"/>
+      <file name="getOtherPlayer.lib.ts" path="C:\Users\logan\Documents\GitHub\College-Classes\456 - Adv Web Dev\Lab\11-13-24\battleship\battleship2\src\lib\getOtherPlayer.lib.ts">
+        <metrics statements="8" coveredstatements="5" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="16" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="19" count="1" type="cond" truecount="0" falsecount="1"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
       </file>
       <file name="getTile.lib.ts" path="C:\Users\logan\Documents\GitHub\College-Classes\456 - Adv Web Dev\Lab\11-13-24\battleship\battleship2\src\lib\getTile.lib.ts">
         <metrics statements="7" coveredstatements="5" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
-        <line num="29" count="6" type="cond" truecount="1" falsecount="0"/>
-        <line num="30" count="6" type="cond" truecount="0" falsecount="1"/>
+        <line num="29" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="30" count="1" type="cond" truecount="0" falsecount="1"/>
         <line num="31" count="0" type="stmt"/>
         <line num="32" count="0" type="stmt"/>
-        <line num="33" count="6" type="stmt"/>
-        <line num="34" count="6" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
+      </file>
+      <file name="updateTiles.lib.ts" path="C:\Users\logan\Documents\GitHub\College-Classes\456 - Adv Web Dev\Lab\11-13-24\battleship\battleship2\src\lib\updateTiles.lib.ts">
+        <metrics statements="13" coveredstatements="11" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="31" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="32" count="2" type="stmt"/>
+        <line num="33" count="2" type="cond" truecount="0" falsecount="1"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="36" count="2" type="stmt"/>
+        <line num="38" count="2" type="stmt"/>
+        <line num="39" count="2" type="stmt"/>
+        <line num="40" count="2" type="stmt"/>
+        <line num="41" count="2" type="stmt"/>
+        <line num="42" count="2" type="stmt"/>
+        <line num="43" count="2" type="stmt"/>
       </file>
     </package>
     <package name="types">

@@ -36,6 +36,7 @@ describe('getShipInTiles()', ()=> {
             positions: [{ x: 1, y: 1 }, { x: 1, y: 2 }, { x: 1, y: 3 }, { x: 1, y: 4 }],
             hits: [false, false, false, false]
         })
+        expect(getShipInTiles(baord, 'player1', [{x: 8, y:8}])).toEqual(undefined)
 
     })
 })

@@ -30,7 +30,7 @@ import updateTiles from "./updateTiles.lib";
  * // Output: Updated game board with the ship placed at the given positions (a copy of the original).
  */
 export default function placeShip(board: GameBoard, player: Player, ship: Ship, positions: PositionType[]): GameBoard {
-    if (checkPositions(board, player, positions)){
+    // if (checkPositions(board, player, positions)){
         let newBoard = {...board}
         updateTiles(newBoard, player, 'defense', positions, TileType.SHIP)
         
@@ -41,5 +41,5 @@ export default function placeShip(board: GameBoard, player: Player, ship: Ship, 
         newBoard[player].ships[newBoard[player].ships.indexOf(ship)].placed = true
         return newBoard
     }
-    throw new InvalidPositionError("Sorry you can't place a ship there")
-}
+    // throw new InvalidPositionError("Sorry you can't place a ship there")
+// }
