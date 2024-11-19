@@ -20,6 +20,8 @@ function App() {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [filterToggle, setFilterToggle] = useState<boolean>(false)
 
+  console.log(videoList)
+
   function toggleFilter() {
     if (filterToggle === false){
       setFilterToggle(true)
@@ -33,7 +35,12 @@ function App() {
     async function getVideos() {
       setIsLoading(true)
       const videos = await fetch('https://videostar.dacoder.io/')
-      const parsedVideos = (await videos.json()) as Video[]
+      const parsedVideos = (await videos.json()).map((video: Video) => {
+        return {
+          ...video,
+          isFavorited: false,
+        }
+      }) as Video[]
       setVideoList(parsedVideos)
       setIsLoading(false)
     }

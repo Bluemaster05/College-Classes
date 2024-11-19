@@ -1,5 +1,5 @@
 import { Page } from "../types/page.type";
-
+import cart from '../assets/cart.svg'
 export function Header(props: {page: React.Dispatch<React.SetStateAction<Page>>}){
     return <>
         <header
@@ -34,10 +34,7 @@ export function Header(props: {page: React.Dispatch<React.SetStateAction<Page>>}
                 }}>
                     1
                 </div>
-                {/* Idk what this should be */}
-                <a style={{
-                    backgroundImage: 'src(./cart.svg))',
-                }}>fwef</a>
+                <img src={cart} alt="" />
             </div>
         </header>
     </>

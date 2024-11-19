@@ -1,3 +1,5 @@
+import funnel from "../assets/funnel.svg"
+
 export function SortToggle(props: {func: Function}) {
     return <>
         <div
@@ -17,7 +19,9 @@ export function SortToggle(props: {func: Function}) {
                     fontSize: '20pt'
                 }}
             >Filter and Sort</h1>
-            <img src="idk.jpg" alt="" />
+            <img src={funnel} alt=""  style={{
+                marginTop: '23px'
+            }}/>
         </div>
     </>
 }
