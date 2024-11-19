@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for lib/updateTiles.lib.ts</title>
+    <title>Code coverage report for src/lib/getShipInTiles.lib.ts</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../prettify.css" />
-    <link rel="stylesheet" href="../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../favicon.png" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../sort-arrow-sprite.png);
+            background-image: url(../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,20 +19,20 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">lib</a> updateTiles.lib.ts</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/lib</a> getShipInTiles.lib.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">84.61% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>11/13</span>
+                <span class='fraction'>12/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/2</span>
+                <span class='fraction'>9/9</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">84.61% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>11/13</span>
+                <span class='fraction'>12/12</span>
             </div>
         
             
@@ -101,11 +101,7 @@
 <a name='L36'></a><a href='#L36'>36</a>
 <a name='L37'></a><a href='#L37'>37</a>
 <a name='L38'></a><a href='#L38'>38</a>
-<a name='L39'></a><a href='#L39'>39</a>
-<a name='L40'></a><a href='#L40'>40</a>
-<a name='L41'></a><a href='#L41'>41</a>
-<a name='L42'></a><a href='#L42'>42</a>
-<a name='L43'></a><a href='#L43'>43</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L39'></a><a href='#L39'>39</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -132,63 +128,55 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span></td><td class="text"><pre class="prettyprint lang-js">import { InvalidPositionError } from "../errors/InvalidPosition.error";
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">52x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">41x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">41x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">49x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span></td><td class="text"><pre class="prettyprint lang-js">&nbsp;
 import GameBoard from "../interfaces/GameBoard.interface";
+import Ship from "../interfaces/Ship.interface";
 import { Player } from "../types/PlayerType.type";
 import { PositionType } from "../types/PositionType.type";
-import { TileType } from "../types/TileType.enum";
 &nbsp;
 /**
- * Updates the specified tiles on the player's board (either 'attack' or 'defense') 
- * with a given tile type. It performs validation to ensure that the positions are within
- * the bounds of the board (0 to 9 for both x and y coordinates). If any position is invalid, 
- * an error is thrown.
- * 
- * Note: The returned `GameBoard` is a copy of the original board and does not modify the original board state.
+ * Checks if any of the given positions correspond to a tile occupied by a ship.
+ * If a match is found, the corresponding ship is returned. Otherwise, it returns `undefined`.
  *
- * @function updateTiles
- * @param {GameBoard} board - The current game board containing the state of both players' grids.
- * @param {Player} player - The player whose board will be updated ("player1" or "player2").
- * @param {"defense" | "attack"} which - The part of the board to be updated ('defense' or 'attack').
- * @param {PositionType[]} positions - The list of positions on the grid to be updated.
- * @param {TileType} type - The new type of the tile to be applied to the specified positions.
- * @throws {Error} Throws an error if any position is out of bounds (not between 0 and 9 for both x and y).
- * @returns {GameBoard} A new game board with the updated tile types. The original `board` is not modified.
+ * @function getShipInTiles
+ * @param {GameBoard} board - The current game board, which contains the grids and ships for both players.
+ * @param {Player} player - The player whose ships will be checked (either "player1" or "player2").
+ * @param {PositionType[]} positions - An array of positions to check for ship occupancy.
+ * @returns {Ship | undefined} The ship occupying the specified positions, or `undefined` if no ship is found.
  *
  * @example
- * const positions = [{ x: 2, y: 3 }, { x: 4, y: 5 }];
- * const newBoard = updateTiles(gameBoard, "player1", "defense", positions, TileType.HIT);
- * console.log(newBoard);
- * // Output: Updated game board with the specified positions set to 'HIT' (a copy of the original).
+ * // Example of checking if a ship occupies the given position
+ * const positions = [{ x: 1, y: 1 }];
+ * const ship = getShipInTiles(board, "player1", positions);
+ * if (ship) {
+ *   console.log(`Ship found: ${ship.type}`);
+ * } else {
+ *   console.log("No ship found at the given positions.");
+ * }
  */
 &nbsp;
-export default function updateTiles(board: GameBoard, player: Player, which: "defense" | "attack", positions: PositionType[], type: TileType): GameBoard {
-    for (const pos of positions) {
-        if (pos.x &gt; 9 || pos.x &lt; 0 || pos.y &gt; 9 || pos.y &lt; 0)<span class="branch-0 cbranch-no" title="branch not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >            throw new InvalidPositionError("Position is outside of grid!!!")</span>
-<span class="cstat-no" title="statement not covered" >        }</span>
+export default function getShipInTiles(board: GameBoard, player: Player, positions: PositionType[]): Ship | undefined {
+    for (const ship of board[player].ships) {
+        for (const pos of ship.positions){
+            for (const tarpos of positions){
+                if (pos.x === tarpos.x &amp;&amp; pos.y === pos.y) {
+                    return ship
+                }
+            }
+        }
     }
-    
-    const newBoard = {...board}
-    for (const pos of positions){
-        newBoard[player][which][pos.y][pos.x] = {type: type}
-    }
-    return newBoard
+    return undefined
 }</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -196,16 +184,16 @@ export default function updateTiles(board: GameBoard, player: Player, which: "de
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-11-19T14:02:53.514Z
+                at 2024-11-19T18:27:23.041Z
             </div>
-        <script src="../prettify.js"></script>
+        <script src="../../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../sorter.js"></script>
-        <script src="../block-navigation.js"></script>
+        <script src="../../sorter.js"></script>
+        <script src="../../block-navigation.js"></script>
     </body>
 </html>
     

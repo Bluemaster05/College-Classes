@@ -45,7 +45,8 @@ export default function attemptToHitShip(board: GameBoard, opponent: Player, pos
             for (const pos of ship.positions) {
                 if (pos.x === position.x && pos.y === position.y) {
                     hitShip = ship
-                    const hitIndex = ship.positions.indexOf({ x: pos.x, y: pos.y })
+                    const hitIndex = ship.positions.indexOf(pos)
+                    // const hitIndex = hitShip.positions.indexOf({ x: pos.x, y: pos.y })
                     hitShip.hits[hitIndex] = true
                 }
             }

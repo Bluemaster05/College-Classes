@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for errors/InvalidPosition.error.ts</title>
+    <title>Code coverage report for src/lib/getOtherPlayer.lib.ts</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../prettify.css" />
-    <link rel="stylesheet" href="../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../favicon.png" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../sort-arrow-sprite.png);
+            background-image: url(../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">errors</a> InvalidPosition.error.ts</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/lib</a> getOtherPlayer.lib.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">60% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>3/5</span>
+                <span class='fraction'>8/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">60% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>3/5</span>
+                <span class='fraction'>8/8</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -100,52 +100,52 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
- * Custom error class that represents an invalid position error when attempting
- * to place a ship on the game board at an invalid location. This error is thrown
- * when the position of a ship does not meet the necessary placement criteria.
+<span class="cline-any cline-yes">5x</span></td><td class="text"><pre class="prettyprint lang-js">import { Player } from "../types/PlayerType.type";
+&nbsp;
+/**
+ * Given a player (either "player1" or "player2"), returns the other player.
  *
- * @class InvalidPositionError
- * @extends {Error}
- * @param {string} [msg] - An optional custom message to provide more details about the error.
- * If no message is provided, a default message will be used.
+ * @function getOtherPlayer
+ * @param {Player} player - The player, either "player1" or "player2".
+ * @returns {Player} The other player, which will be either "player1" or "player2" depending on the input.
  *
  * @example
- * try {
- *     throw new InvalidPositionError("The position is outside the grid.");
- * } catch (error) {
- *     console.log(error.message); // Output: "You've attempted to place a ship at an invalid location. The position is outside the grid."
- * }
+ * // Example of getting the opponent player
+ * const opponent = getOtherPlayer("player1");
+ * console.log(opponent); // "player2"
  */
-export class InvalidPositionError extends Error {
-<span class="fstat-no" title="function not covered" >    constructor(msg?: string) {</span>
-<span class="cstat-no" title="statement not covered" >        super(`You've attempted to place a ship at an invalid location. ${msg || ''}`)</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
-}
-&nbsp;</pre></td></tr></table></pre>
+&nbsp;
+export default function getOtherPlayer(player: Player): Player {
+    if (player === 'player1') {
+        return 'player2'
+    }
+    else {
+        return 'player1'
+    }
+}</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-11-19T14:02:53.514Z
+                at 2024-11-19T18:27:23.041Z
             </div>
-        <script src="../prettify.js"></script>
+        <script src="../../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../sorter.js"></script>
-        <script src="../block-navigation.js"></script>
+        <script src="../../sorter.js"></script>
+        <script src="../../block-navigation.js"></script>
     </body>
 </html>
     

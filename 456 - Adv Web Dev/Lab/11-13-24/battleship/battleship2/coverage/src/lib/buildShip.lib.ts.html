@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for lib/getTile.lib.ts</title>
+    <title>Code coverage report for src/lib/buildShip.lib.ts</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../prettify.css" />
-    <link rel="stylesheet" href="../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../favicon.png" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../sort-arrow-sprite.png);
+            background-image: url(../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,20 +19,20 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">lib</a> getTile.lib.ts</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/lib</a> buildShip.lib.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">71.42% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>5/7</span>
+                <span class='fraction'>27/27</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/2</span>
+                <span class='fraction'>8/8</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">71.42% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/7</span>
+                <span class='fraction'>27/27</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -99,7 +99,19 @@
 <a name='L34'></a><a href='#L34'>34</a>
 <a name='L35'></a><a href='#L35'>35</a>
 <a name='L36'></a><a href='#L36'>36</a>
-<a name='L37'></a><a href='#L37'>37</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -122,72 +134,96 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import GameBoard from "../interfaces/GameBoard.interface";
-import Tile from "../interfaces/Tile.interface";
-import { Player } from "../types/PlayerType.type";
-import { PositionType } from "../types/PositionType.type";
+<span class="cline-any cline-yes">152x</span>
+<span class="cline-any cline-yes">152x</span>
+<span class="cline-any cline-yes">152x</span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-yes">122x</span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-yes">92x</span>
+<span class="cline-any cline-yes">32x</span>
+<span class="cline-any cline-yes">32x</span>
+<span class="cline-any cline-yes">60x</span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-yes">152x</span>
+<span class="cline-any cline-yes">152x</span>
+<span class="cline-any cline-yes">152x</span>
+<span class="cline-any cline-yes">152x</span>
+<span class="cline-any cline-yes">152x</span>
+<span class="cline-any cline-yes">152x</span>
+<span class="cline-any cline-yes">152x</span>
+<span class="cline-any cline-yes">152x</span>
+<span class="cline-any cline-yes">152x</span></td><td class="text"><pre class="prettyprint lang-js">import Ship from "../interfaces/Ship.interface";
+import { ShipType } from "../types/ShipType.enum";
+import { OrientationType } from "../types/OrientationType.enum";
 &nbsp;
 /**
- * Retrieves a specific tile from the player's grid (either "attack" or "defense") at the given position.
- * It accesses the tile based on the player's grid and the specified coordinate.
+ * Builds a new ship object based on the provided type and orientation.
+ * The function creates a `Ship` with the correct number of spaces based on the ship's type, 
+ * sets the initial orientation, and initializes the ship's positions and hit status.
+ * The ship is marked as not yet placed on the board.
  *
- * @function getTile
- * @param {GameBoard} board - The current game board, containing both players' grids.
- * @param {Player} player - The player whose grid will be accessed (either "player1" or "player2").
- * @param {'attack' | 'defense'} which - The type of grid to access, either "attack" or "defense".
- * @param {PositionType} position - The position on the grid to retrieve the tile from.
- * @throws {InvalidPositionError} - Throws an invalid position error if the requested tile is out of bounds
- * @returns {Tile} The tile at the specified position in the selected grid.
+ * @function buildShip
+ * @param {ShipType} type - The type of the ship (e.g., CARRIER, BATTLESHIP). Determines the size of the ship.
+ * @param {OrientationType} orientation - The orientation of the ship (HORIZONTAL or VERTICAL).
+ * @returns {Ship} A new `Ship` object with the specified type, orientation, and initial properties.
  *
  * @example
- * // Example of retrieving a tile from the defense grid
- * const position = { x: 2, y: 3 };
- * const tile = getTile(board, "player1", "defense", position);
- * console.log(tile);
- * // Output: { type: TileType.EMPTY }
+ * // Example of building a Cruiser ship with a horizontal orientation
+ * const newShip = buildShip(ShipType.CRUISER, OrientationType.HORIZONTAL);
+ * console.log(newShip); 
+ * // { placed: false, spaces: 3, type: "Cruiser", orientation: "Horizontal", positions: [], hits: [] }
  */
 &nbsp;
 &nbsp;
-import { InvalidPositionError } from "../errors/InvalidPosition.error";
-&nbsp;
-export default function getTile(board: GameBoard, player: Player, which: 'attack' | 'defense', position: PositionType): Tile {
-    if (position.x &gt; 10 || position.y &gt; 10)<span class="branch-0 cbranch-no" title="branch not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >        throw new InvalidPositionError('Position is outside the grid!')</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
-    return  board[player][which][position.y][position.x]
-}
-&nbsp;
-&nbsp;
-&nbsp;</pre></td></tr></table></pre>
+export default function buildShip(type: ShipType, orientation: OrientationType): Ship {
+    let spaces = 0
+    if (type === ShipType.BATTLESHIP) {
+        spaces = 4
+    }
+    else if (type === ShipType.CARRIER) {
+        spaces = 5
+    }
+    else if (type === ShipType.CRUISER) {
+        spaces = 3
+    }
+    else if (type === ShipType.DESTROYER) {
+        spaces = 2
+    }
+    else if (type === ShipType.SUBMARINE) {
+        spaces = 3
+    }
+    return {
+        placed: false,
+        spaces: spaces,
+        type: type,
+        orientation: orientation,
+        positions: [],
+        hits: [],
+    }
+}</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-11-19T14:02:53.514Z
+                at 2024-11-19T18:27:23.041Z
             </div>
-        <script src="../prettify.js"></script>
+        <script src="../../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../sorter.js"></script>
-        <script src="../block-navigation.js"></script>
+        <script src="../../sorter.js"></script>
+        <script src="../../block-navigation.js"></script>
     </body>
 </html>
     
