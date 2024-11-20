@@ -1,10 +1,8 @@
-import { InvalidPositionError } from "../errors/InvalidPosition.error";
 import GameBoard from "../interfaces/GameBoard.interface";
 import Ship from "../interfaces/Ship.interface";
 import { Player } from "../types/PlayerType.type";
 import { PositionType } from "../types/PositionType.type";
 import { TileType } from "../types/TileType.enum";
-import checkPositions from "./checkPositions.lib";
 import updateTiles from "./updateTiles.lib";
 
 /**
