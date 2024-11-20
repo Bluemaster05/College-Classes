@@ -34,11 +34,11 @@ export default function attemptToHitShip(board: GameBoard, opponent: Player, pos
     let newBoard = structuredClone(board)
     if (getTile(newBoard, opponent, "defense", position).type === TileType.EMPTY) {
         // newBoard[opponent].defense[position.y][position.x] = 0
-        updateTiles(newBoard, opponent, 'defense', [position], TileType.MISS)
-        updateTiles(newBoard, getOtherPlayer(opponent), 'attack', [position], TileType.MISS)
+        newBoard = updateTiles(newBoard, opponent, 'defense', [position], TileType.MISS)
+        newBoard = updateTiles(newBoard, getOtherPlayer(opponent), 'attack', [position], TileType.MISS)
     } else if (getTile(newBoard, opponent, "defense", position).type === TileType.SHIP) {
-        updateTiles(newBoard, opponent, 'defense', [position], TileType.HIT)
-        updateTiles(newBoard, getOtherPlayer(opponent), 'attack', [position], TileType.HIT)
+        newBoard = updateTiles(newBoard, opponent, 'defense', [position], TileType.HIT)
+        newBoard = updateTiles(newBoard, getOtherPlayer(opponent), 'attack', [position], TileType.HIT)
         // Find correct bool to change to true in the ships and replace it
         let hitShip: Ship = buildShip(ShipType.CRUISER, OrientationType.HORIZONTAL)
         for (const ship of newBoard[opponent].ships) {

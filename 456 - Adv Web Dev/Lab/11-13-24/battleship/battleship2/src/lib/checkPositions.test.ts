@@ -33,6 +33,8 @@ const test1pos = [{ x: 0, y: 0 }, { x: 0, y: 1 }, { x: 0, y: 2 }]
 const test2pos = [{ x: 0, y: 1 }, { x: 1, y: 1 }, { x: 2, y: 1 }]
 const test3pos = [{ x: 1, y: 0 }, { x: 1, y: 1 }, { x: 1, y: 2 }]
 const test4pos = [{ x: 4, y: 4 }, { x: 4, y: 5 }, { x: 4, y: 6 }]
+const test5pos = [{ x: 4, y: 4 }, { x: 0, y: 1 }, { x: 0, y: 2 }]
+const test6pos = [{ x: 10, y: 21 }, { x: 0, y: 1 }, { x: 0, y: 2 }]
 
 describe('checkPositions()', () => {
     test('1st', () => {
@@ -49,6 +51,14 @@ describe('checkPositions()', () => {
     })
     test('1st', () => {
         expect(checkPositions(baord, 'player1', test4pos)).toEqual(true)
+
+    })
+    test('1st', () => {
+        expect(checkPositions(baord, 'player1', test5pos)).toEqual(false)
+
+    })
+    test('1st', () => {
+        expect(checkPositions(baord, 'player1', test6pos)).toEqual(false)
 
     })
 })

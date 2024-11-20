@@ -43,7 +43,7 @@ const baordDone: GameBoard = {
 baordDone.player1.defense[2][2] = { type: TileType.MISS }
 baordDone.player2.attack[2][2] = { type: TileType.MISS }
 
-const baord2: GameBoard = {
+let baord2: GameBoard = {
     player1: {
         placedShips: false,
         defense: generateTiles(),
@@ -58,7 +58,7 @@ const baord2: GameBoard = {
     }
 }
 
-const baord2Done: GameBoard = {
+let baord2Done: GameBoard = {
     player1: {
         placedShips: false,
         defense: generateTiles(),
@@ -79,18 +79,18 @@ baord2.player1.ships[2].positions = [{ x: 3, y: 3 }, { x: 4, y: 3 }, { x: 5, y: 
 baord2.player1.ships[2].orientation = OrientationType.HORIZONTAL
 baord2.player1.ships[2].hits = [false, true, true]
 baord2.player1.ships[0].hits = [false, false, false, false,]
-updateTiles(baord2, "player1", 'defense', [{ x: 3, y: 3 }], TileType.SHIP)
-updateTiles(baord2, "player1", 'defense', [{ x: 4, y: 3 }, { x: 5, y: 3 }], TileType.HIT)
-updateTiles(baord2, 'player2', 'attack', [{ x: 4, y: 3 }, { x: 5, y: 3 }], TileType.HIT)
+baord2 = updateTiles(baord2, "player1", 'defense', [{ x: 3, y: 3 }], TileType.SHIP)
+baord2 = updateTiles(baord2, "player1", 'defense', [{ x: 4, y: 3 }, { x: 5, y: 3 }], TileType.HIT)
+baord2 = updateTiles(baord2, 'player2', 'attack', [{ x: 4, y: 3 }, { x: 5, y: 3 }], TileType.HIT)
 
 baord2Done.player1.ships[2].positions = [{ x: 3, y: 3 }, { x: 4, y: 3 }, { x: 5, y: 3 }]
 baord2Done.player1.ships[2].orientation = OrientationType.HORIZONTAL
 baord2Done.player1.ships[2].hits = [true, true, true]
 baord2Done.player1.ships[0].hits = [false, false, false, false,]
-updateTiles(baord2Done, "player1", 'defense', [{ x: 3, y: 3 }, { x: 4, y: 3 }, { x: 5, y: 3 }], TileType.HIT)
-updateTiles(baord2Done, 'player2', 'attack', [{ x: 3, y: 3 }, { x: 4, y: 3 }, { x: 5, y: 3 }], TileType.HIT)
+baord2Done = updateTiles(baord2Done, "player1", 'defense', [{ x: 3, y: 3 }, { x: 4, y: 3 }, { x: 5, y: 3 }], TileType.HIT)
+baord2Done = updateTiles(baord2Done, 'player2', 'attack', [{ x: 3, y: 3 }, { x: 4, y: 3 }, { x: 5, y: 3 }], TileType.HIT)
 
-const baord3: GameBoard = {
+let baord3: GameBoard = {
     player1: {
         placedShips: false,
         defense: generateTiles(),
@@ -105,7 +105,7 @@ const baord3: GameBoard = {
     }
 }
 
-const baord3Done: GameBoard = {
+let baord3Done: GameBoard = {
     player1: {
         placedShips: false,
         defense: generateTiles(),
@@ -123,15 +123,15 @@ const baord3Done: GameBoard = {
 baord3.player1.ships[2].positions = [{ x: 3, y: 3 }, { x: 4, y: 3 }, { x: 5, y: 3 }]
 baord3.player1.ships[2].orientation = OrientationType.HORIZONTAL
 baord3.player1.ships[2].hits = [false, true, true]
-const b1 = updateTiles(baord3, "player1", 'defense', [{ x: 3, y: 3 }], TileType.SHIP)
-const b2 = updateTiles(b1, "player1", 'defense', [{ x: 4, y: 3 }, { x: 5, y: 3 }], TileType.HIT)
-updateTiles(baord3, 'player2', 'attack', [{ x: 4, y: 3 }, { x: 5, y: 3 }], TileType.HIT)
+baord3 = updateTiles(baord3, "player1", 'defense', [{ x: 3, y: 3 }], TileType.SHIP)
+baord3 = updateTiles(baord3, "player1", 'defense', [{ x: 4, y: 3 }, { x: 5, y: 3 }], TileType.HIT)
+baord3 =updateTiles(baord3, 'player2', 'attack', [{ x: 4, y: 3 }, { x: 5, y: 3 }], TileType.HIT)
 
 baord3Done.player1.ships[2].positions = [{ x: 3, y: 3 }, { x: 4, y: 3 }, { x: 5, y: 3 }]
 baord3Done.player1.ships[2].orientation = OrientationType.HORIZONTAL
 baord3Done.player1.ships[2].hits = [true, true, true]
-updateTiles(baord3Done, "player1", 'defense', [{ x: 3, y: 3 }, { x: 4, y: 3 }, { x: 5, y: 3 }], TileType.HIT)
-updateTiles(baord3Done, 'player2', 'attack', [{ x: 3, y: 3 }, { x: 4, y: 3 }, { x: 5, y: 3 }], TileType.HIT)
+baord3Done = updateTiles(baord3Done, "player1", 'defense', [{ x: 3, y: 3 }, { x: 4, y: 3 }, { x: 5, y: 3 }], TileType.HIT)
+baord3Done = updateTiles(baord3Done, 'player2', 'attack', [{ x: 3, y: 3 }, { x: 4, y: 3 }, { x: 5, y: 3 }], TileType.HIT)
 
 beforeAll(() => {
     vi.stubGlobal('location', {
