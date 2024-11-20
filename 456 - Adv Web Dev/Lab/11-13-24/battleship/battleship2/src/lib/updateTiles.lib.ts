@@ -35,9 +35,9 @@ export default function updateTiles(board: GameBoard, player: Player, which: "de
         }
     }
     
-    const newBoard = {...board}
+    const newBoard = structuredClone(board)
     for (const pos of positions){
-        newBoard[player][which][pos.y][pos.x] = {type: type}
+        newBoard[player][which][pos.y][pos.x] = { type }
     }
     return newBoard
 }

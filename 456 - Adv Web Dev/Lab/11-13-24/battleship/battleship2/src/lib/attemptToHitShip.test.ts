@@ -123,8 +123,8 @@ const baord3Done: GameBoard = {
 baord3.player1.ships[2].positions = [{ x: 3, y: 3 }, { x: 4, y: 3 }, { x: 5, y: 3 }]
 baord3.player1.ships[2].orientation = OrientationType.HORIZONTAL
 baord3.player1.ships[2].hits = [false, true, true]
-updateTiles(baord3, "player1", 'defense', [{ x: 3, y: 3 }], TileType.SHIP)
-updateTiles(baord3, "player1", 'defense', [{ x: 4, y: 3 }, { x: 5, y: 3 }], TileType.HIT)
+const b1 = updateTiles(baord3, "player1", 'defense', [{ x: 3, y: 3 }], TileType.SHIP)
+const b2 = updateTiles(b1, "player1", 'defense', [{ x: 4, y: 3 }, { x: 5, y: 3 }], TileType.HIT)
 updateTiles(baord3, 'player2', 'attack', [{ x: 4, y: 3 }, { x: 5, y: 3 }], TileType.HIT)
 
 baord3Done.player1.ships[2].positions = [{ x: 3, y: 3 }, { x: 4, y: 3 }, { x: 5, y: 3 }]

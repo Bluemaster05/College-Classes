@@ -39,3 +39,5 @@ if __name__ == '__main__':
     # Output the index where target was found in nums, and the
     # number of recursions and comparisons performed
     print(f'index: {index}, recursions: {recursions}, comparisons: {comparisons}')
+
+

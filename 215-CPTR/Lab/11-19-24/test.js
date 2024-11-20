@@ -1,8 +1,9 @@
 mainDict = {
-    item = [
+    item: [
         {
             Assisnmentname: '3.5 - Calc',
-            categoriy: 'Math'
+            categoriy: 'Math',
+            dueDate: 34,
         },
 
         {
@@ -11,5 +12,6 @@ mainDict = {
         },
 
     ],
-    categories = ['math']
+    categories: ['math']
 }
+

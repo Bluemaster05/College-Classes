@@ -30,16 +30,19 @@ import updateTiles from "./updateTiles.lib";
  * // Output: Updated game board with the ship placed at the given positions (a copy of the original).
  */
 export default function placeShip(board: GameBoard, player: Player, ship: Ship, positions: PositionType[]): GameBoard {
-    // if (checkPositions(board, player, positions)){
-        let newBoard = {...board}
-        updateTiles(newBoard, player, 'defense', positions, TileType.SHIP)
+    if (checkPositions(board, player, positions)){
+        let newBoard = structuredClone(board)
+        newBoard = updateTiles(newBoard, player, 'defense', positions, TileType.SHIP)
         
-        newBoard[player].ships[newBoard[player].ships.indexOf(ship)].positions = [] // Make sure that the ship list is empty
+        // newBoard[player].ships[newBoard[player].ships.indexOf(ship)].positions = [] // Make sure that the ship list is empty
+        let curship = newBoard[player].ships.filter( tship => tship.type === ship.type)[0]
         for (const pos of positions){
-            newBoard[player].ships[newBoard[player].ships.indexOf(ship)].positions.push({x: pos.x, y: pos.y})
+            // newBoard[player].ships[newBoard[player].ships.indexOf(ship)].positions.push({x: pos.x, y: pos.y})
+            curship.positions.push({x: pos.x, y: pos.y})
         }
-        newBoard[player].ships[newBoard[player].ships.indexOf(ship)].placed = true
+        // newBoard[player].ships[newBoard[player].ships.indexOf(ship)].placed = true
+        curship.placed = true
         return newBoard
     }
-    // throw new InvalidPositionError("Sorry you can't place a ship there")
-// }
+    throw new InvalidPositionError("Sorry you can't place a ship there")
+}

@@ -31,7 +31,7 @@ import updateTiles from "./updateTiles.lib";
  * console.log(newBoard); // Prints the updated game board with hit or miss status.
  */
 export default function attemptToHitShip(board: GameBoard, opponent: Player, position: PositionType): GameBoard {
-    let newBoard = { ...board }
+    let newBoard = structuredClone(board)
     if (getTile(newBoard, opponent, "defense", position).type === TileType.EMPTY) {
         // newBoard[opponent].defense[position.y][position.x] = 0
         updateTiles(newBoard, opponent, 'defense', [position], TileType.MISS)

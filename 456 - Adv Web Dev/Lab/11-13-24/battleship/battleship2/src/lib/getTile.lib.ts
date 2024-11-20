@@ -27,7 +27,7 @@ import { PositionType } from "../types/PositionType.type";
 import { InvalidPositionError } from "../errors/InvalidPosition.error";
 
 export default function getTile(board: GameBoard, player: Player, which: 'attack' | 'defense', position: PositionType): Tile {
-    if (position.x > 10 || position.y > 10){
+    if (position.x > 9 || position.y > 9 || position.x < 0 || position.y < 0){
         throw new InvalidPositionError('Position is outside the grid!')
     }
     return  board[player][which][position.y][position.x]
