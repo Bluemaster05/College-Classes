@@ -8,6 +8,7 @@ import { ShipType } from "../types/ShipType.enum";
 import { TileType } from "../types/TileType.enum";
 import buildShip from "./buildShip.lib";
 import getOtherPlayer from "./getOtherPlayer.lib";
+import getShipInTiles from "./getShipInTiles.lib";
 import getTile from "./getTile.lib";
 import updateTiles from "./updateTiles.lib";
 
@@ -40,7 +41,8 @@ export default function attemptToHitShip(board: GameBoard, opponent: Player, pos
         newBoard = updateTiles(newBoard, opponent, 'defense', [position], TileType.HIT)
         newBoard = updateTiles(newBoard, getOtherPlayer(opponent), 'attack', [position], TileType.HIT)
         // Find correct bool to change to true in the ships and replace it
-        let hitShip: Ship = buildShip(ShipType.CRUISER, OrientationType.HORIZONTAL)
+        // let hitShip: Ship = buildShip(ShipType.CRUISER, OrientationType.HORIZONTAL)
+        let hitShip = getShipInTiles(newBoard, opponent, [position])
         for (const ship of newBoard[opponent].ships) {
             for (const pos of ship.positions) {
                 if (pos.x === position.x && pos.y === position.y) {
@@ -51,12 +53,10 @@ export default function attemptToHitShip(board: GameBoard, opponent: Player, pos
                 }
             }
         }
-
-
-
-
-
-        //Check if all ships are sunk
+        const shipSunk = hitShip!.hits.every(bool => bool)
+        if (shipSunk) {
+            alert(`You sunk their ${hitShip!.type}`)
+        }
         const sunkBoolArray = []
         for (const ship of newBoard[opponent].ships) {
             sunkBoolArray.push(ship.hits.every(bool => bool))
@@ -66,12 +66,7 @@ export default function attemptToHitShip(board: GameBoard, opponent: Player, pos
             alert('Congrats you sunk all their battleships!!!\nYou Won!!!')
             window.location.reload()
         }
-
-        //Check if ship is sunk
-        const shipSunk = hitShip.hits.every(bool => bool)
-        if (shipSunk) {
-            alert(`You sunk their ${hitShip.type}`)
-        }
+        
         return newBoard
     }
     // else { PROBABLY NOT NEEDED BUT HERE IN CASE IT IS

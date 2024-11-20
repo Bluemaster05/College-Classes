@@ -37,6 +37,7 @@ export default function placeShip(board: GameBoard, player: Player, ship: Ship, 
         for (const pos of positions){
             // newBoard[player].ships[newBoard[player].ships.indexOf(ship)].positions.push({x: pos.x, y: pos.y})
             curship.positions.push({x: pos.x, y: pos.y})
+            curship.hits.push(false)
         }
         // newBoard[player].ships[newBoard[player].ships.indexOf(ship)].placed = true
         curship.placed = true

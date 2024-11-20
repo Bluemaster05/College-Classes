@@ -148,6 +148,7 @@ describe("getTiles()", () => {
     })
     test("typehit", () => {
         expect(attemptToHitShip(baord3, "player1", { x: 3, y: 3 })).toEqual(baord3Done)
+        expect(alertSpy).toHaveBeenCalledWith('You sunk their Cruiser')
         expect(alertSpy).toHaveBeenCalledWith('Congrats you sunk all their battleships!!!\nYou Won!!!')
     })
 })

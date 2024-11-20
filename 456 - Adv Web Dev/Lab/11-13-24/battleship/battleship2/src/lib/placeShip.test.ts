@@ -48,6 +48,7 @@ const b2  = updateTiles(baord2, 'player1', "defense", [{x:3 , y:3}, {x:3 , y:4},
 b2.player1.ships[0].positions = [{x:3 , y:3}, {x:3 , y:4}, {x:3 , y:5}, {x:3 , y:6}]
 b2.player1.ships[0].placed = true
 b2.player1.ships[2].positions = [{x: 6, y:6}]
+b2.player1.ships[0].hits = [false, false, false, false]
 
 describe("getTiles()", () => {
     test("typehit", () => {

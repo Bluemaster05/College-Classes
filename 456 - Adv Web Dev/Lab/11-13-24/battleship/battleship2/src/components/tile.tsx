@@ -4,8 +4,9 @@ import x from "../assets/x.png"
 export function Tile(props: { type: TileType }) {
     let color = 'white'
     let showx = "none"
+    let circledis = 'flex'
     if (props.type === TileType.EMPTY){
-
+        circledis = 'none'
     }
     if (props.type === TileType.HIT) {
         color = 'red'
@@ -39,7 +40,7 @@ export function Tile(props: { type: TileType }) {
                 backgroundColor: color,
                 borderRadius: '100%',
                 border: '2px solid gray',
-                display: 'flex',
+                display: circledis,
                 alignItems: 'center',
                 justifyContent: 'center'
             }}
@@ -47,6 +48,8 @@ export function Tile(props: { type: TileType }) {
             <img src={x} alt="" width='13px'
             style={{
                 display: showx,
+                marginLeft: '1px',
+                marginTop: '1px'
             }}
             />
         </div>
