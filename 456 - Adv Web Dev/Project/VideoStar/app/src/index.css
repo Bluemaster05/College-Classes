@@ -21,8 +21,11 @@ body{
   }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1030px) {
   .theater {
     flex-direction: column;
+  }
+  .theater-holder{
+    
   }
 }

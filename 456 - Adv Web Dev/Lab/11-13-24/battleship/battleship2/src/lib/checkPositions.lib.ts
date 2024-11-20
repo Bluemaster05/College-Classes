@@ -25,17 +25,6 @@ export default function checkPositions(board: GameBoard, player: Player, positio
     // const x = board[player].defense
     if (!getShipInTiles(board, player, positions)) { // THIS LINE CAN PRODUCE ERROR
         for (const pos of positions){
-            // if (getTile(board, player, "defense", {x: pos.x, y: pos.x}).type !== TileType.EMPTY){
-            //     return false 
-            //     // check if this is needed or if more needs to be added to it --Coverage etc...
-            // }
-            for (const ship of board[player].ships) {
-                for (const shippos of ship.positions){
-                    if (shippos.x === pos.x && shippos.y === pos.y) {
-                        return false
-                    }
-                }
-            }
             if (pos.x > 9 || pos.x < 0 || pos.x > 9 || pos.x < 0) {
                 return false
             }

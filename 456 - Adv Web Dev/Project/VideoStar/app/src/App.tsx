@@ -70,7 +70,7 @@ function App() {
         paddingLeft: '30px'
       }}
     >
-      { <Theater video={theaterVideo}></Theater>}
+      { page === 'theater' && <Theater video={theaterVideo}></Theater>}
       { page === 'home' && <ReccomendedVideos videos={[<VideoCard video={{
         "id": 0,
         "name": "A Girl Taking a Selfie With Her Boyfriend",
