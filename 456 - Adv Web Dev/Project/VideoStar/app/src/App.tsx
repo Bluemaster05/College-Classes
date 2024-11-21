@@ -8,6 +8,7 @@ import { PaymentCard } from "./components/PaymentCard"
 import { Page } from "./types/page.type"
 import { SortToggle } from "./components/SortToggle"
 import { Theater } from "./components/Theater"
+import { OpenFilter } from "./components/openFilter"
 
 // async function getVideos(){
 //   const videos =  await fetch('https://videostar.dacoder.io/')
@@ -19,7 +20,10 @@ function App() {
   const [videoList, setVideoList] = useState<Array<Video> | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [filterToggle, setFilterToggle] = useState<boolean>(false)
-
+  const [SortSettings, setSortSettings] = useState({
+    sorts: null
+    filters: null
+  })
   console.log(videoList)
 
   function toggleFilter() {
@@ -108,7 +112,8 @@ function App() {
         "price": 7.62,
         "url": "https://videostar.dacoder.io/videos/a-girl-taking-a-selfie-with-her-boyfriend.mp4"
       }} />]}></ReccomendedVideos>}
-      <SortToggle></SortToggle>
+      <SortToggle func={toggleFilter}></SortToggle>
+      {filterToggle && <OpenFilter></OpenFilter>}
       { page === 'home' && <AllVideos>
         {isLoading && <div>Loading...</div>}
         {videoList && (<>{videoList.map(video => <VideoCard key={video.id} video={video} page={setPage} theater={setTheaterVideo}></VideoCard>)}</>)

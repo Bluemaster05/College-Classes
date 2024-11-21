@@ -2,7 +2,7 @@ import funnel from "../assets/funnel.svg"
 
 export function SortToggle(props: {func: Function}) {
     return <>
-        <div
+        <div onClick={props.func}
             style={{
                 display: 'flex',
                 justifyContent: 'right',
