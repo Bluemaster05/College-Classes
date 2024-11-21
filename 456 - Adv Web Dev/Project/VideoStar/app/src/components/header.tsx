@@ -1,9 +1,9 @@
-import { Page } from "../types/page.type";
+import { Page } from "../types/Page.type";
 import cart from '../assets/cart.svg'
 export function Header(props: {page: React.Dispatch<React.SetStateAction<Page>>}){
     return <>
         <header
-        onClick={() => props.page('home')}
+        
         style={{
             backgroundColor: '#92ba92',
             height: '70px',
@@ -17,7 +17,7 @@ export function Header(props: {page: React.Dispatch<React.SetStateAction<Page>>}
                 margin: '0',
                 color: '#525e75',
                 fontStyle: 'italic'
-            }}
+            }} onClick={() => props.page('home')}
             >VideoStar</h1>
             <div style={{
                 display: 'flex',
@@ -34,7 +34,7 @@ export function Header(props: {page: React.Dispatch<React.SetStateAction<Page>>}
                 }}>
                     1
                 </div>
-                <img src={cart} alt="" />
+                <img src={cart} alt="" onClick={() => props.page('checkout')} />
             </div>
         </header>
     </>

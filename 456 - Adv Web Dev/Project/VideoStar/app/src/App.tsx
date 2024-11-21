@@ -5,10 +5,13 @@ import { ReccomendedVideos } from "./components/reccomended"
 import { VideoCard } from "./components/VideoCard"
 import { Video } from "./types/video.type"
 import { PaymentCard } from "./components/PaymentCard"
-import { Page } from "./types/page.type"
+import { Page } from "./types/Page.type"
 import { SortToggle } from "./components/SortToggle"
 import { Theater } from "./components/Theater"
 import { OpenFilter } from "./components/openFilter"
+import { Filter } from "./types/filter.type"
+import { sortNFilter } from "./lib/sortNFilter.lib"
+import { Cart } from "./components/cart"
 
 // async function getVideos(){
 //   const videos =  await fetch('https://videostar.dacoder.io/')
@@ -17,24 +20,32 @@ import { OpenFilter } from "./components/openFilter"
 // }
 
 function App() {
+  const [currentCart, setCurrentCart] = useState<Array<Video>>([])
   const [videoList, setVideoList] = useState<Array<Video> | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [filterToggle, setFilterToggle] = useState<boolean>(false)
-  const [SortSettings, setSortSettings] = useState({
-    sorts: null
-    filters: null
+  const [SortSettings, setSortSettings] = useState<Filter>({
+    title: '',
+    min: NaN,
+    max: NaN,
+    paidvFree: 'all',
+    favorites: false,
+    dur: 'none',
+    sort: 'none',
   })
-  console.log(videoList)
+
+  const [sortedVideos, setSortedVideos] = useState<Video[] | null>(null)
+
 
   function toggleFilter() {
-    if (filterToggle === false){
+    if (filterToggle === false) {
       setFilterToggle(true)
     } else {
       setFilterToggle(false)
     }
   }
 
-  toggleFilter
+  // toggleFilter
   useEffect(() => {
     async function getVideos() {
       setIsLoading(true)
@@ -50,6 +61,15 @@ function App() {
     }
     getVideos()
   }, [])
+  
+  useEffect(() => {
+    () => {
+      setSortedVideos(sortNFilter(videoList, SortSettings))
+
+    }
+  }, [videoList, SortSettings])
+
+  // {videoList && setSortedVideos(sortNFilter(videoList, SortSettings))}
 
   //   const allvideos = videoList!.map( video => <VideoCard video={video}></VideoCard>)
 
@@ -59,23 +79,16 @@ function App() {
 
   return (<>
     <Header page={setPage}></Header>
-    {/* <PaymentCard video={{
-      "id": 0,
-      "name": "A Girl Taking a Selfie With Her Boyfriend",
-      "isFree": false,
-      "isPurchased": false,
-      "duration": "00:00:16.93",
-      "size": 7990219,
-      "price": 7.62,
-      "url": "https://videostar.dacoder.io/videos/a-girl-taking-a-selfie-with-her-boyfriend.mp4"
-    }}></PaymentCard> */}
     <main
       style={{
         paddingLeft: '30px'
       }}
     >
-      { page === 'theater' && <Theater video={theaterVideo}></Theater>}
-      { page === 'home' && <ReccomendedVideos videos={[<VideoCard video={{
+      {videoList && <Cart>
+        <PaymentCard video={videoList[0]} ></PaymentCard>
+      </Cart>}
+      {page === 'theater' && <Theater video={theaterVideo}></Theater>}
+      {page === 'home' && <ReccomendedVideos videos={[<VideoCard key={0} video={{
         "id": 0,
         "name": "A Girl Taking a Selfie With Her Boyfriend",
         "isFree": false,
@@ -84,7 +97,7 @@ function App() {
         "size": 7990219,
         "price": 7.62,
         "url": "https://videostar.dacoder.io/videos/a-girl-taking-a-selfie-with-her-boyfriend.mp4"
-      }} />, <VideoCard video={{
+      }} />, <VideoCard key={1} video={{
         "id": 0,
         "name": "A Girl Taking a Selfie With Her Boyfriend",
         "isFree": false,
@@ -93,7 +106,7 @@ function App() {
         "size": 7990219,
         "price": 7.62,
         "url": "https://videostar.dacoder.io/videos/a-girl-taking-a-selfie-with-her-boyfriend.mp4"
-      }} />, <VideoCard video={{
+      }} />, <VideoCard key={2} video={{
         "id": 0,
         "name": "A Girl Taking a Selfie With Her Boyfriend",
         "isFree": false,
@@ -102,7 +115,7 @@ function App() {
         "size": 7990219,
         "price": 7.62,
         "url": "https://videostar.dacoder.io/videos/a-girl-taking-a-selfie-with-her-boyfriend.mp4"
-      }} />, <VideoCard video={{
+      }} />, <VideoCard key={3} video={{
         "id": 0,
         "name": "A Girl Taking a Selfie With Her Boyfriend",
         "isFree": false,
@@ -112,14 +125,14 @@ function App() {
         "price": 7.62,
         "url": "https://videostar.dacoder.io/videos/a-girl-taking-a-selfie-with-her-boyfriend.mp4"
       }} />]}></ReccomendedVideos>}
-      <SortToggle func={toggleFilter}></SortToggle>
-      {filterToggle && <OpenFilter></OpenFilter>}
-      { page === 'home' && <AllVideos>
+      {page === 'home' &&  <SortToggle func={toggleFilter}></SortToggle>}
+      {filterToggle && page === 'home' && <OpenFilter sort={setSortSettings} settings={SortSettings}></OpenFilter>}
+      {page === 'home' && <AllVideos>
         {isLoading && <div>Loading...</div>}
-        {videoList && (<>{videoList.map(video => <VideoCard key={video.id} video={video} page={setPage} theater={setTheaterVideo}></VideoCard>)}</>)
+        {videoList && (<>{videoList.map(video => <VideoCard setcart={setCurrentCart} curCart={currentCart} videoList={videoList} setvideoList={setVideoList} key={video.id} video={video} page={setPage} theater={setTheaterVideo}></VideoCard>)}</>)
         }
-      </AllVideos> }
-      
+      </AllVideos>}
+    {/* {page === "checkout" && } */}
 
     </main>
   </>

@@ -1,0 +1,1 @@
+export type Duration = '>1' | '1>' | '30>' | '15>' | 'none'
