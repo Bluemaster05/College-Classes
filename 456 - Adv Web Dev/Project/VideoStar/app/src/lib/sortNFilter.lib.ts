@@ -11,12 +11,12 @@ export function sortNFilter(videos: Video[], settings: Filter) {
     }
     if (!isNaN(settings.max)){
         filtVideos = filtVideos.filter(
-            vid => Number(vid.duration) < settings.max
+            vid => +vid.price < settings.max
         )
     }
     if (!isNaN(settings.min)){
         filtVideos = filtVideos.filter(
-            vid => Number(vid.duration) > settings.min
+            vid => +vid.price > settings.min
         )
     }
     if (settings.paidvFree !== 'all'){
@@ -39,22 +39,22 @@ export function sortNFilter(videos: Video[], settings: Filter) {
     if (settings.dur !== 'none'){
         if (settings.dur === '>1'){
             filtVideos = filtVideos.filter(
-                vid => Number(vid.duration) > 60
+                vid => +vid.duration.slice(-5) > 60
             )
         }
         if (settings.dur === '1>'){
             filtVideos = filtVideos.filter(
-                vid => Number(vid.duration) < 60
+                vid => +vid.duration.slice(-5) < 60
             )
         }
         if (settings.dur === '30>'){
             filtVideos = filtVideos.filter(
-                vid => Number(vid.duration) < 30
+                vid => +vid.duration.slice(-5) < 30
             )
         }
         if (settings.dur === '15>'){
             filtVideos = filtVideos.filter(
-                vid => Number(vid.duration) < 15
+                vid => +vid.duration.slice(-5) < 15
             )
         }
     }
@@ -88,10 +88,10 @@ export function sortNFilter(videos: Video[], settings: Filter) {
         if (settings.sort === 'g-l') {
             filtVideos.sort(
                 (a, b) => {
-                   if (Number((a.duration)) > Number(b.duration)) {
+                   if (+a.duration.slice(-5) > +b.duration.slice(-5)) {
                      return -1;
                    }
-                   if (Number((a.duration)) < Number(b.duration)) {
+                   if (+(a.duration.slice(-5)) < +b.duration.slice(-5)) {
                      return 1;
                    }
                    return 0;
@@ -101,10 +101,10 @@ export function sortNFilter(videos: Video[], settings: Filter) {
         if (settings.sort === 'l-g') {
             filtVideos.sort(
                 (a, b) => {
-                   if (Number((a.duration)) < Number(b.duration)) {
+                   if (Number((a.duration.slice(-5))) < Number(b.duration.slice(-5))) {
                      return -1;
                    }
-                   if (Number((a.duration)) > Number(b.duration)) {
+                   if (Number((a.duration.slice(-5))) > Number(b.duration.slice(-5))) {
                      return 1;
                    }
                    return 0;

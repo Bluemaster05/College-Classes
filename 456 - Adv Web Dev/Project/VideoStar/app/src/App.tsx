@@ -12,6 +12,7 @@ import { OpenFilter } from "./components/openFilter"
 import { Filter } from "./types/filter.type"
 import { sortNFilter } from "./lib/sortNFilter.lib"
 import { Cart } from "./components/cart"
+import { Checkout } from "./components/Checkout"
 
 // async function getVideos(){
 //   const videos =  await fetch('https://videostar.dacoder.io/')
@@ -26,15 +27,15 @@ function App() {
   const [filterToggle, setFilterToggle] = useState<boolean>(false)
   const [SortSettings, setSortSettings] = useState<Filter>({
     title: '',
-    min: NaN,
-    max: NaN,
+    min: 0,
+    max: 100,
     paidvFree: 'all',
     favorites: false,
     dur: 'none',
     sort: 'none',
   })
 
-  const [sortedVideos, setSortedVideos] = useState<Video[] | null>(null)
+  // const [sortedVideos, setSortedVideos] = useState<Video[] | null>(null)
 
 
   function toggleFilter() {
@@ -54,6 +55,7 @@ function App() {
         return {
           ...video,
           isFavorited: false,
+          inCart: false,
         }
       }) as Video[]
       setVideoList(parsedVideos)
@@ -62,12 +64,12 @@ function App() {
     getVideos()
   }, [])
   
-  useEffect(() => {
-    () => {
-      setSortedVideos(sortNFilter(videoList, SortSettings))
+  // useEffect(() => {
+  //   () => {
+  //     setSortedVideos(sortNFilter(videoList, SortSettings))
 
-    }
-  }, [videoList, SortSettings])
+  //   }
+  // }, [videoList, SortSettings])
 
   // {videoList && setSortedVideos(sortNFilter(videoList, SortSettings))}
 
@@ -78,58 +80,24 @@ function App() {
   const [theaterVideo, setTheaterVideo] = useState<Video | null>(null)
 
   return (<>
-    <Header page={setPage}></Header>
+    <Header cart={currentCart} page={setPage}></Header>
     <main
       style={{
         paddingLeft: '30px'
       }}
     >
-      {videoList && <Cart>
-        <PaymentCard video={videoList[0]} ></PaymentCard>
+      <Checkout cart={currentCart}></Checkout>
+      { page === 'checkout' && videoList && <Cart cart={currentCart}>
+        { currentCart.map( vid => <PaymentCard key={vid.id} setcart={setCurrentCart} cart={currentCart} video={vid} ></PaymentCard>)}
       </Cart>}
       {page === 'theater' && <Theater video={theaterVideo}></Theater>}
-      {page === 'home' && <ReccomendedVideos videos={[<VideoCard key={0} video={{
-        "id": 0,
-        "name": "A Girl Taking a Selfie With Her Boyfriend",
-        "isFree": false,
-        "isPurchased": false,
-        "duration": "00:00:16.93",
-        "size": 7990219,
-        "price": 7.62,
-        "url": "https://videostar.dacoder.io/videos/a-girl-taking-a-selfie-with-her-boyfriend.mp4"
-      }} />, <VideoCard key={1} video={{
-        "id": 0,
-        "name": "A Girl Taking a Selfie With Her Boyfriend",
-        "isFree": false,
-        "isPurchased": false,
-        "duration": "00:00:16.93",
-        "size": 7990219,
-        "price": 7.62,
-        "url": "https://videostar.dacoder.io/videos/a-girl-taking-a-selfie-with-her-boyfriend.mp4"
-      }} />, <VideoCard key={2} video={{
-        "id": 0,
-        "name": "A Girl Taking a Selfie With Her Boyfriend",
-        "isFree": false,
-        "isPurchased": false,
-        "duration": "00:00:16.93",
-        "size": 7990219,
-        "price": 7.62,
-        "url": "https://videostar.dacoder.io/videos/a-girl-taking-a-selfie-with-her-boyfriend.mp4"
-      }} />, <VideoCard key={3} video={{
-        "id": 0,
-        "name": "A Girl Taking a Selfie With Her Boyfriend",
-        "isFree": false,
-        "isPurchased": false,
-        "duration": "00:00:16.93",
-        "size": 7990219,
-        "price": 7.62,
-        "url": "https://videostar.dacoder.io/videos/a-girl-taking-a-selfie-with-her-boyfriend.mp4"
-      }} />]}></ReccomendedVideos>}
+      {isLoading && <div>Loading...</div>}
+      { videoList && page === 'home' && <ReccomendedVideos videos={videoList?.filter(vid => vid.id < 4).map(vid => <VideoCard key={vid.id} videoList={videoList} video={vid} theater={setTheaterVideo} setvideoList={setVideoList} setcart={setCurrentCart} curCart={currentCart} page={setPage} ></VideoCard>)} ></ReccomendedVideos>}
       {page === 'home' &&  <SortToggle func={toggleFilter}></SortToggle>}
       {filterToggle && page === 'home' && <OpenFilter sort={setSortSettings} settings={SortSettings}></OpenFilter>}
       {page === 'home' && <AllVideos>
         {isLoading && <div>Loading...</div>}
-        {videoList && (<>{videoList.map(video => <VideoCard setcart={setCurrentCart} curCart={currentCart} videoList={videoList} setvideoList={setVideoList} key={video.id} video={video} page={setPage} theater={setTheaterVideo}></VideoCard>)}</>)
+        {videoList && (<>{sortNFilter(videoList, SortSettings).map(video => <VideoCard setcart={setCurrentCart} curCart={currentCart} videoList={videoList} setvideoList={setVideoList} key={video.id} video={video} page={setPage} theater={setTheaterVideo}></VideoCard>)}</>)
         }
       </AllVideos>}
     {/* {page === "checkout" && } */}

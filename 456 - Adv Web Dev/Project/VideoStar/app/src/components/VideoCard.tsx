@@ -29,7 +29,11 @@ export function VideoCard(props: { curCart: Video[], setcart: React.Dispatch<Rea
     }
 
     function addtoCart() {
-
+        let newCart = structuredClone(props.curCart)
+        if (!newCart.find(vid => vid.id === props.video.id)) {
+            newCart.push(props.video)
+        }
+        props.setcart(newCart)
     }
 
 
@@ -86,9 +90,9 @@ export function VideoCard(props: { curCart: Video[], setcart: React.Dispatch<Rea
                 }}>
                     {props.video.name}
                 </h1>
-                {!props.video.isPurchased && <img src={addCart} alt="" style={{ alignSelf: "flex-end" }} />}
+                {!props.video.isPurchased && <img src={addCart} alt="" onClick={addtoCart} style={{ alignSelf: "flex-end" }} />}
                 {props.video.isPurchased && !props.video.isFavorited && <img src={favorite} alt="" style={{ alignSelf: "flex-end" }} onClick={toggleFav} />}
-                {props.video.isPurchased && props.video.isFavorited && <img src={favorite} alt="" style={{ alignSelf: "flex-end" }} onClick={toggleFav} />}
+                {props.video.isPurchased && props.video.isFavorited && <img src={favoriteFilled} alt="" style={{ alignSelf: "flex-end" }} onClick={toggleFav} />}
             </div>
         </div>
     </>

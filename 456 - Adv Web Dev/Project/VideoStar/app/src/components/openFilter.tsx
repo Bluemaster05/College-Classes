@@ -6,11 +6,20 @@ import { RadInp } from "./RadInp";
 export function OpenFilter(props: { sort: React.Dispatch<React.SetStateAction<Filter>>, settings: Filter }) {
     function handleChange( event: ChangeEvent<HTMLInputElement> ) {
         const { target } = event
-        const { name, value } = target
-        props.sort({
-            ...props.settings,
-            [name]: value
-        })
+        const { name, value, type, checked } = target
+
+        if(type === "checkbox") {
+            props.sort({
+                ...props.settings,
+                [name]: checked
+            })
+        } else {
+            props.sort({
+                ...props.settings,
+                [name]: value
+            })
+        }
+        
     }
 
     return <section

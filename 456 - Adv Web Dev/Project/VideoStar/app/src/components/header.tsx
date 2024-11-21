@@ -1,6 +1,7 @@
 import { Page } from "../types/Page.type";
 import cart from '../assets/cart.svg'
-export function Header(props: {page: React.Dispatch<React.SetStateAction<Page>>}){
+import { Video } from "../types/video.type";
+export function Header(props: {page: React.Dispatch<React.SetStateAction<Page>>, cart: Video[]}){
     return <>
         <header
         
@@ -32,7 +33,7 @@ export function Header(props: {page: React.Dispatch<React.SetStateAction<Page>>}
                     alignItems: 'center',
                     justifyContent: 'center'
                 }}>
-                    1
+                    {props.cart.length}
                 </div>
                 <img src={cart} alt="" onClick={() => props.page('checkout')} />
             </div>

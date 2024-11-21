@@ -7,5 +7,6 @@ export type Video = {
     size: number,
     price: number,
     url: string
-    isFavorited: boolean
+    isFavorited: boolean,
+    inCart: boolean
 }
