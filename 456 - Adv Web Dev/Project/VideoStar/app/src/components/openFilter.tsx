@@ -1,7 +1,7 @@
-import { ChangeEvent, useState } from "react";
-import { Filter } from "../types/filter.type";
+import { ChangeEvent } from "react";
 import { FiltTitle } from "./FiltTitle";
 import { RadInp } from "./RadInp";
+import { Filter } from "../types/filter.type";
 
 export function OpenFilter(props: { sort: React.Dispatch<React.SetStateAction<Filter>>, settings: Filter }) {
     function handleChange( event: ChangeEvent<HTMLInputElement> ) {
@@ -22,13 +22,16 @@ export function OpenFilter(props: { sort: React.Dispatch<React.SetStateAction<Fi
         
     }
 
-    return <section
+    return <section 
+    className="openFilter"
         style={{
             backgroundColor: '#728c83',
             display: 'flex',
+            // flexDirection: 'column',
             maxWidth: '600px',
             justifyContent: 'space-around',
-            padding: '10px'
+            padding: '10px',
+            gap: '10px'
 
         }}
     >
@@ -45,8 +48,10 @@ export function OpenFilter(props: { sort: React.Dispatch<React.SetStateAction<Fi
                 <option value="all">Featured</option>
                 <option value="a-z">A - Z</option>
                 <option value="z-a">Z - A</option>
-                <option value="g-l">Greatest - Least</option>
-                <option value="l-g">Least - Greatest</option>
+                <option value="g-l">Long - Short</option>
+                <option value="l-g">Short - Long</option>
+                <option value="$$$ - $">$$$ - $</option>
+                <option value="$ - $$$">$ - $$$</option>
             </select>
         </div>
         <div style={{
@@ -54,7 +59,9 @@ export function OpenFilter(props: { sort: React.Dispatch<React.SetStateAction<Fi
             flexDirection: 'column',
         }}>
             <FiltTitle title="Duration"></FiltTitle>
-            <div style={{
+            <div
+            className="radHolder"
+            style={{
                 display: 'flex',
             }}>
                 <div
@@ -83,11 +90,11 @@ export function OpenFilter(props: { sort: React.Dispatch<React.SetStateAction<Fi
             <div>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <label htmlFor="">Min:</label>
-                    <input onChange={handleChange} type="number" value={props.settings.min} name="min" id="" style={{ maxWidth: '60px', border: '1px solid black', borderRadius: '5px' }} />
+                    <input onChange={handleChange} min={0} type="number" value={props.settings.min} name="min" id="" style={{ maxWidth: '60px', border: '1px solid black', borderRadius: '5px' }} />
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <label htmlFor="">Max:</label>
-                    <input onChange={handleChange} type="number" value={props.settings.max} name="max" id="" style={{ maxWidth: '60px', border: '1px solid black', borderRadius: '5px' }} />
+                    <input onChange={handleChange} min={0} type="number" value={props.settings.max} name="max" id="" style={{ maxWidth: '60px', border: '1px solid black', borderRadius: '5px' }} />
                 </div>
             </div>
             <div>

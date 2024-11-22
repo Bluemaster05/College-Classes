@@ -2,11 +2,13 @@ import funnel from "../assets/funnel.svg"
 
 export function SortToggle(props: {func: Function}) {
     return <>
-        <div onClick={props.func}
+        <div className="filterToggle" onClick={props.func}
             style={{
                 display: 'flex',
                 justifyContent: 'right',
-                paddingRight: '40px'
+                paddingRight: '40px',
+                paddingTop: '20px',
+                width: 'fit-content'
 
             }}>
             <h1

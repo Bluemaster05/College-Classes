@@ -14,7 +14,7 @@ export function Header(props: {page: React.Dispatch<React.SetStateAction<Page>>,
             padding: '10px',
             paddingLeft: '30px'
             }}>
-            <h1 style={{
+            <h1 className="videoStar" style={{
                 margin: '0',
                 color: '#525e75',
                 fontStyle: 'italic'
@@ -31,11 +31,12 @@ export function Header(props: {page: React.Dispatch<React.SetStateAction<Page>>,
                     height: '40px',
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: 'center'
+                    justifyContent: 'center',
+                    color: 'white'
                 }}>
                     {props.cart.length}
                 </div>
-                <img src={cart} alt="" onClick={() => props.page('checkout')} />
+                <img src={cart} alt="Cart" className="cart" onClick={() => props.page('checkout')} />
             </div>
         </header>
     </>

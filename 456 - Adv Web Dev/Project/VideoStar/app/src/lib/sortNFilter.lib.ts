@@ -15,6 +15,7 @@ export function sortNFilter(videos: Video[], settings: Filter) {
         )
     }
     if (!isNaN(settings.min)){
+        if(settings.min != 0)
         filtVideos = filtVideos.filter(
             vid => +vid.price > settings.min
         )
@@ -92,6 +93,32 @@ export function sortNFilter(videos: Video[], settings: Filter) {
                      return -1;
                    }
                    if (+(a.duration.slice(-5)) < +b.duration.slice(-5)) {
+                     return 1;
+                   }
+                   return 0;
+                 }
+           )
+        }
+        if (settings.sort === '$$$ - $') {
+            filtVideos.sort(
+                (a, b) => {
+                   if (a.price > b.price) {
+                     return -1;
+                   }
+                   if (a.price < b.price) {
+                     return 1;
+                   }
+                   return 0;
+                 }
+           )
+        }
+        if (settings.sort === '$ - $$$') {
+            filtVideos.sort(
+                (a, b) => {
+                   if (a.price < b.price) {
+                     return -1;
+                   }
+                   if (a.price > b.price) {
                      return 1;
                    }
                    return 0;

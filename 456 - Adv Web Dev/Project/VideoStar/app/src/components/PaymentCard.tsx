@@ -1,12 +1,13 @@
 import { Video } from "../types/video.type";
 import { PaidCover } from "./paidcover";
 import removex from "../assets/x.svg"
-export function PaymentCard(props: { cart: Video[], setcart: React.Dispatch<React.SetStateAction<Video[]>>,  video: Video }) {
+export function PaymentCard(props: { cart: Video[], setcart: React.Dispatch<React.SetStateAction<Video[]>>,  video: Video, vidList: Video[], setVidlist: React.Dispatch<React.SetStateAction<Video[]>> | null }) {
 
     
-    return <div style={{
+    return <div className="payCardHolder" style={{
         display: 'flex',
-        alignItems: 'top'
+        alignItems: 'top',
+        gap: '10px'
     }}>
         <div style={{
             display: 'flex',
@@ -19,6 +20,7 @@ export function PaymentCard(props: { cart: Video[], setcart: React.Dispatch<Reac
                 position: 'relative'
             }}>
                 {!props.video.isPurchased && <PaidCover price={props.video.price}></PaidCover>}
+                <div style={{ backgroundColor: '#2fa2f2f88', color: '#f1ddbf', position: "absolute", bottom: '20px', right: '20px', padding: '2px', borderRadius: '5px' }}>{props.video.duration.slice(-5)}</div>
                 <div className="video" style={{
                     backgroundColor: '#78938a',
                     display: 'flex',
@@ -39,10 +41,10 @@ export function PaymentCard(props: { cart: Video[], setcart: React.Dispatch<Reac
             alignItems: 'initial',
             justifyContent: "space-between"
         }}>
-            <div style={{
+            <div className="detailsHolder" style={{
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '10px',
+                // gap: '10px',
                 paddingTop: '5px'
             }}>
                 <h1 style={{
@@ -51,7 +53,6 @@ export function PaymentCard(props: { cart: Video[], setcart: React.Dispatch<Reac
                     color: '#f1ddbf',
                     fontWeight: '300',
                     width: '80%',
-                    height: '2.4em',
 
                 }}>
                     {props.video.name}
@@ -62,18 +63,24 @@ export function PaymentCard(props: { cart: Video[], setcart: React.Dispatch<Reac
                     color: '#f1ddbf',
                     fontWeight: '300',
                     width: '80%',
-                    height: '2.4em',
 
                 }}>
                     ${props.video.price}
                 </h1>
-                <div onClick={() => {
+                <div className="remove" onClick={() => {
                     let newcart = structuredClone(props.cart)
+                    let changeVideoList = structuredClone(props.vidList)
                     for (const vid of newcart){
                         if (vid.id === props.video.id){
                             newcart = newcart.filter( vid => vid.id !== props.video.id)
                         }
                     }
+                    for (const vid of changeVideoList){
+                        if (vid.id === props.video.id){
+                            vid.inCart = false
+                        }
+                    }
+                    props.setVidlist!(changeVideoList)
                     props.setcart(newcart)
                 }}
                     style={{

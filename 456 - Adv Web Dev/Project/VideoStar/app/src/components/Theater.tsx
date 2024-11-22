@@ -1,24 +1,24 @@
 import { Video } from "../types/video.type";
 import { ReccomendedVideos } from "./reccomended";
-import { VideoCard } from "./VideoCard";
 
-export function Theater(props: { video: Video | null }) {
+export function Theater(props: { video: Video | null, reccomended: JSX.Element[] }) {
     return <section className="theater" style={{
         display: 'flex',
         justifyContent: 'space-between',
         paddingTop: '40px'
 
     }}>
-        <div style={{
+        <div className="vidHolder" style={{
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'center'
+            // justifyContent: ''
         }}>
             <div className="video" style={{
                 backgroundColor: '#78938a',
                 display: 'flex',
                 padding: '8px',
                 width: '65vw',
+                marginRight: '40px'
             }}>
                 <video crossOrigin="anonymous" controls style={{
                     width: '100%'
@@ -30,7 +30,7 @@ export function Theater(props: { video: Video | null }) {
                 <h1 style={{
                     margin: '0',
                     paddingTop: '20px',
-                    fontSize: '25pt',
+                    // fontSize: '25pt',
                     color: '#f1ddbf',
                     fontWeight: '300',
                     width: '80%',
@@ -45,21 +45,12 @@ export function Theater(props: { video: Video | null }) {
             width: '100%'
         }}>
             <div style={{
-                width: '25vw',
+                // width: '25vw',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center'
             }}>
-                <ReccomendedVideos videos={[<VideoCard page={() => { }} theater={() => { }} video={{
-                    "id": 0,
-                    "name": "A Girl Taking a Selfie With Her Boyfriend",
-                    "isFree": false,
-                    "isPurchased": false,
-                    "duration": "00:00:16.93",
-                    "size": 7990219,
-                    "price": 7.62,
-                    "url": "https://videostar.dacoder.io/videos/a-girl-taking-a-selfie-with-her-boyfriend.mp4"
-                }} />]}></ReccomendedVideos>
+                <ReccomendedVideos videos={props.reccomended}></ReccomendedVideos>
             </div>
         </div>
     </section>

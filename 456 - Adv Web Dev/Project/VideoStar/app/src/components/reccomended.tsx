@@ -1,4 +1,4 @@
-import { VideoCard } from "./VideoCard";
+
 
 export function ReccomendedVideos(props: {videos: Array<JSX.Element>}) {
     return<>
