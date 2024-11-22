@@ -1,6 +1,6 @@
 import funnel from "../assets/funnel.svg"
 
-export function SortToggle(props: {func: Function}) {
+export function SortToggle(props: { func: Function }) {
     return <>
         <div className="filterToggle" onClick={props.func}
             style={{
@@ -9,7 +9,6 @@ export function SortToggle(props: {func: Function}) {
                 paddingRight: '40px',
                 paddingTop: '20px',
                 width: 'fit-content'
-
             }}>
             <h1
                 style={{
@@ -21,9 +20,9 @@ export function SortToggle(props: {func: Function}) {
                     fontSize: '20pt'
                 }}
             >Filter and Sort</h1>
-            <img src={funnel} alt=""  style={{
+            <img src={funnel} alt="" style={{
                 marginTop: '23px'
-            }}/>
+            }} />
         </div>
     </>
 }

@@ -1,7 +1,7 @@
-import { Video } from "../types/video.type";
+import { Video } from "../types/Video.type";
 import { CheckoutItem } from "./CheckoutItem";
 
-export function Checkout(props: { cart: Video[], setCart: React.Dispatch<React.SetStateAction<Video[]>>, VidList: Video[], setVidList: React.Dispatch<React.SetStateAction<Video[] | null>> }) {
+export function Checkout(props: { VidList: Video[], setVidList: React.Dispatch<React.SetStateAction<Video[] | null>> }) {
     return <section
         className="checkout"
         style={{
@@ -10,14 +10,12 @@ export function Checkout(props: { cart: Video[], setCart: React.Dispatch<React.S
             borderRadius: '10px',
             color: "white",
             width: '300px',
-            // padding: '20px',
             height: 'fit-content',
-            // position: 'fixed',
             right: '20px',
             top: '110px'
         }}>
         <h1 style={{ margin: '0', fontWeight: '400' }}>Payment Summary</h1>
-        {props.cart.map(vid => <CheckoutItem key={vid.id} item={vid}></CheckoutItem>)}
+        {props.VidList.filter(vid => vid.inCart).map(vid => <CheckoutItem key={vid.id} item={vid}></CheckoutItem>)}
         <hr style={{ border: '1px solid black' }} />
         <div style={{
             display: 'flex',
@@ -27,12 +25,12 @@ export function Checkout(props: { cart: Video[], setCart: React.Dispatch<React.S
                 Subtotal
             </h1>
             <p style={{ padding: '0', margin: '0', fontSize: '16pt' }}>
-                ${(props.cart.reduce((sum, vid) => sum + vid.price, 0)).toFixed(2)}
+                ${(props.VidList.filter(vid => vid.inCart).reduce((sum, vid) => sum + vid.price, 0)).toFixed(2)}
             </p>
         </div>
         <div onClick={() => {
             let newVidList = structuredClone(props.VidList)
-            let newcart = structuredClone(props.cart)
+            let newcart = structuredClone(props.VidList.filter(vid => vid.inCart))
             for (const item of newcart) {
                 for (const vid of newVidList) {
                     if (vid.id === item.id) {
@@ -44,7 +42,6 @@ export function Checkout(props: { cart: Video[], setCart: React.Dispatch<React.S
             }
             newcart = []
             props.setVidList(newVidList)
-            props.setCart(newcart)
         }
         } className="checkoutButton" style={{
             backgroundColor: "#f1ddbf",

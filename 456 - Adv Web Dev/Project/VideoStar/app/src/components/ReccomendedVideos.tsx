@@ -1,18 +1,14 @@
 
 
-export function AllVideos(props: React.PropsWithChildren) {
-    return <section
-        style={{
-            display: 'flex',
-            flexDirection: 'column',
-        }}>
+export function ReccomendedVideos(props: { videos: Array<JSX.Element> | null | undefined}) {
+    return <>
         <h1
             style={{
                 color: 'white',
                 fontWeight: '300',
             }}
         >
-            All Videos
+            Picked Out Just For You
         </h1>
         <section className="reccomended"
             style={{
@@ -22,9 +18,9 @@ export function AllVideos(props: React.PropsWithChildren) {
                 gap: '30px',
             }}
         >
-            {props.children}
+            {props.videos}
         </section>
-    </section>
+    </>
 
 
 }

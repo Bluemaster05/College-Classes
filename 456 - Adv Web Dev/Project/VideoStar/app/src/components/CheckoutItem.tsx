@@ -1,15 +1,15 @@
-import { Video } from "../types/video.type";
+import { Video } from "../types/Video.type";
 
 export function CheckoutItem(props: { item: Video }) {
     let title = props.item.name
-    if (title.length > 13){
+    if (title.length > 13) {
         title = title.slice(0, 13) + '...'
     }
     return <div
-    style={{
-        display: 'flex',
-        justifyContent: 'space-between'
-    }}
+        style={{
+            display: 'flex',
+            justifyContent: 'space-between'
+        }}
     >
         <h1 style={{
             margin: '0',

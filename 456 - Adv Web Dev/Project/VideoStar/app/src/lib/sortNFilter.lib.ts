@@ -1,5 +1,5 @@
 import { Filter } from "../types/filter.type";
-import { Video } from "../types/video.type";
+import { Video } from "../types/Video.type";
 
 export function sortNFilter(videos: Video[], settings: Filter) {
     let filtVideos = structuredClone(videos)

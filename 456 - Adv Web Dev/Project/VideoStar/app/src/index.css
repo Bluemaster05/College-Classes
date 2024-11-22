@@ -126,7 +126,7 @@ body{
   }
 }
 
-.videoStar:hover, .cart:hover, .push:hover, .filterToggle:hover, .remove:hover{
+.videoStar:hover, .cart:hover, .push:hover, .filterToggle:hover{
   transform: scale(1.2);
   transition: ease .1s;
   cursor: pointer;
@@ -136,8 +136,9 @@ body{
   cursor: pointer;
 }
  .remove:hover{
-  transform: scale(1.2) translateX(30px);
+  /* transform: scale(1.2); */
   transition: ease .1s;
+  font-weight: 700;
   cursor: pointer;
 }
 .checkoutButton:hover p{

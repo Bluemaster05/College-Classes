@@ -1,14 +1,14 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, ChangeEventHandler } from "react";
 import { FiltTitle } from "./FiltTitle";
 import { RadInp } from "./RadInp";
-import { Filter } from "../types/filter.type";
+import { Filter } from "../types/Filter.type";
 
 export function OpenFilter(props: { sort: React.Dispatch<React.SetStateAction<Filter>>, settings: Filter }) {
-    function handleChange( event: ChangeEvent<HTMLInputElement> ) {
+    function handleChange(event: ChangeEvent<HTMLInputElement>) {
         const { target } = event
         const { name, value, type, checked } = target
 
-        if(type === "checkbox") {
+        if (type === "checkbox") {
             props.sort({
                 ...props.settings,
                 [name]: checked
@@ -19,15 +19,14 @@ export function OpenFilter(props: { sort: React.Dispatch<React.SetStateAction<Fi
                 [name]: value
             })
         }
-        
+
     }
 
-    return <section 
-    className="openFilter"
+    return <section
+        className="openFilter"
         style={{
             backgroundColor: '#728c83',
             display: 'flex',
-            // flexDirection: 'column',
             maxWidth: '600px',
             justifyContent: 'space-around',
             padding: '10px',
@@ -44,7 +43,7 @@ export function OpenFilter(props: { sort: React.Dispatch<React.SetStateAction<Fi
             <FiltTitle title="Title"></FiltTitle>
             <input type="text" value={props.settings.title} name="title" onChange={handleChange} id="" style={{ borderRadius: '5px', border: '1px solid black' }} />
             <FiltTitle title="Sort"></FiltTitle>
-            <select value={props.settings.sort} name="sort" onChange={handleChange} id="" style={{ border: '1px solid black', borderRadius: '5px', width: '100%' }}>
+            <select value={props.settings.sort} name="sort" onChange={handleChange as ChangeEventHandler} id="" style={{ border: '1px solid black', borderRadius: '5px', width: '100%' }}>
                 <option value="all">Featured</option>
                 <option value="a-z">A - Z</option>
                 <option value="z-a">Z - A</option>
@@ -60,10 +59,10 @@ export function OpenFilter(props: { sort: React.Dispatch<React.SetStateAction<Fi
         }}>
             <FiltTitle title="Duration"></FiltTitle>
             <div
-            className="radHolder"
-            style={{
-                display: 'flex',
-            }}>
+                className="radHolder"
+                style={{
+                    display: 'flex',
+                }}>
                 <div
                     style={{
                         display: 'flex',
@@ -98,14 +97,14 @@ export function OpenFilter(props: { sort: React.Dispatch<React.SetStateAction<Fi
                 </div>
             </div>
             <div>
-                <select value={props.settings.paidvFree} name="paidvFree" onChange={handleChange} id="" >
+                <select value={props.settings.paidvFree} name="paidvFree" onChange={handleChange as ChangeEventHandler} id="" >
                     <option value="all">All</option>
                     <option value="paid">Paid Only</option>
                     <option value="free">Free Only</option>
                 </select>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <input type="checkbox" name="favorites" onChange={handleChange} id="" checked={props.settings.favorites} style={{ width: '15px', height: "15px" }} />
-                    <label htmlFor="fav">Favoriets only</label>
+                    <label htmlFor="fav">Favorites only</label>
                 </div>
             </div>
         </div>

@@ -3,9 +3,7 @@ export function PaidCover(props: {price: number}){
     style={{
         color: '#f1ddbf',
         backgroundColor: '#92ba9280',
-        // opacity: '50%',
         width: '100%',
-        // height: 'calc(100% - 55px)',
         height: '100%',
         position: 'absolute',
         display: 'flex',

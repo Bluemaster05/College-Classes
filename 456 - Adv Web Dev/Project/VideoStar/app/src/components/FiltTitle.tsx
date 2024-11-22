@@ -2,9 +2,7 @@ export function FiltTitle(props: { title: string }) {
     return <div
         style={{
             padding: '5px 0',
-            // paddingLeft: '60px',
-            // paddingRight: '60px',
-            width: '100%', 
+            width: '100%',
             backgroundColor: '#82a38a',
             borderRadius: '5px',
             textAlign: 'center'

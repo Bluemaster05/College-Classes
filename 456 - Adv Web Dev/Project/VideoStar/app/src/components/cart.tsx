@@ -1,7 +1,7 @@
 import { PropsWithChildren } from "react";
-import { Video } from "../types/video.type";
+import { Video } from "../types/Video.type";
 
-export function Cart(props: PropsWithChildren<{ cart: Video[] }>) {
+export function Cart(props: PropsWithChildren<{ vidList: Video[] }>) {
 
     return <div style={{
         display: 'flex',
@@ -20,10 +20,10 @@ export function Cart(props: PropsWithChildren<{ cart: Video[] }>) {
                 justifyContent: 'center',
                 color: 'white '
             }}>
-                {props.cart.length}
+                {props.vidList.filter(vid => vid.inCart).length}
             </div>
         </div>
-        {props.cart.length === 0 && <p style={{color: "white"}}>You cart is Empty. Go Fill it!!!</p>}
+        {props.vidList.filter(vid => vid.inCart).length === 0 && <p style={{ color: "white" }}>You cart is Empty. Go Fill it!!!</p>}
         {props.children}
     </div>
 }

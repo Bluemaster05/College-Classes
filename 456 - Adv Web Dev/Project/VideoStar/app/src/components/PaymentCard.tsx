@@ -1,9 +1,9 @@
-import { Video } from "../types/video.type";
-import { PaidCover } from "./paidcover";
+import { Video } from "../types/Video.type";
+import { PaidCover } from "./PaidCover";
 import removex from "../assets/x.svg"
-export function PaymentCard(props: { cart: Video[], setcart: React.Dispatch<React.SetStateAction<Video[]>>,  video: Video, vidList: Video[], setVidlist: React.Dispatch<React.SetStateAction<Video[]>> | null }) {
+export function PaymentCard(props: { video: Video, vidList: Video[] | null, setVidlist: React.Dispatch<React.SetStateAction<Video[] | null>> }) {
 
-    
+
     return <div className="payCardHolder" style={{
         display: 'flex',
         alignItems: 'top',
@@ -44,7 +44,6 @@ export function PaymentCard(props: { cart: Video[], setcart: React.Dispatch<Reac
             <div className="detailsHolder" style={{
                 display: 'flex',
                 flexDirection: 'column',
-                // gap: '10px',
                 paddingTop: '5px'
             }}>
                 <h1 style={{
@@ -67,30 +66,42 @@ export function PaymentCard(props: { cart: Video[], setcart: React.Dispatch<Reac
                 }}>
                     ${props.video.price}
                 </h1>
-                <div className="remove" onClick={() => {
-                    let newcart = structuredClone(props.cart)
+                <div  
+                    style={{
+                        display: 'flex',
+                    }}>
+                    <p onClick={() => {
                     let changeVideoList = structuredClone(props.vidList)
-                    for (const vid of newcart){
-                        if (vid.id === props.video.id){
-                            newcart = newcart.filter( vid => vid.id !== props.video.id)
-                        }
-                    }
-                    for (const vid of changeVideoList){
-                        if (vid.id === props.video.id){
+                    // for (const vid of newcart) {
+                    //     if (vid.id === props.video.id) {
+                    //         newcart = newcart.filter(vid => vid.id !== props.video.id)
+                    //     }
+                    // }
+                    for (const vid of changeVideoList!) {
+                        if (vid.id === props.video.id) {
                             vid.inCart = false
                         }
                     }
-                    props.setVidlist!(changeVideoList)
-                    props.setcart(newcart)
-                }}
-                    style={{
-                        display: 'flex',
-                        // justifyContent: 'end'
-                }}>
-                    <p style={{ textAlign: 'right', padding: '0', margin: '0', color: 'red' }}>
+                    props.setVidlist!(changeVideoList!)
+                    // props.setcart(newcart)
+                }} className="remove" style={{ textAlign: 'right', padding: '0', margin: '0', color: 'red' }}>
                         Remove
                     </p>
-                    <img src={removex} alt="" style={{
+                    <img onClick={() => {
+                    let changeVideoList = structuredClone(props.vidList)
+                    // for (const vid of newcart) {
+                    //     if (vid.id === props.video.id) {
+                    //         newcart = newcart.filter(vid => vid.id !== props.video.id)
+                    //     }
+                    // }
+                    for (const vid of changeVideoList!) {
+                        if (vid.id === props.video.id) {
+                            vid.inCart = false
+                        }
+                    }
+                    props.setVidlist!(changeVideoList!)
+                    // props.setcart(newcart)
+                }} className="remove" src={removex} alt="" style={{
                         color: 'red'
                     }} />
                 </div>
