@@ -4,11 +4,11 @@ import generateTiles from "../lib/generateTiles.lib";
 import { Grid } from "./Grid";
 import { Player } from "../types/PlayerType.type";
 import { ShipPlacementPanel } from "./ShipPlacementPanel";
-import Tile from "../interfaces/Tile.interface";
-import { TileType } from "../types/TileType.enum";
-import updateTile from "../lib/updateTile.lib";
-import getPositionsForShip from "../lib/getPositionsForShip.lib";
-import { ShipType } from "../types/ShipType.enum";
+// import Tile from "../interfaces/Tile.interface";
+// import { TileType } from "../types/TileType.enum";
+// import updateTile from "../lib/updateTile.lib";
+// import getPositionsForShip from "../lib/getPositionsForShip.lib";
+// import { ShipType } from "../types/ShipType.enum";
 import { OrientationType } from "../types/OrientationType.enum";
 
 export function Game(props: { gb: GameBoard, setGb: React.Dispatch<React.SetStateAction<GameBoard>> }) {
@@ -39,10 +39,10 @@ export function Game(props: { gb: GameBoard, setGb: React.Dispatch<React.SetStat
                 {currentPlayer === 'player2' && 'Player 2'}
             </h2>
             <div style={{ display: 'flex', gap: '10px' }}>
-                <Grid setCurTile={setCurrentTile} grid={props.gb[currentPlayer].defense}></Grid>
+                <Grid  curPlayer={currentPlayer} selectedShip={selectedShip} gb={props.gb} setGb={props.setGb} grid={props.gb[currentPlayer].defense}></Grid>
                 <ShipPlacementPanel curShip={selectedShip} setShip={setSelectedShip} ships={props.gb.player1.ships}></ShipPlacementPanel>
             </div>
-            {props.gb[currentPlayer].placedShips && <Grid setCurTile={setCurrentTile} grid={generateTiles()}></Grid>}
+            {props.gb[currentPlayer].placedShips && <Grid curPlayer={currentPlayer} selectedShip={selectedShip} gb={props.gb} setGb={props.setGb} grid={generateTiles()}></Grid>}
         </section>
     </>
 }

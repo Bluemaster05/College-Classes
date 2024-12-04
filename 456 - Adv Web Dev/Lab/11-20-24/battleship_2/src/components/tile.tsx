@@ -1,7 +1,12 @@
 import { TileType } from "../types/TileType.enum";
 import x from "../assets/x.png"
+import GameBoard from "../interfaces/GameBoard.interface";
+import { Player } from "../types/PlayerType.type";
+import getPositionsForShip from "../lib/getPositionsForShip.lib";
+import updateTile from "../lib/updateTile.lib";
+import { OrientationType } from "../types/OrientationType.enum";
 
-export function TileE(props: { onMouseOver: () => void, id: string, type: TileType }) {
+export function TileE(props: { onMouseOver: () => void, id: string, type: TileType,curPlayer: Player, selectedShip: number | null,  gb: GameBoard, setGb: React.Dispatch<React.SetStateAction<GameBoard>> }) {
     let color = 'white'
     let showx = "none"
     let circledis = 'flex'
@@ -22,8 +27,32 @@ export function TileE(props: { onMouseOver: () => void, id: string, type: TileTy
         showx = 'inline'
     }
 
+    function whenMouseOver(){
+        try {
+                    let tiles = getPositionsForShip(props.gb, props.curPlayer, props.selectedShip!, { y: +props.id!.slice(0, 1), x: +props.id.slice(1) }, OrientationType.HORIZONTAL)
+                    let gbCopy = structuredClone(props.gb)
+                    for (let tile of tiles) {
+                        gbCopy = updateTile(gbCopy, props.curPlayer, "defense", tile, TileType.SHIP)
+                    }
+                    props.setGb(gbCopy)
+                } catch (e) { }
+    }
+    function whenMouseLeave(){
+        try {
+                    let tiles = getPositionsForShip(props.gb, props.curPlayer, props.selectedShip!, { y: +props.id!.slice(0, 1), x: +props.id.slice(1) }, OrientationType.HORIZONTAL)
+                    let gbCopy = structuredClone(props.gb)
+                    for (let tile of tiles) {
+                        gbCopy = updateTile(gbCopy, props.curPlayer, "defense", tile, TileType.EMPTY)
+                    }
+                    props.setGb(gbCopy)
+                } catch (e) { }
+    }
+
     return <div
-        onMouseOver={props.onMouseOver}
+        onMouseOver={whenMouseOver}
+        // onMouseEnter={whenMouseOver}
+        onMouseLeave={whenMouseLeave}
+        // onMouseOut={whenMouseLeave}
         style={{
             backgroundColor: '#add8e6',
             width: '40px',
