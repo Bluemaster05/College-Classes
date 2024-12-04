@@ -1,8 +1,10 @@
+// import { useState } from "react";
 import Ship from "../interfaces/Ship.interface";
 import { PlacementShip } from "./PlacementShip";
+import { ShipType } from "../types/ShipType.enum";
 
-export function ShipPlacementPanel(props: { ships: Ship[] }) {
-
+export function ShipPlacementPanel(props: { curShip: number | null, setShip: React.Dispatch<React.SetStateAction<number | null>> , ships: Ship[] }) {
+    // const [selectedShip, setSelectedShip] = useState<ShipType | null>(null)
     return <section style={{
         position: "fixed",
         left: 'calc(50vw + 250px)'
@@ -16,7 +18,7 @@ export function ShipPlacementPanel(props: { ships: Ship[] }) {
                 flexDirection: 'column',
                 gap: '10px'
             }}>
-                {props.ships.map((sh) => { if (!sh.placed) { return <PlacementShip length={sh.spaces}></PlacementShip> } })}
+                {props.ships.map((sh, index) => { if (!sh.placed) { return <PlacementShip index={index} key={index} selectedShip={props.curShip} setShip={props.setShip} ship={sh} selected={props.curShip === index}></PlacementShip> } })}
             </div>
         </div>
         <h1 style={{fontSize: '13pt', fontWeight: '300', marginTop: '10px', marginRight: '10px', marginBottom: '10px'}}>

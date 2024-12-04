@@ -1,7 +1,7 @@
 import { TileType } from "../types/TileType.enum";
 import x from "../assets/x.png"
 
-export function TileE(props: { type: TileType }) {
+export function TileE(props: { onMouseOver: () => void, id: string, type: TileType }) {
     let color = 'white'
     let showx = "none"
     let circledis = 'flex'
@@ -23,6 +23,7 @@ export function TileE(props: { type: TileType }) {
     }
 
     return <div
+        onMouseOver={props.onMouseOver}
         style={{
             backgroundColor: '#add8e6',
             width: '40px',

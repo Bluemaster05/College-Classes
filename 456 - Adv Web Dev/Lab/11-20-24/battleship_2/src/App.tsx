@@ -25,7 +25,7 @@ function App() {
   )
   
   return <>
-    <Game gb={gameBoard} change={setGameBoard}></Game>
+    <Game gb={gameBoard} setGb={setGameBoard}></Game>
     
   </>
 
