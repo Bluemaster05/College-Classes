@@ -2,9 +2,15 @@
 import Ship from "../interfaces/Ship.interface";
 import { PlacementShip } from "./PlacementShip";
 import { ShipType } from "../types/ShipType.enum";
+import { OrientationType } from "../types/OrientationType.enum";
+import { ChangeEvent } from "react";
 
-export function ShipPlacementPanel(props: { curShip: number | null, setShip: React.Dispatch<React.SetStateAction<number | null>> , ships: Ship[] }) {
+export function ShipPlacementPanel(props: { oreintation: OrientationType, setOreintation: React.Dispatch<React.SetStateAction<OrientationType>>, curShip: number | null, setShip: React.Dispatch<React.SetStateAction<number | null>> , ships: Ship[] }) {
     // const [selectedShip, setSelectedShip] = useState<ShipType | null>(null)
+   
+   function changeOrintation(event: ChangeEvent<HTMLSelectElement>){    
+    props.setOreintation(event.target.value)
+   }
     return <section style={{
         position: "fixed",
         left: 'calc(50vw + 250px)'
@@ -24,9 +30,9 @@ export function ShipPlacementPanel(props: { curShip: number | null, setShip: Rea
         <h1 style={{fontSize: '13pt', fontWeight: '300', marginTop: '10px', marginRight: '10px', marginBottom: '10px'}}>
             Orientation
         </h1>
-        <select name="" id="">
-            <option value="">Horizontal</option>
-            <option value="">Vertical</option>
+        <select onChange={changeOrintation} value={props.oreintation} name="" id="">
+            <option value="Horizontal">Horizontal</option>
+            <option value="Vertical">Vertical</option>
         </select>
     </section>
 }

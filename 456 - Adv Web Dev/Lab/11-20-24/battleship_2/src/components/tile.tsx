@@ -5,12 +5,14 @@ import { Player } from "../types/PlayerType.type";
 import getPositionsForShip from "../lib/getPositionsForShip.lib";
 import updateTile from "../lib/updateTile.lib";
 import { OrientationType } from "../types/OrientationType.enum";
+import checkPositions from "../lib/checkPositions.lib";
+import placeShip from "../lib/placeShip.lib";
 
-export function TileE(props: { onMouseOver: () => void, id: string, type: TileType,curPlayer: Player, selectedShip: number | null,  gb: GameBoard, setGb: React.Dispatch<React.SetStateAction<GameBoard>> }) {
+export function TileE(props: {oreintation: OrientationType, onMouseOver: () => void, id: string, type: TileType, curPlayer: Player, selectedShip: number | null, setSelectShip: React.Dispatch<React.SetStateAction<number | null>> , gb: GameBoard, setGb: React.Dispatch<React.SetStateAction<GameBoard>> }) {
     let color = 'white'
     let showx = "none"
     let circledis = 'flex'
-    if (props.type === TileType.EMPTY){
+    if (props.type === TileType.EMPTY) {
         circledis = 'none'
     }
     if (props.type === TileType.HIT) {
@@ -27,32 +29,57 @@ export function TileE(props: { onMouseOver: () => void, id: string, type: TileTy
         showx = 'inline'
     }
 
-    function whenMouseOver(){
-        try {
-                    let tiles = getPositionsForShip(props.gb, props.curPlayer, props.selectedShip!, { y: +props.id!.slice(0, 1), x: +props.id.slice(1) }, OrientationType.HORIZONTAL)
-                    let gbCopy = structuredClone(props.gb)
-                    for (let tile of tiles) {
-                        gbCopy = updateTile(gbCopy, props.curPlayer, "defense", tile, TileType.SHIP)
-                    }
-                    props.setGb(gbCopy)
-                } catch (e) { }
+    function whenMouseOver() {
+        props.setGb(prevGb => {
+            try {
+                let gbCopy = structuredClone(prevGb)
+                let tiles = getPositionsForShip(gbCopy, props.curPlayer, props.selectedShip!, { y: +props.id!.slice(0, 1), x: +props.id.slice(1) }, props.oreintation)
+
+                for (let tile of tiles) {
+                    gbCopy = updateTile(gbCopy, props.curPlayer, "defense", tile, TileType.SHIP)
+                }
+                return gbCopy
+            } catch (e) { return prevGb }
+        })
     }
-    function whenMouseLeave(){
-        try {
-                    let tiles = getPositionsForShip(props.gb, props.curPlayer, props.selectedShip!, { y: +props.id!.slice(0, 1), x: +props.id.slice(1) }, OrientationType.HORIZONTAL)
-                    let gbCopy = structuredClone(props.gb)
-                    for (let tile of tiles) {
-                        gbCopy = updateTile(gbCopy, props.curPlayer, "defense", tile, TileType.EMPTY)
-                    }
-                    props.setGb(gbCopy)
-                } catch (e) { }
+    function whenMouseLeave() {
+        props.setGb(prevGb => {
+            try {
+                let gbCopy = structuredClone(prevGb)
+                let tiles = getPositionsForShip(gbCopy, props.curPlayer, props.selectedShip!, { y: +props.id!.slice(0, 1), x: +props.id.slice(1) }, props.oreintation)
+
+                for (let tile of tiles) {
+                    gbCopy = updateTile(gbCopy, props.curPlayer, "defense", tile, TileType.EMPTY)
+                }
+                return gbCopy
+            } catch (e) { return prevGb }
+        })
+    }
+
+    function onMouseClick(){
+        props.setGb((prevGb) => {
+            let prevCopy = structuredClone(prevGb)
+            try {
+                let tiles = getPositionsForShip(prevCopy, props.curPlayer, props.selectedShip!, { y: +props.id!.slice(0, 1), x: +props.id.slice(1) }, props.oreintation )
+                if(checkPositions(prevCopy, props.curPlayer,tiles)){
+                    let placedShip = placeShip(prevCopy, props.curPlayer, props.selectedShip!, tiles)
+                    props.setSelectShip(null)
+                    return placedShip
+                }
+                else {
+                    return prevCopy
+                }
+            } catch (e) {
+                return prevGb
+            }
+            
+        })
     }
 
     return <div
         onMouseOver={whenMouseOver}
-        // onMouseEnter={whenMouseOver}
         onMouseLeave={whenMouseLeave}
-        // onMouseOut={whenMouseLeave}
+        onMouseDown={onMouseClick}
         style={{
             backgroundColor: '#add8e6',
             width: '40px',
@@ -76,11 +103,11 @@ export function TileE(props: { onMouseOver: () => void, id: string, type: TileTy
             }}
         >
             <img src={x} alt="" width='13px'
-            style={{
-                display: showx,
-                marginLeft: '1px',
-                marginTop: '1px'
-            }}
+                style={{
+                    display: showx,
+                    marginLeft: '1px',
+                    marginTop: '1px'
+                }}
             />
         </div>
     </div>
