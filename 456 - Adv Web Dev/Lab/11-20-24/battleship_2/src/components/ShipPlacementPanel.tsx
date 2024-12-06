@@ -8,7 +8,7 @@ import { ChangeEvent } from "react";
 export function ShipPlacementPanel(props: { oreintation: OrientationType, setOreintation: React.Dispatch<React.SetStateAction<OrientationType>>, curShip: number | null, setShip: React.Dispatch<React.SetStateAction<number | null>> , ships: Ship[] }) {
     // const [selectedShip, setSelectedShip] = useState<ShipType | null>(null)
    
-   function changeOrintation(event: ChangeEvent<HTMLSelectElement>){    
+   function changeOrintation(event: ChangeEvent<HTMLSelectElement>){
     props.setOreintation(event.target.value)
    }
     return <section style={{
@@ -31,8 +31,8 @@ export function ShipPlacementPanel(props: { oreintation: OrientationType, setOre
             Orientation
         </h1>
         <select onChange={changeOrintation} value={props.oreintation} name="" id="">
-            <option value="Horizontal">Horizontal</option>
-            <option value="Vertical">Vertical</option>
+            <option value={OrientationType.HORIZONTAL}>Horizontal</option>
+            <option value={OrientationType.VERTICAL}>Vertical</option>
         </select>
     </section>
 }
