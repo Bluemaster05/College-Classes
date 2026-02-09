@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,200;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Rubik:ital,wght@0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        rel="stylesheet">
+
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <nav>
+        <div class="navleft">
+            <a href="../index.html">Home</a>
+            <a href="">Learning</a>
+            <a>Interactive</a>
+        </div>
+        <div class="navright">
+            <h1 id="title">Practical Examples</h1>
+        </div>
+    </nav>
+    <div id="content">
+        <!-- <header id="header">
+            <h1 id="title">Practical Examples</h1>
+            
+        </header> -->
+        <div id="box-pair">
+            <h1>Simple Shape Editors</h1>
+            <div class="box-paired">
+                <!-- RECTANGLE CODE START -->
+                <div class="rect-box editorBox">
+                    <h2>Rect Editor</h2>
+                    <div class="svg-box">
+                        <svg width="100" height="100" id="rectSVG">
+                            <rect rx="0" y="0" x='0' width="100px" height="100px" fill="black" stroke="black" stroke-width="0"
+                                stroke-width="10"></rect>
+                        </svg>
+                    </div>
+                    <div class="prop-cont">
+                        <div class="property">
+                            <p>Property</p>
+                            <label for="">SVG Width</label>
+                            <label for="">SVG Height</label>
+                            <label for="">width</label>
+                            <label for="">height</label>
+                            <label for="">x</label>
+                            <label for="">y</label>
+                            <label for="">Rx</label>
+                            <label for="">Fill</label>
+                            <label for="">stroke width</label>
+                            <label for="">Stroke Color</label>
+                        </div>
+                        <div class="propvalue">
+                            <p>Value</p>
+                            <input id="rectSVGW" type="number" placeholder="100">
+                            <input id="rectSVGH" type="number" placeholder="100">
+                            <input id="rectWidth" type="number" placeholder="100">
+                            <input id="rectHeight" type="number" placeholder="100">
+                            <input id="rectX" type="number" placeholder="0">
+                            <input id="rectY" type="number" placeholder="0">
+                            <input id="rectRX" type="number" placeholder="0">
+                            <input id="rectFill" type="color">
+                            <input id="rectStrokeWidth" type="number" placeholder="0">
+                            <input id="rectStrokeColor" type="color">
+                        </div>
+                    </div>
+                </div>
+                <!-- RECTANGLE CODE END -->
+                <!-- CIRCLE CODE START -->
+                <div class="circle-box">
+                    <h2>Circle Editor</h2>
+                    <div class="svg-box">
+                        <svg id="circleSVG" width="100" height="100">
+                            <circle r="50" cx="0" cy="0" fill="black" stroke="black" stroke-width="0"></circle>
+                        </svg>
+                    </div>
+                    <div class="prop-cont">
+                        <div class="property">
+                            <p>Property</p>
+                            <label for="">SVG Width</label>
+                            <label for="">SVG Height</label>
+                            <label for="">cx</label>
+                            <label for="">cy</label>
+                            <label for="">radius</label>
+                            <label for="">cFill</label>
+                            <label for="">Stroke Width</label>
+                            <label for="">Stroke Color</label>
+                        </div>
+                        <div class="propvalue">
+                            <p>Value</p>
+                            <input id="circleSVGW" type="number" placeholder="100">
+                            <input id="circleSVGH" type="number" placeholder="100">
+                            <input id="circlex" type="number" placeholder="0">
+                            <input id="circley" type="number" placeholder="0">
+                            <input id="circleR" type="number" placeholder="50">
+                            <input id="circleFill" type="color" placeholder="0">
+                            <input id="circleStrokeWidth" type="number" placeholder="0">
+                            <input id="circleStrokeColor" type="color">
+
+                        </div>
+                    </div>
+                </div>
+                <!-- CIRCLE CODE END -->
+                <!-- Line Code Start -->
+                <div class="line-box">
+                    <h2>Line Editor</h2>
+                    <div class="svg-box">
+                        <svg id="lineSVG" width="100" height="100">
+                            <line x2="100" y2="100" stroke="black" stroke-width="2"></line>
+                        </svg>
+                    </div>
+                    <div class="prop-cont">
+                        <div class="property">
+                            <p>Property</p>
+                            <label for="">SVG Width</label>
+                            <label for="">SVG Height</label>
+                            <label for="">x1</label>
+                            <label for="">y1</label>
+                            <label for="">x2</label>
+                            <label for="">y2</label>
+                            <label for="">stroke width</label>
+                            <label for="">Stroke Color</label>
+                        </div>
+                        <div class="propvalue">
+                            <p>Value</p>
+                            <input id="lineSVGW" type="number" placeholder="100">
+                            <input id="lineSVGH" type="number" placeholder="100">
+                            <input id="lineX1" type="number" placeholder="0">
+                            <input id="lineY1" type="number" placeholder="0">
+                            <input id="lineX2" type="number" placeholder="100">
+                            <input id="lineY2" type="number" placeholder="100">
+                            <input id="lineStrokeWidth" type="number" placeholder="2">
+                            <input id="lineStrokeColor" type="color">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scale-compare">
+                <h1>SVG vs Bitmap Zoom Comparison</h1>
+                <div class="two-card-holder">
+                    <div class="vector-card zoom-card">
+                        <h2>Vector Image Scaler</h2>
+                        <div class="zoom-box">
+                            <img id="VectorZoom" src="highquakityballssvg.svg" alt="" height="300">
+                        </div>
+                        <input type="range" min="7.5" max="40" value="1" class="slider" id="SliderVector">
+                    </div>
+
+                    <div class="bitmap-card zoom-card">
+                        <h2>Bitmap Image Scaler</h2>
+                        <div class="zoom-box">
+                            <img id="BitmapZoom" src="ballslowquality.jpg" alt="" height="300">
+                        </div>
+                        <div class="range-box">
+                            <input type="range" min="7.5" max="40" value="1" class="slider" id="SliderBitmap">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <h1>Find the Binary SVG Game</h1>
+            <h2 id="WARNING">THIS GAME IS NOT AVALIABLE ON SMALL SCREENS OR MOBILE DEVICES</h2>
+            <div class="map-viewer">
+                <div class="map-title-holder">
+                    <h2>Map</h2>
+                    <h2>Zoom Area</h2>
+                </div>
+                <div class="twoimgcontainer">
+                    
+                    <div class="img-zoom-container">
+                        <!-- <h2>Map</h2> -->
+                        <img id="myimage" src="Riddle_Map_Fixed.svg" width="600" height="600">
+
+                    </div>
+                    <div>
+                        <!-- <h2>Zoom Area</h2> -->
+                        <div id="myresult" class="img-zoom-result"></div>
+                    </div>
+                </div>
+                <div class="map-riddles">
+                    <div class="riddle-container riddle1" >
+                        <label for=""> A river flowing, A sandstorm raging, amidst the mediterranean it's going.</label>
+                        <input type="text" id="r1">
+                    </div>
+                    <div class="riddle-container riddle2" >
+                        <label for="">A Tundra above and a leaf to keep you warm to where the spirit lies, and capitalizes its guise</label>
+                        <input type="text" id="r2">
+                    </div>
+                    <div class="riddle-container riddle3" >
+                        <label for="">A history of isolation, and a brother of technology exportation</label>
+                        <input type="text" id="r3">
+                    </div>
+                    <div class="riddle-container riddle4" >
+                        <label for="">Land of eagles, flying high and free, but what lies below are 5 great beasts amongst one you shall see.</label>
+                        <input type="text" id="r4">
+                    </div>
+                    <div class="riddle-container riddle5" >
+                        <label for="">Fearless men abound, they wrestle bears to the ground. In this land “one for all” is the motto, and they chill their child. The thing you seek shall be at its peak.</label>
+                        <input type="text" id="r5"> 
+                    </div>
+                </div>
+                <div class="map-button-holder">
+                    <button id="mapButton">Check Results</button>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>

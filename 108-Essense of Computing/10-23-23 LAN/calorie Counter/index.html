@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <h1>Calorie Logs</h1>
+    <hr>
+    <h2>Log details</h2>
+    <p id="info">Fill out log information below:</p>
+    <form id="form">
+        <div id="formBox">
+            
+            <div id="FOODNAME" class="InBox">
+                <label  id="lnLabel">Food Name</label>
+                <input type="text" id="logName">
+            </div>
+            <div id="LOGTYPE" class="InBox">
+                <label for="">Log Type</label>
+                <select id="logType">
+                    <option value="">Food log</option>
+                    <option value="">Exerise log</option>
+                </select>
+            </div>
+            <div id="CALCOUNT" class="InBox">
+                <label id="cvLabel">Calorie Count</label>
+                <input type="text" id="calVal">
+            </div>
+            <div id="SUBMIT" class="InBox">
+                <div id="hidden">hi</div>
+                <button type="button" id="submit">Add Log</button>
+            </div>
+        </div>
+    </form>
+    <hr>
+    <h1>Total Calorie Count</h1>
+    <div id="calCount">0</div>
+    <hr>
+    <h2>Food/Exersise Logs</h2>
+    <!-- Example div of Entry -->
+    <template id="logTemplate">
+        <p><span class="slideIn" ></span></p>
+    </template>
+    <section>
+    </section>
+
+</body>
+
+</html>

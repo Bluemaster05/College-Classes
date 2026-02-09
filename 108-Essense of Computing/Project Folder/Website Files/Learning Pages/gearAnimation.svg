@@ -1,0 +1,48 @@
+<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g transform="translate(50, 50)">
+      <!--gold circle rotate-->
+      <circle r="33" fill="gold" stroke="#333" stroke-width="10">
+        <animateTransform
+          attributeName="transform"
+          type="rotate"
+          from="0"
+          to="360"
+          dur="5s"
+          repeatCount="indefinite"
+        />
+      </circle>
+      <!--smaller circle rotate-->
+      <circle r="20" fill="#4d4b4b" stroke="#333" stroke-width="10">
+        <animateTransform
+          attributeName="transform"
+          type="rotate"
+          from="0"
+          to="360"
+          dur="5s"
+          repeatCount="indefinite"
+        />
+      </circle>
+      <!--gear teeth-->
+      <g id="gear" transform="rotate(0)">
+        <!--eight equally spaced rounded teeth-->
+        <rect x="-8" y="-45" width="16" height="15" rx="2" ry="2" fill="#333" />
+        <rect x="-8" y="-45" width="16" height="15" rx="2" ry="2" transform="rotate(45)" fill="#333" />
+        <rect x="-8" y="-45" width="16" height="15" rx="2" ry="2" transform="rotate(90)" fill="#333" />
+        <rect x="-8" y="-45" width="16" height="15" rx="2" ry="2" transform="rotate(135)" fill="#333" />
+        <rect x="-8" y="-45" width="16" height="15" rx="2" ry="2" transform="rotate(180)" fill="#333" />
+        <rect x="-8" y="-45" width="16" height="15" rx="2" ry="2" transform="rotate(225)" fill="#333" />
+        <rect x="-8" y="-45" width="16" height="15" rx="2" ry="2" transform="rotate(270)" fill="#333" />
+        <rect x="-8" y="-45" width="16" height="15" rx="2" ry="2" transform="rotate(315)" fill="#333" />
+      </g>
+    </g>
+    <!--rotation animation-->
+    <animateTransform
+      xlink:href="#gear"
+      attributeName="transform"
+      type="rotate"
+      from="0"
+      to="360"
+      dur="5s"
+      repeatCount="indefinite"
+    />
+  </svg>

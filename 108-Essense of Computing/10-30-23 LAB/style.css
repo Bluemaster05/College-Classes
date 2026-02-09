@@ -1,0 +1,222 @@
+html, body {
+    font-family: sans-serif;
+}
+
+@keyframes slide-right{
+    0% {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes slide-left{
+    0%{}
+    
+    100% {
+        transform: translateX(-150%);
+    }
+}
+
+::-webkit-scrollbar{
+    background: rgba(0, 153, 255, 0.575);
+}
+
+::-webkit-scrollbar-thumb{
+    background: aqua;
+}
+
+.small{
+    color: #a1a1a1;
+    padding: 0px;
+    margin: 0px;
+}
+section h2{
+    margin-bottom: 0px;
+    padding: 0px;
+    font-size: 15pt;
+}
+#logBox{
+    display: flex;
+    gap: 40px;
+    background-color: white;
+    padding: 20px;
+    flex-direction: column;
+    width: 700px;
+    padding-left: 0px;
+}
+.slide-left{
+    animation: slide-left ease-in-out 1s forwards;
+}
+
+#cCountBox h2 {
+    margin-left: 20px;
+}
+#logBox h2 {
+    margin-bottom: 13px;
+    font-size: 13pt;
+}
+#topBox{
+    display: flex;
+    background-color: white;
+    gap: 40px;
+}
+#botBox{
+display: flex;
+background-color: white;
+gap: 40px;
+}
+#logBox input {
+    width: 350px;
+    height: 35px;
+    border: none;
+    box-shadow: 1px 1px 3px 1px rgba(128, 128, 128, 0.233);
+}
+#logBox select{
+width: 200px;
+height: 41px;
+border: none;
+box-shadow: 1px 1px 3px 1px rgba(128, 128, 128, 0.233);
+border-radius: 5px;
+}
+#logBox button{
+    width: 200px;
+    height: 40px;
+    margin-top: 46px;
+    background-color: hsl(225, 91%, 58%);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 15pt;
+    cursor: pointer;
+}
+hr {
+    height: 2px;
+    background-color: #c1c1c1;
+    border-radius: 5px;
+    border: none;
+}
+
+section {
+    margin-left: 20px;
+}
+
+h2 {
+    font-size: 14pt;
+    margin-bottom: 8px;
+}
+#calorieCountText{
+    box-shadow: 1px 1px 6px 1px rgba(128, 128, 128, 0.11),
+    -1px -1px 6px 1px rgba(128, 128, 128, 0.082);
+    width: fit-content;
+    height: 30px;
+    padding: 7px;
+    padding-right: 200px;
+    font-size: 25px;
+    margin-top: 1px;
+    border-radius: 5px;
+}
+
+.logContainer {
+    background-color: rgb(255, 255, 255);
+    width: 41em;
+    height: 5em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2em;
+    margin-bottom: 1.5em;
+    margin-top: 1.5em;
+    box-shadow: 1px 1px 6px 1px rgba(128, 128, 128, 0.062),
+    -1px -1px 6px 1px rgba(128, 128, 128, 0.075);
+    
+}
+
+.slide-right{
+    animation: slide-right ease-in-out 1s forwards;
+}
+.logContainer .rightPart {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
+    
+} 
+.logContainer h1 {
+    font-size: 25pt;
+}
+
+.buttonContainer {
+    display: flex;
+    gap: 10px;
+}
+
+.modifyLog {
+    border-radius: 50%;
+    display: flex;
+    padding: .5em;
+    border: none;
+    background-color: #3164f5;
+    color: white;
+    width: 2rem;
+    height: 2rem;
+    font-size: 12pt;
+    align-items: center;
+    cursor: pointer;
+}
+.deleteLog {
+    border-radius: 50%;
+    display: flex;
+    padding: .5em;
+    border: none;
+    background-color: #ff3b2f;
+    color: white;
+    width: 2rem;
+    height: 2rem;
+    font-size: 13pt;
+    align-items: center;
+    cursor: pointer;
+    
+}
+.countbox {
+    background-color: gray;
+    color: white;
+    text-align: center;
+    width: fit-content;
+    padding: .25em; 
+    padding-left: 1em;
+    padding-right: 1em;
+    border-radius: 5px;
+    font-size: 10pt;
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+    
+}
+
+.type.Exercise {
+    background-color: #4cda64;
+    color: white;
+    padding: .175em;
+    padding-left: 1em;
+    padding-right: 1em;
+    font-size: 15pt;
+    border-radius: 5px;
+    font-weight: 700;
+  }
+  
+  .type.Food {
+    background-color: #ff9501;
+    color: white;
+    padding: .175em;
+    padding-left: 1em;
+    padding-right: 1em;
+    font-size: 15pt;
+    border-radius: 5px;
+    font-weight: 700;
+  }
+  /* .type::first-letter {
+    text-transform:capitalize;
+} */
+
+/* .count:after {
+    content: " kcal"
+} */

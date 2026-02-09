@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="script.js" defer></script>
+  <link href="style.css" rel="stylesheet">
+  <title>Calorie Counter</title>
+</head>
+
+<body>
+  <section>
+    <h1>Calorie Logs</h1>
+    <div>
+      <h2>Log Details</h2>
+      <p class="small">Fill out log information</p>
+    </div>
+    <div id="logBox">
+      <div id="topBox">
+        <div id="b1">
+          <h2>Log Name</h2>
+          <input id="logName" placeholder="Enter log name" />
+        </div>
+        <div id="b2">
+          <h2>Log Type</h2>
+          <select id="logType">
+            <option value="Food">Food</option>
+            <option value="Exercise">Exercise</option>
+          </select>
+        </div>
+      </div>
+      <div id="botBox">
+        <div>
+          <h2>Calorie Count</h2>
+          <input type="number" id="calorieCount" placeholder="Enter calorie count" />
+        </div>
+        <button id="logButton">Add Log</button>
+      </div>
+    </div>
+  </section>
+  </section>
+  <hr />
+  <div id="cCountBox">
+    <h2>Total Calorie Count</h2>
+    <h2 id="calorieCountText">0</h2>
+  </div>
+  <!-- 
+        Remember that templates are hidden by default 
+        until their contents are cloned.
+    -->
+  <template>
+    <div class="logContainer slide-right">
+      <h1>Walking</h1>
+      <div class="rightPart">
+        <div class="type">Exercise</div>
+        <div class="countbox">
+          <div><span class="count"></span> kcal</div>
+        </div>
+        <div class="buttonContainer">
+          <button class="modifyLog">🖊</button>
+          <button class="deleteLog">♻</button>
+        </div>
+      </div>
+    </div>
+  </template>
+  <section id="logs">
+    <!-- This is where all of the transactions will go -->
+
+  </section>
+</body>
+
+</html>

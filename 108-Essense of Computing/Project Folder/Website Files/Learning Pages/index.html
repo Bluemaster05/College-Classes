@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,200;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Rubik:ital,wght@0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        rel="stylesheet">
+
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <nav>
+        <div class="navleft">
+            <a href="../index.html" class="HomePage">Home</a>
+            <a>Learning</a>
+            <a href="../interact/index.html">Interactibles</a>
+            <a>this is a new webthing   ``</a>
+        </div>
+        <div class="navright">
+            <h1 id="title">Learning</h1>
+        </div>
+    </nav>
+    <div id="content">
+        <!-- <header id="header">
+            <h1 id="title">Practical Examples</h1>
+            
+        </header> -->
+        <div id="tab-nav">
+            <div id="tab1" class="tab-title tab-focus">Intro/Histrory</div>
+            <div id="tab2" class="tab-title">Creating SVGs</div>
+            <div id="tab3" class="tab-title">SVG "Code"</div>
+            <div id="tab4" class="tab-title">SVG's in the Web</div>
+        </div>
+        <div id="box-pair">
+            <div class="home-content">
+                <div class="content-holder">
+                    <article id="article1" class="intro-history">
+                        <section class="bit-vs-vec">
+                            <div class="bvc-holder">
+                                <h2>Vector Images</h2>
+                                <img src="Images/highquakityballssvg.svg" alt="" height="190">
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vector graphics are created from
+                                    mathematical formulas. Those mathematical formulas can create lines, curves, shapes,
+                                    and text. This differs a bitmap image, which contains each and every pixel's
+                                    color.<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The mathematical
+                                    formulas are instructions that control where and how those lines, curves, and text
+                                    are placed which are combined all together to create the desired image.
+                                    A few examples of vector graphic formats include The PostScript font, PICT, and EPS.
+                                </p>
+                            </div>
+                            <div class="bvc-holder">
+                                <h2>Bitmaps Images</h2>
+                                <img src="Images/balls (4).png" alt="" height="190">
+                                <p class="fix">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A bitmap is a graphic
+                                    which forms an
+                                    image created out of rows which make up a grid of different colored pixels. The more
+                                    complex a bitmap image is, the more pixels and colors it takes to make it. Here is a
+                                    list of some common bitmap graphic formats: Fonts, BMP, PNG, JPEG, and
+                                    GIF.<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bitmap images are the
+                                    most common images on the web. Bitmap graphics can be created in many different ways
+                                    such as cameras and many computer softwares like photoshop and other graphic design
+                                    softwares. Bitmap graphics are also sometimes called “raster” graphics.</p>
+                            </div>
+                        </section>
+                        <section class="vector-history">
+                            <hr>
+                            <h2>History of Vector Images</h2>
+                            <div class="center">
+                                <img src="Images/banner (2).svg" id="banner" alt="">
+                            </div>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;After the first computer was created In
+                                the mid-1940 early computer programmers began
+                                theorizing out different ways to create high quality crisp digital images. Computers of
+                                that time period could not display bitmap images because of their extremely limited
+                                memory which was the leading cause for vector graphics to be developed.</p>
+                            <div class="pii-box">
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The inventor of vector graphics is a
+                                    man named Ivan Edward Sutherland who is known as
+                                    one of the pioneers of computer-aided graphics. He is most well known for creating
+                                    the graphics software called Sketchpad.<br><br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;At the start, vector graphics mainly
+                                    consisted of straight lines until a French
+                                    engineer
+                                    named Pierre Bezier figured out a way to mathematically define curves. He then
+                                    figured
+                                    out a way to scale those curved lines using control points. Those points are
+                                    attached to
+                                    a mathematical equation which keeps the points in place as the size changes to
+                                    perfectly
+                                    maintain a vector line's proportion.
+                                </p>
+                                <div class="img-holder">
+                                    <img class="dif-img" src="Images/300px-Ivan_Sutherland_1592.jpg" alt="" height="250px">
+                                    <a href="https://ethw.org/Ivan_E._Sutherland">Ivan Edward (source)</a>
+                                </div>
+                                <div class="img-holder">
+                                    <img id="dif-img" src="Images/origin.jpg" alt="" height="250px">
+                                    <a href="https://spectrum.ieee.org/sketchpad">Ivan Edward coding Vector Graphics
+                                        (source)</a>
+                                </div>
+                            </div>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;At the start, vector graphics mainly
+                                consisted of straight lines until a French engineer
+                                named Pierre Bezier figured out a way to mathematically define curves. He then figured
+                                out a way to scale those curved lines using control points. Those points are attached to
+                                a mathematical equation which keeps the points in place as the size changes to perfectly
+                                maintain a vector line's proportion.</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;One of the earliest users of Vector
+                                images was the US Department of Defense which used
+                                vector graphics to create high-quality maps and also model interactively.</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;As Vector graphics became more advanced
+                                and became easier to use, early game developers
+                                saw its potential because of the extremely small file size, greater detail, and smoother
+                                lines that vector graphics could provide.</p>
+                            <div class="img-holder">
+                                <img class="dif-img" src="Images/Original-vector-based-Asteroids-game-Atari-1979-showing-ship-in-centre-and-floating.png"
+                                    alt="" height="300">
+                                <a
+                                    href="https://www.researchgate.net/figure/Original-vector-based-Asteroids-game-Atari-1979-showing-ship-in-centre-and-floating_fig2_262309733">Atari
+                                    Asteroids Game (source)</a>
+                            </div>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sometime in the 1970's Atari released the
+                                game Asteroids,”image above” which was created
+                                using vector art. A Lot of other game creation companies jumped on the vector art
+                                bandwagon and thousands of games were created. Some of the most popular and well known
+                                vector art games are Star Wars Atari-1983, Tail Gunner Vectorbeam-1979, Star Trek:
+                                Strategic Operations Simulator Sega-1983, and Space Duel ”original Asteroids direct
+                                descendant” Atari-1982.</p>
+                        </section>
+                        <section class="bit-vec-differences">
+                            <hr>
+                            <h2>Differences Between Bitmap and Vector Images</h2>
+                            <p>Bitmap images are far better at replicating the real world than vector images</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vector graphics contain instructions
+                                which tell where to place all of the components of
+                                the vector graphic, while bitmap images store the data about each and every pixel and
+                                its color which when put together make up an image.</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vector graphics are not affected by a
+                                computer changing resolution. A vector graphic will
+                                look just as clear and crisp at 800 x 600 as it will look at 3240 x 2160. The reason
+                                vector graphics are not affected by resolution changes is that the vector graphic
+                                components are automatically redrawn to look the same on any different resolution.
+                                Bitmap graphics are affected by a computer changing resolution.</p>
+                            <div class="pii-box">
+
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If you look at a bitmap graphic at a
+                                    smaller resolution then the graphic was created for,
+                                    it will look sharper and higher quality but small, and if you look at that same
+                                    bitmap graphic at a higher
+                                    resolution then it was created for, it will look blocky, jagged and large.<br><br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bitmaps are easy to display and
+                                    modify because they can be opened and understood by most
+                                    paint programs. Vector graphics are easy to modify because they are made out of
+                                    shapes
+                                    and lines which can be easily altered, but finding a program that supports vector
+                                    graphics can be challenging, in comparison to the many programs that support bitmap
+                                    graphics, there are hardly any programs that support vector graphics.<br><br>
+                                    A vector graphic can easily be converted into a bitmap graphic while a bitmap
+                                    graphic is
+                                    very difficult to turn into a vector graphic.
+                                </p>
+                                <div class="img-holder">
+                                    <img class="dif-img" src="Images/raster_vs_vector_1.jpg" alt="">
+                                    <a  href="http://vector-conversions.com/vectorizing/raster_vs_vector.html">Bitmap
+                                        High to Low Quality (Source)</a>
+                                </div>
+                            </div>
+                        </section>
+                    </article>
+                    <article id="article2" class="create-SVG">
+                        <section>
+                            <h2>SVG Vector Art Creation Software</h2>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The most common and practical method to
+                                create SVG Vector art is to use one of the many
+                                different Graphic Design Softwares in which you easily create SVG vector images. The
+                                main benefit to creating your SVG vector image in these types of software is the ability
+                                they give you to pick from a premade selection of simple SVG vector objects which you
+                                can then place wherever eand however you want to make up your image. You can also
+                                stretch and scale those premade simple SVG vector objects however you want.</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;One of the most popular Graphic Design
+                                Software is Adobe Illustrator which requires a
+                                subscription, in which you can create SVG vector art yourself or use artificial
+                                intelligence to generate a SVG vector image.</p>
+                            <p>There are other free options which include SVGator and Vecteezy Online Editor.
+                                Vector.</p>
+                            <div class="svg-create-software">
+                                <div class="img-holder">
+                                    <img src="Images/Adobe_Illustrator_CC_icon.svg.png" alt="" height="100px">
+                                    <a href="https://en.wikipedia.org/wiki/Adobe_Illustrator">Adobe Illustrator
+                                        (Source)</a>
+                                </div>
+                                <div class="img-holder">
+                                    <img src="Images/svgator.png" alt="" height="100px">
+                                    <a href="https://www.supermonitoring.com/blog/svgator-svg-animations-made-easy/">SVGator
+                                        (Source)</a>
+                                </div>
+                                <div class="img-holder">
+                                    <img src="Images/download.png" alt="" height="100px">
+                                    <a href="https://www.vecteezy.com/editor">Vecteezy Online Editor(Source)</a>
+                                </div>
+                            </div>
+                            <p>After SVG vector graphic images have been created they are saved as an XML text file.
+                                This text file format maintains the proportions of the image and its scale.</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In the modern world SVG vector graphic
+                                images created in these many different softwares
+                                are used in many different ways, most notably fashion, animation, comics, web design,
+                                engineering, and many different types of advertising.</p>
+                        </section>
+                    </article>
+                    <article id="article3" class="SVG-code">
+                        <section class="svg-code">
+                            <h2>Shapes and their basic formats</h2>
+                            <div class="tag-holder" id="rectTag">
+                                <div class="tag-text">
+                                    <h3>rect:</h3>
+                                    <p>The rect tag is a tag meant to create a rectangle that can be manipulated through
+                                        various attributes</p>
+                                    <ul>
+                                        <li>x: Sets the x position of the top left of the
+                                            rectangle.<br>&nbsp;&nbsp;&nbsp;&nbsp;A higher value moves the shape right.
+                                            A Lower value moves it left. </li>
+                                        <li>y: Sets the y position of the top left of the
+                                            rectangle.<br>&nbsp;&nbsp;&nbsp;&nbsp;A higher value moves the shape
+                                            downwards. A Lower value moves it upwards. </li>
+                                        <li>width: Sets the width of the rectangle</li>
+                                        <li>height: Sets the height of the rectangle</li>
+                                        <li>rx: Sets the curve of the edges of the rectangle</li>
+                                        <li>fill: Sets the color of the rectangle </li>
+                                    </ul>
+                                </div>
+                                <div class="photo-container">
+                                    <img src="Images/CreateSVGPG/Example text.jpg/Image 12-12-23 at 10.26 AM (1).jpg"
+                                        alt="">
+                                    <img src="Images/CreateSVGPG/Example shapes/Image 12-12-23 at 10.55 AM.jpg" alt="">
+                                </div>
+                            </div>
+                            <div class="tag-holder" id="circleTag">
+                                <div class="tag-text">
+                                    <h3>circle:</h3>
+                                    <p>A tag meant to create a circle that can be manipulated through various attributes
+                                    </p>
+                                    <ul>
+                                        <li>cx: Sets the x position.<br>&nbsp;&nbsp;&nbsp;&nbsp;A higher value moves the
+                                            shape right. A Lower value moves it left. </li>
+                                        <li>cy: Sets the y position.<br>&nbsp;&nbsp;&nbsp;&nbsp;A higher value moves the
+                                            shape downwards. A Lower value moves it upwards. </li>
+                                        <li>r: Sets the radius of the circle</li>
+                                        <li>fill: Sets the color of the Circle</li>
+                                    </ul>
+                                </div>
+                                <div class="photo-container">
+                                    <img src="Images/CreateSVGPG/Example text.jpg/Image 12-12-23 at 10.26 AM (2).jpg"
+                                        alt="">
+                                    <img src="Images/CreateSVGPG/Example shapes/Image 12-12-23 at 10.58 AM.jpg" alt="">
+                                </div>
+                            </div>
+                            <div class="tag-holder" id="lineTag">
+                                <div class="tag-text">
+                                    <h3>line:</h3>
+                                    <p>A tag meant to create a line that can be manipulated through various attributes
+                                    </p>
+                                    <ul>
+                                        <li>x1: sets the x position of the starting point.<br>&nbsp;&nbsp;&nbsp;&nbsp;A
+                                            higher value moves the shape right. A Lower value moves it left. </li>
+                                        <li>x2: sets the x position of the ending point.<br>&nbsp;&nbsp;&nbsp;&nbsp;A
+                                            higher value moves the shape right. A Lower value moves it left.</li>
+                                        <li>y1: sets the y position of the starting point.<br>&nbsp;&nbsp;&nbsp;&nbsp;A
+                                            higher value moves the shape downwards. A Lower value moves it upwards.
+                                        </li>
+                                        <li>y2: sets the y position of the ending point.<br>&nbsp;&nbsp;&nbsp;&nbsp;A
+                                            higher value moves the shape downwards. A Lower value moves it upwards.
+                                        </li>
+                                    </ul>
+                                    <p>The Stroke property explained in a paragraph below is the only way to change the
+                                        color and width of the line</p>
+                                    <div class="photo-container">
+                                        <img src="Images/CreateSVGPG/Example text.jpg/837A6CE6-629D-4CA1-859C-456346DA79EB_4_5005_c.jpeg"
+                                            alt="">
+                                        <img src="Images/CreateSVGPG/Example shapes/Image 12-12-23 at 10.59 AM.jpg"
+                                            alt="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tag-holder" id="ellipseTag">
+                                <div class="tag-text">
+                                    <h3>ellipse:</h3>
+                                    <p>A tag meant to create a ellipse that can be manipulated through various
+                                        attributes</p>
+                                    <ul>
+                                        <li>cx: sets the x position.<br>&nbsp;&nbsp;&nbsp;&nbsp;A higher value moves the
+                                            shape right. A Lower value moves it left. </li>
+                                        <li>cy: sets the y position.<br>&nbsp;&nbsp;&nbsp;&nbsp;A higher value moves the
+                                            shape downwards. A Lower value moves it upwards. </li>
+                                        <li>ry: sets the y-axis radius of the ellipse</li>
+                                        <li>rx: sets the x-axis radius of the ellipse</li>
+                                        <li>fill: sets the color of the Ellips</li>
+                                    </ul>
+                                </div>
+                                <div class="photo-container">
+                                    <img src="Images/CreateSVGPG/Example text.jpg/Image 12-12-23 at 10.27 AM.jpg"
+                                        alt="">
+                                    <img src="Images/CreateSVGPG/Example shapes/Image 12-12-23 at 11.01 AM.jpg" alt="">
+                                </div>
+                            </div>
+                            <div class="tag-holder" id="pathTag">
+                                <div class="tag-text">
+                                    <h3>Path:</h3>
+                                    <p>A tag that can be used to create any one of the basic shapes, and is more
+                                        equivalent to drawing a shape yourself than having it be pre-programmed in a
+                                        format. Instead of having a variety of attributes that can change a path, there
+                                        is only one attribute that uses letters along with coordinates to determine the
+                                        type movement. </p>
+                                    <ul>
+                                        <li>d: represents a letter to coordinate system; some of the more commonly used
+                                            letters are M(sets the starting position), H(moves exclusively horizontal in
+                                            reference to the starting point), V(moves exclusively Vertical in reference
+                                            to the starting point), and z(returns to the first point in a path)</li>
+                                    </ul>
+                                    <p>Though this is a small snippet of path, and as you do more research you will find
+                                        that there are more and more complex shapes that are available to you.</p>
+                                </div>
+                                <div class="photo-container">
+                                    <img src="Images/CreateSVGPG/Example text.jpg/path text.jpeg" alt="">
+                                    <img src="Images//CreateSVGPG/Example shapes/path pic.jpeg" alt="">
+                                </div>
+                            </div>
+                            <p id="sp" class="special-p">There are other tags then what has been listed but these are
+                                some of the main ones that you might see more commonly.</p>
+                            <h2>"Universal" Attributes and SVG Tag Bounds</h2>
+                            <div class="tag-holder" id="pathTag">
+                                <div class="tag-text">
+                                    <h3>Stroke:</h3>
+                                    <p>The stroke attribute creates a stroke or a "border" around said object. There are
+                                        two main attributes relating to stroke: </p>
+                                    <ul>
+                                        <li>stroke: sets the color of the "border".</li>
+                                        <li>stroke-width: sets the width of that border out of the shape.</li>
+                                    </ul>
+                                    <p>The line tag uses stroke for its color and width entirely as it has no fill
+                                        property of its own.</p>
+                                </div>
+                                <div class="tag-text">
+                                    <h3>SVG Bounds:</h3>
+                                    <p>When using SVG's they exist on a plot or a map and whatever is not on the map is
+                                        not in view. The Width and Height property of the SVG tag specify the bounds of
+                                        the svg. You can still move the svg object out of the bounds however they will
+                                        no longer be in view.</p>
+                                    <ul>
+                                        <li>Width: Sets the width bounds of the SVG</li>
+                                        <li>Height: Sets the height bounds of the SVG</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <h2>Animation</h2>
+                            <div class="tag-holder">
+                                <div class="tag-text">
+                                    <h3>Animate tags:</h3>
+                                    <p>Animate: animate allows for you to modify attributes of basic shapes, and have
+                                        them smoothly transition between each other or repeatedly go back and forth
+                                        between themselves. Unlike most tags in vector graphics, this is one of the few
+                                        tags that needs to be inside another tag.</p>
+                                    <p>AnimationMotion: animate and animate motion are both formatted similarly, but one
+                                        requires you to use a path to determine how to move the shape in the specified
+                                        motion</p>
+                                    <h3>Animation Examples</h3>
+                                    <div class="animate-holder">
+                                        <img src="animatetest.svg" alt="">
+                                        <img src="gearAnimation.svg" alt="">
+                                        <img src="parker2.svg" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </article>
+                    <article id="article4" class="SVG-in-web">
+                        <section>
+                            <h2>SVG's in the Web</h2>
+                            <p>When using SVG's in the web there are two main ways to use them and implement them into
+                                your websites
+                            </p>
+                            <h2>SVG - TAGS</h2>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In HTML there is actually an SVG tag.
+                                This tag allows you to place your SVG in as the text from the text file. All the
+                                properties work exactly the same and can be manually changed in the html. By linking
+                                your SVG in through the SVG tag it also allows you to edit parts of that SVG using
+                                javascript. We used this ourselves in our interactables page The one pain with linking
+                                the SVG using the SVG tag is that scaling the image becomes a bit of a pain. The option
+                                below makes that process a bit easier.
+                            </p>
+                            <div class="img-holder">
+                                <img src="Images/Screenshot 2023-12-12 104154.png" alt="">
+                                <a>SVG tag Example</a>
+                            </div>
+                            <h2>.SVG Files Through IMG tags</h2>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The more typical way to put an SVG image
+                                in your webpage is to link it with an img tag. Instead of the SVG text existing in the
+                                HTML on your website it is stored in a .svg file in the website's. storage. This makes
+                                it a l bit easier to change the properties and actually scale the image. This does
+                                however make it so that you lose the ability to edit the parts of the SVG using
+                                Javascript.
+                            </p>
+                            <div class="img-holder">
+                                <img src="Images/Screenshot 2023-12-12 104101.png" alt="">
+                                <h2>Img Tag Example</h2>
+                            </div>
+                </div>
+                </section>
+                </article>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+</body>
+
+</html>
